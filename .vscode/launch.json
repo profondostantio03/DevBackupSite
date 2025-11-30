@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "BorsaUI",
+            "request": "launch",
+            "mainClass": "Java.IIProva2024.quesito5.BorsaUI",
+            "projectName": "DevBackupSite_116160d2"
+        },
+        {
+            "type": "java",
+            "name": "TesterMonetaOrdinabile",
+            "request": "launch",
+            "mainClass": "Java.IIProva2024.quesito2.TesterMonetaOrdinabile",
+            "projectName": "DevBackupSite_116160d2"
+        },
+        {
+            "type": "java",
+            "name": "TesterMoneta",
+            "request": "launch",
+            "mainClass": "Java.IIProva2024.allegati.TesterMoneta",
+            "projectName": "DevBackupSite_116160d2"
+        },
+        {
+            "type": "java",
+            "name": "BankFrameViewer",
+            "request": "launch",
+            "mainClass": "Java.ExceptionAndUI.bankgui.BankFrameViewer",
+            "projectName": "DevBackupSite_116160d2"
+        },
+        {
+            "type": "java",
+            "name": "TesterBankAccount",
+            "request": "launch",
+            "mainClass": "Java.ExceptionAndUI.defaultbank.TesterBankAccount",
+            "projectName": "DevBackupSite_116160d2"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
