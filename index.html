@@ -1,44 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivio di Gigi - UNISA</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h4>
-package arrayandarraylist;<br>
-<br>
-public class ArrayMultidimensionali {<br>
-    public static void main(String[] args) { <br>
-        String[][] classi = new String[3][7];<br>
-<br>
-        classi[0][0] = "Ari";<br>
-        classi[0][1] = "Gigi";<br>
-        classi[0][2] = "Mike";<br>
-<br>
-        classi[1][0] = "Jack";<br>
-        classi[1][1] = "Gaetano";<br>
-        classi[1][2] = "Miri";<br>
-        classi[1][3] = "Alessandro";<br>
-<br>
-        classi[2][0] = "Rob";<br>
-        classi[2][1] = "Peppe";<br>
-        classi[2][2] = "Riccardo";<br>
-<br>
-        System.out.println("Primo alunno della terza classe: " + classi[2][0]);<br>
-<br>
-        for(int i = 0; i < classi.length; i++){<br>
-            for(int j = 0; j < classi[i].length && classi[i][j] != null; j++){<br>
-                System.out.println("Studente " + j + " della classe" + i + ": " + classi[i][j]);<br>
-            }<br>
-        }<br>
-    }<br>
-}<br>
 
-    </h4>
+    <header>
+        <div class="logo">Gigi</div>
+        <nav>
+            <button onclick="openExam('matematica', this)">Matematica Discreta</button>
+            <button onclick="openExam('prog-distribuita', this)">Prog. Distribuita</button>
+            <button onclick="openExam('reti', this)">Reti</button>
+            <button onclick="openExam('cpsm', this)">CPSM</button>
+            <button onclick="openExam('algoritmi', this)">Progett. Algoritmi</button>
+        </nav>
+    </header>
+
+    <main>
+        
+        <div class="zoom-wrapper">
+            <button class="zoom-btn" onclick="toggleZoomMenu()" title="Zoom Testo">🔍</button>
+            <div id="zoomActions">
+                <button class="zoom-btn" onclick="resizeText(-1)">➖</button>
+                <button class="zoom-btn" onclick="resizeText(1)">➕</button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterNotes()" placeholder="Cerca negli appunti...">
+        </div>
+
+        <div id="welcome" class="exam-content active">
+            <h2>Benvenuto nell'Archivio</h2>
+            <p class="note-item">Seleziona un esame dalla barra in alto per studiare.</p>
+        </div>
+
+        <div id="matematica" class="exam-content">
+            <h2>Matematica Discreta</h2>
+            <p class="note-item">Introduzione agli insiemi e logica proposizionale.</p>
+            <ul>
+                <li class="note-item">Teoria dei Grafi: nodi, archi e cammini.</li>
+                <li class="note-item">Induzione Matematica.</li>
+            </ul>
+        </div>
+
+        <div id="prog-distribuita" class="exam-content">
+            <h2>Programmazione Distribuita</h2>
+            <p class="note-item">Architetture Client-Server vs Peer-to-Peer.</p>
+            <div class="note-item">
+                <pre><code>ServerSocket server = new ServerSocket(8080);</code></pre>
+            </div>
+        </div>
+
+        <div id="reti" class="exam-content">
+            <h2>Reti di Calcolatori</h2>
+            <ul>
+                <li class="note-item">Stack ISO/OSI: i 7 livelli.</li>
+                <li class="note-item">Protocollo TCP vs UDP.</li>
+            </ul>
+        </div>
+
+        <div id="cpsm" class="exam-content">
+            <h2>CPSM</h2>
+            <p class="note-item">Definizione di Probabilità condizionata.</p>
+        </div>
+
+        <div id="algoritmi" class="exam-content">
+            <h2>Progettazione Algoritmi</h2>
+            <p class="note-item">Notazione Big O e complessità.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
-</html>>
+</html>
