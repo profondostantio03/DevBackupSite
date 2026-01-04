@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematica Discreta</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="../index.html" style="text-decoration:none; color:inherit;">Archivio di Gigi</a></div>
+        <nav>
+            <a href="md.html" class="nav-link active-link">Matematica Discreta</a>
+            <a href="../prog-distribuita.html" class="nav-link">Prog. Distribuita</a>
+            <a href="../reti.html" class="nav-link">Reti</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="zoom-wrapper">
+            <button class="zoom-btn" onclick="toggleZoomMenu()" title="Zoom">🔍</button>
+            <div id="zoomActions">
+                <button class="zoom-btn" onclick="resizeText(-1)">➖</button>
+                <button class="zoom-btn" onclick="resizeText(1)">➕</button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterNotes()" placeholder="Cerca...">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+            <button id="backBtn" onclick="loadMacroCategories()" style="display:none; padding: 5px 15px; border-radius: 10px; border:none; background: #8b5cf6; color: white; cursor: pointer;">
+                ⬅ Categorie
+            </button>
+            <h2 id="pageTitle" style="margin:0; border:none;">Macro Aree</h2>
+        </div>
+        
+        <div id="math-grid" class="flashcard-grid"></div>
+
+    </main>
+
+    <div id="topicModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeModal(event)">&times;</span>
+            <h2 id="modalTitle">Titolo</h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay" onclick="closeEditModal(event)" style="display:none;">
+    <div class="modal-content glass-panel" style="max-width: 400px; text-align: left;">
+        <span class="close-modal" onclick="closeEditModal(event)">&times;</span>
+        <h3 style="margin-top:0;">Modifica Flashcard</h3>
+        
+        <label style="display:block; margin-bottom:5px; font-weight:bold; color:#555;">Nuovo Titolo</label>
+        <input type="text" id="editTitleInput" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;">
+        
+        <label style="display:block; margin-bottom:5px; font-weight:bold; color:#555;">Scegli Colore Sfondo</label>
+        <div class="color-picker" style="display: flex; gap: 10px; margin-bottom: 25px;">
+            <div onclick="selectEditColor('style-orange')" class="color-circle" style="background: linear-gradient(135deg, #ff9966, #ff5e62);"></div>
+            <div onclick="selectEditColor('style-purple')" class="color-circle" style="background: linear-gradient(135deg, #da22ff, #9733ee);"></div>
+            <div onclick="selectEditColor('style-blue')" class="color-circle" style="background: linear-gradient(135deg, #56CCF2, #2F80ED);"></div>
+            <div onclick="selectEditColor('style-green')" class="color-circle" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
+            <div onclick="selectEditColor('style-dark')" class="color-circle" style="background: linear-gradient(135deg, #434343, #000000);"></div>
+        </div>
+
+        <button onclick="saveEdit()" style="width:100%; padding:12px; background:#8b5cf6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">SALVA MODIFICHE</button>
+    </div>
+</div>
+    <script src="../script.js"></script> <script src="md.js"></script>
+</body>
+</html>
