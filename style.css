@@ -161,6 +161,42 @@ main {
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
 }
 
+.page-header {
+    display: flex;
+    align-items: center; /* allineamento verticale perfetto */
+    gap: 15px;
+    margin-bottom: 30px;
+    min-height: 50px;
+}
+
+.page-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1; /* evita spazi extra verticali */
+}
+
+#backBtn {
+    display: none; /* gestito da js */
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+#backBtn:hover {
+    background: #7c3aed;
+    transform: translateX(-3px);
+}
+
 /* content styles */
 h2 {
     color: var(--primary-color);

@@ -1,15 +1,15 @@
-// caricati i dati specifici di ogni materia
+// --- STATO GLOBALE ---
 let appData = {
-    categories: [], // Es: Insiemi, Funzioni...
-    notes: []       // Es: Appunti specifici
+    categories: [], 
+    notes: []       
 };
 
-// config stili
+// Configurazione Stili
 const colorStyles = ['style-orange', 'style-purple', 'style-blue', 'style-green', 'style-dark'];
 let currentEditId = null;
 let selectedColorClass = '';
 
-// chiamata specifico file
+// --- INIZIALIZZAZIONE ---
 function initPage(categoriesData, notesData, pageTitleText) {
     appData.categories = categoriesData;
     appData.notes = notesData;
@@ -23,12 +23,13 @@ function initPage(categoriesData, notesData, pageTitleText) {
     }
 }
 
-// color helpers
+// --- HELPER COLORI ---
 function resolveColor(item, index) {
     if (item.customColor) return item.customColor;
     return colorStyles[index % colorStyles.length];
 }
 
+// --- HOME: MACRO CATEGORIE ---
 function loadMacroCategories() {
     const grid = document.getElementById('math-grid');
     const title = document.getElementById('pageTitle');
@@ -46,6 +47,7 @@ function loadMacroCategories() {
         
         card.className = `modern-card ${colorClass}`;
 
+        // Clic sulla card -> Vai agli appunti
         card.onclick = () => loadNotesByCategory(topic.id, topic.title, colorClass);
         
         card.innerHTML = `
@@ -65,7 +67,7 @@ function loadMacroCategories() {
     });
 }
 
-// gestione appunti
+// --- DETTAGLIO: APPUNTI ---
 function loadNotesByCategory(catId, catTitle, parentColorClass) {
     const grid = document.getElementById('math-grid');
     const title = document.getElementById('pageTitle');
@@ -90,8 +92,11 @@ function loadNotesByCategory(catId, catTitle, parentColorClass) {
         const colorClass = parentColorClass || colorStyles[index % colorStyles.length];
         
         card.className = `modern-card ${colorClass} note-item`;
-        card.onclick = () => openModal(item.id); 
         
+        // 1. CLIC SULLA CARTA -> Apre la TEORIA (passiamo 'theory')
+        card.onclick = () => openModal(null, item.id, 'theory'); 
+        
+        // ATTENZIONE: Qui ho aggiunto pointer-events: auto per rendere il bottone cliccabile
         card.innerHTML = `
             <div class="card-header" style="height: 100px;">
                 <div class="card-icon" style="font-size: 2rem; width: 60px; height: 60px;">📝</div>
@@ -99,16 +104,60 @@ function loadNotesByCategory(catId, catTitle, parentColorClass) {
             <div class="card-body">
                 <h3 class="card-title" style="font-size: 1.1rem;">${item.title}</h3>
                 <p class="card-text" style="font-size: 0.85rem;">${item.summary}</p>
-                <div class="card-pill" style="font-size: 0.7rem; padding: 5px 15px; pointer-events:none;">LEGGI</div>
-                <span style="display:none">${item.details}</span> 
+                
+                <button class="card-pill" 
+                        style="cursor:pointer; border:none; pointer-events: auto;" 
+                        onclick="openModal(event, ${item.id}, 'examples')">
+                    ESEMPI 💡
+                </button>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
-// logica editing
+// --- GESTIONE MODALE (UNICA FUNZIONE) ---
+function openModal(event, id, type) {
+    // Se il clic viene dal bottone (c'è l'evento), fermiamo la propagazione
+    // così non si attiva anche il click sulla carta sottostante
+    if(event) event.stopPropagation();
 
+    // Usa == invece di === per essere sicuro che numeri e stringhe matchino
+    const item = appData.notes.find(d => d.id == id); 
+    if (!item) return;
+    
+    const mTitle = document.getElementById('modalTitle');
+    const mBody = document.getElementById('modalBody');
+    const mDiv = document.getElementById('topicModal');
+    
+    if(mTitle && mBody) {
+        // Logica per decidere cosa mostrare
+        if (type === 'examples') {
+            mTitle.innerText = "Esempi: " + item.title;
+            // Se non ci sono esempi, mostra un messaggio cortese
+            mBody.innerHTML = item.examples ? item.examples : "<p style='text-align:center; padding:20px; color:#666;'>Nessun esempio disponibile per questo argomento.</p>";
+        } else {
+            // Default: Teoria
+            mTitle.innerText = item.title;
+            mBody.innerHTML = item.details;
+        }
+
+        // Renderizza la matematica (MathJax) se presente
+        if(window.MathJax) {
+            MathJax.typesetPromise([mBody]).then(() => {});
+        }
+    }
+    
+    if(mDiv) mDiv.style.display = 'flex';
+}
+
+function closeModal(event) {
+    if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-modal')) {
+        document.getElementById('topicModal').style.display = 'none';
+    }
+}
+
+// --- GESTIONE EDITING ---
 function openEditModal(event, id) {
     event.stopPropagation();
     
@@ -126,6 +175,7 @@ function openEditModal(event, id) {
 
     if(selectedColorClass) {
         const existingBtn = document.querySelector(`.color-circle.${selectedColorClass}-bg`); 
+        if(existingBtn) existingBtn.classList.add('selected');
     }
 
     const modal = document.getElementById('editModal');
@@ -134,8 +184,6 @@ function openEditModal(event, id) {
 
 function selectEditColor(colorClass) {
     selectedColorClass = colorClass;
-    
-    // Feedback visivo
     document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
     if(event && event.target) event.target.classList.add('selected');
 }
@@ -161,34 +209,7 @@ function closeEditModal(event) {
     }
 }
 
-function openModal(id) {
-    const item = appData.notes.find(d => d.id === id);
-    if (!item) return;
-    
-    const mTitle = document.getElementById('modalTitle');
-    const mBody = document.getElementById('modalBody');
-    const mDiv = document.getElementById('topicModal');
-    
-    if(mTitle) mTitle.innerText = item.title;
-    if(mBody) {
-        mBody.innerHTML = item.details;
-        
-        // renderizza la matematica
-        if(window.MathJax) {
-            MathJax.typesetPromise([mBody]).then(() => {
-            });
-        }
-    }
-    if(mDiv) mDiv.style.display = 'flex';
-}
-
-function closeModal(event) {
-    if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-modal')) {
-        document.getElementById('topicModal').style.display = 'none';
-    }
-}
-
-// zoom testo
+// --- UTILITIES (Zoom, Ricerca) ---
 let currentFontSize = 16; 
 function toggleZoomMenu() { 
     const z = document.getElementById('zoomActions');
@@ -202,7 +223,6 @@ function resizeText(multiplier) {
     document.querySelectorAll('p, li, pre, h3, .card-text').forEach(el => el.style.fontSize = currentFontSize + 'px');
 }
 
-// filtro ricerca
 function filterNotes() {
     let input = document.getElementById('searchInput');
     if(!input) return;
