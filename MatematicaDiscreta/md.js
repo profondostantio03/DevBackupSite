@@ -32,12 +32,23 @@ const mdNotes = [
         `,
         examples: `
             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Esercizio 1:</b> Descrivere per elencazione $A = \\{ x \\in \\mathbb{Z} \\mid x^2 < 10 \\}$.</p>
+                <p><b>Esercizio: Elencazione</b></p>
+                <p>Descrivere $A = \\{ x \\in \\mathbb{Z} \\mid x^2 < 10 \\}$.</p>
                 <p><b>Svolgimento:</b><br>
-                Cerco gli interi il cui quadrato è minore di 10.<br>
-                Quadrati: $0, 1, 4, 9, 16...$<br>
-                Considero anche i negativi: $0, \\pm 1, \\pm 2, \\pm 3$.<br>
+                Cerco gli interi (anche negativi) il cui quadrato è minore di 10.<br>
+                Quadrati: $0, 1, 4, 9$. ($16$ è troppo grande).<br>
+                Radici in $\\mathbb{Z}$: $0, \\pm 1, \\pm 2, \\pm 3$.<br>
                 <b>Soluzione:</b> $A = \\{-3, -2, -1, 0, 1, 2, 3\\}$.</p>
+            </div>
+            <br>
+            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
+                <p><b>Esercizio: Dimostrazione Insiemistica</b></p>
+                <p>Dimostrare che $X \\setminus (A \\cup B) = (X \\setminus A) \\cap (X \\setminus B)$.</p>
+                <p><b>Svolgimento logico:</b><br>
+                $x \\in X \\setminus (A \\cup B) \\iff x \\in X \\land x \\notin (A \\cup B)$<br>
+                $\\iff x \\in X \\land (x \\notin A \\land x \\notin B)$ (De Morgan)<br>
+                $\\iff (x \\in X \\land x \\notin A) \\land (x \\in X \\land x \\notin B)$<br>
+                $\\iff x \\in (X \\setminus A) \\cap (X \\setminus B)$.</p>
             </div>
         `
     },
@@ -93,47 +104,71 @@ const mdNotes = [
 
     // --- 2. APPLICAZIONI ---
     { 
-        id: 202, 
+        id: 201, 
         category: 'applicazioni', 
-        title: "1. Iniettiva e Suriettiva", 
-        summary: "Definizioni e test pratici.", 
+        title: "1. Definizioni Base", 
+        summary: "Dominio, Codominio, Immagine, Controimmagine.", 
         details: `
-            
-            <p><b>Iniettiva:</b> $x_1 \\neq x_2 \\Rightarrow f(x_1) \\neq f(x_2)$.</p>
-            <p><b>Suriettiva:</b> $\\forall y \\in B, \\exists x \\in A : f(x)=y$. (Tutto il codominio è coperto).</p>
-            <p><b>Biettiva:</b> Iniettiva + Suriettiva.</p>
+            <p>Un'applicazione $f: A \\to B$ deve rispettare esistenza (tutti partono) e unicità (una sola freccia).</p>
+            <p><b>Immagine ($Im(f)$):</b> Sottoinsieme di B degli elementi raggiunti.</p>
+            <p><b>Controimmagine ($f^{-1}(Y)$):</b> Sottoinsieme di A degli elementi che "finiscono" in Y.</p>
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
-                <p><b>Es 1:</b> $f: \\mathbb{R} \\to \\mathbb{R}, f(x) = 3x - 5$.</p>
-                <p><b>Iniettiva?</b> $3x_1-5 = 3x_2-5 \\Rightarrow x_1=x_2$. (SÌ)</p>
-                <p><b>Suriettiva?</b> $y = 3x-5 \\Rightarrow x = (y+5)/3$. Esiste sempre. (SÌ)</p>
-                <hr>
-                <p><b>Es 2:</b> $f: \\mathbb{Z} \\to \\mathbb{Z}, f(n) = n^2$.</p>
-                <p><b>Iniettiva?</b> No, $f(2)=4, f(-2)=4$.</p>
-                <p><b>Suriettiva?</b> No, i negativi non sono quadrati.</p>
+                <p><b>Esercizio: Controimmagini finite</b></p>
+                <p><b>Dati:</b> $X=\\{1..8\\}$, $Y=\\{a,b,c\\}$.<br>
+                $f(1)=a, f(2)=a, f(3)=c, f(4)=b, f(5)=a, f(6)=b, f(7)=c, f(8)=a$.</p>
+                <p><b>Calcolare $f^{-1}(\\{a\\})$:</b><br>
+                Cerco tutte le x che vanno in 'a'.<br>
+                $f^{-1}(\\{a\\}) = \\{1, 2, 5, 8\\}$.</p>
+                <p><b>È suriettiva?</b> Sì, a, b, c sono tutti raggiunti.</p>
             </div>
-        `
+        ` 
+    },
+    { 
+        id: 202, 
+        category: 'applicazioni', 
+        title: "2. Iniettiva e Suriettiva", 
+        summary: "Definizioni formali e test pratici.", 
+        details: `
+            
+            <p><b>Iniettiva:</b> $x_1 \\neq x_2 \\Rightarrow f(x_1) \\neq f(x_2)$.</p>
+            <p><b>Suriettiva:</b> $\\forall y \\in B, \\exists x : f(x)=y$.</p>
+            <p><b>Biettiva:</b> Entrambe.</p>
+        `,
+        examples: `
+            <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
+                <p><b>Esercizio con Parametro</b></p>
+                <p>Discutere $f_c: \\mathbb{Z} \\to \\mathbb{Z}$ definita da $f_c(x) = x(1-c) + c$.</p>
+                <p><b>Iniettività:</b><br>
+                $x_1(1-c) = x_2(1-c)$. Se $c \\neq 1$, divido $\\Rightarrow x_1=x_2$. (Sì).<br>
+                Se $c=1$, $f(x)=1$ (costante, no).</p>
+                <p><b>Suriettività:</b><br>
+                $y = x(1-c)+c \\Rightarrow x = \\frac{y-c}{1-c}$.<br>
+                Affinché $x$ sia sempre intero, $1-c$ deve essere $\\pm 1$.<br>
+                Quindi biettiva solo per $c=0$ o $c=2$.</p>
+            </div>
+        ` 
     },
     { 
         id: 203, 
         category: 'applicazioni', 
-        title: "2. Composizione e Inversa", 
-        summary: "Calcolo di g(f(x)) e f^-1.", 
+        title: "3. Composizione e Inversa", 
+        summary: "Regole g(f(x)) e Teorema Invertibilità.", 
         details: `
-            <p><b>Composizione:</b> $(g \\circ f)(x) = g(f(x))$. Si applica prima la funzione interna (f).</p>
-            <p><b>Inversa:</b> Esiste solo se biettiva. Scambia dominio e codominio.</p>
+            <p><b>Composizione:</b> $(g \\circ f)(x) = g(f(x))$. Prima la destra.</p>
+            <p><b>Inversa:</b> Esiste solo se biettiva. $f^{-1}(y) = x \\iff f(x) = y$.</p>
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
-                <p><b>Dati:</b> $f(x) = x + 1$ e $g(x) = x^2$.</p>
-                <p><b>Calcolo $g \\circ f$:</b><br>
-                $(g \\circ f)(x) = g(x+1) = (x+1)^2 = x^2 + 2x + 1$.</p>
-                <p><b>Calcolo Inversa di $y=3x-5$:</b><br>
-                Isolo la x: $y+5 = 3x \\Rightarrow x = \\frac{y+5}{3}$.<br>
-                $f^{-1}(y) = \\frac{y+5}{3}$.</p>
+                <p><b>Dati:</b> $f(x) = x+1$, $g(x) = x^2$.</p>
+                <p><b>$g \\circ f$:</b> Prima $+1$, poi $\\text{quadrato}$. $(x+1)^2$.</p>
+                <p><b>$f \\circ g$:</b> Prima $\\text{quadrato}$, poi $+1$. $x^2+1$.</p>
+                <hr>
+                <p><b>Inversa di $y=3x-5$:</b><br>
+                Isolo x: $y+5 = 3x \\Rightarrow x = \\frac{y+5}{3}$.</p>
             </div>
-        `
+        ` 
     },
 
     // --- 3. RELAZIONI ---
@@ -143,7 +178,7 @@ const mdNotes = [
         title: "1. Relazioni di Equivalenza", 
         summary: "Riflessiva, Simmetrica, Transitiva.", 
         details: `
-            <p>Una relazione è di equivalenza se è:</p>
+            <p>Proprietà obbligatorie:</p>
             <ol>
                 <li><b>Riflessiva:</b> $a \\sim a$</li>
                 <li><b>Simmetrica:</b> $a \\sim b \\Rightarrow b \\sim a$</li>
@@ -152,35 +187,295 @@ const mdNotes = [
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Test:</b> $x \\sim y \\iff x - y$ è multiplo di 5 (in $\\mathbb{Z}$).</p>
-                <p>1. <b>Rifl:</b> $x-x=0$ (è multiplo di 5). OK.</p>
-                <p>2. <b>Simm:</b> Se $x-y=5k$, allora $y-x=-5k$. OK.</p>
-                <p>3. <b>Trans:</b> Somma di multipli di 5 è multiplo di 5. OK.</p>
+                <p><b>Esercizio: Relazione su Coppie</b></p>
+                <p>Su $\\mathbb{N} \\times \\mathbb{N}$: $(a,b)\\mathcal{R}(c,d) \\iff a+d = b+c$.</p>
+                <p><b>Riflessiva:</b> $(a,b)\\mathcal{R}(a,b) \\iff a+b = b+a$. OK.</p>
+                <p><b>Simmetrica:</b> Se $a+d=b+c$, sposto i termini $\\Rightarrow c+b=d+a$. OK.</p>
+                <p><b>Classe $[(1,1)]$:</b> Coppie $(x,y)$ tali che $1+y = 1+x \\Rightarrow x=y$.<br>
+                È la diagonale (bisettrice).</p>
             </div>
-        `
+        ` 
     },
     { 
         id: 302, 
         category: 'relazioni', 
         title: "2. Classi e Quoziente", 
-        summary: "Calcolo delle classi [x].", 
+        summary: "Definizione [a] e partizione indotta.", 
         details: `
-            <p><b>Classe [a]:</b> Tutti gli elementi in relazione con a.</p>
-            <p><b>Quoziente $A/\\sim$:</b> L'insieme di tutte le classi distinte.</p>
+            <p><b>Classe $[a]$:</b> Tutti gli elementi in relazione con a.</p>
+            <p><b>Quoziente $A/\\sim$:</b> L'insieme delle classi.</p>
+            <p><b>Teorema Fondamentale:</b> Ogni relazione di equivalenza crea una partizione.</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esercizio:</b> Trova le classi modulo 3 in $\\mathbb{Z}$.</p>
-                <p>Ci sono 3 classi possibili (i resti della divisione per 3):</p>
-                <ul>
-                    <li>$[0] = \\{..., -3, 0, 3, 6, ...\\}$</li>
-                    <li>$[1] = \\{..., -2, 1, 4, 7, ...\\}$</li>
-                    <li>$[2] = \\{..., -1, 2, 5, 8, ...\\}$</li>
-                </ul>
-                <p>Quoziente $\\mathbb{Z}_3 = \\{[0], [1], [2]\\}$.</p>
+                <p><b>Esempio: Congruenza Modulo 5</b></p>
+                <p>$x \\sim y \\iff x-y$ è multiplo di 5.</p>
+                <p><b>Chi sta in $[1]$?</b><br>
+                $y$ tali che $1-y = 5k \\Rightarrow y = 1-5k$.<br>
+                $\\{... -9, -4, 1, 6, 11 ...\\}$.</p>
+                <p><b>Quoziente:</b> $\\{[0], [1], [2], [3], [4]\\}$.</p>
+            </div>
+        ` 
+    },
+
+    // --- 4. ARITMETICA (CORRETTO: Contenuti Espansi, Riassunti Puliti) ---
+    { 
+        id: 401, 
+        category: 'aritmetica', 
+        title: "1. Principio di Induzione", 
+        summary: "Dimostrazioni per P(n): Base e Passo (Debole/Forte).", 
+        details: `
+            <p>Il principio serve a dimostrare che una proprietà $P(n)$ è vera per ogni $n \\ge n_0$.</p>
+            <h4>Induzione Classica (Debole)</h4>
+            <ol>
+                <li><b>Base:</b> Dimostro che $P(n_0)$ è vera.</li>
+                <li><b>Passo:</b> Assumo $P(n)$ vera (Ipotesi) $\\Rightarrow$ Dimostro $P(n+1)$ vera (Tesi).</li>
+            </ol>
+            <hr>
+            <h4>Induzione Forte</h4>
+            <p>Nel passo induttivo, assumo che $P(k)$ sia vera per <b>tutti</b> i $k < n$, e dimostro per $n$.</p>
+            <p><i>Fondamentale quando $P(n)$ dipende da valori precedenti non consecutivi (es. $n-2$ o $n-3$).</i></p>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio (Esame 04/02/22):</b> Dimostrare che $\\forall n \\ge 8, \\exists a,b \\in \\mathbb{N}_0 : n = 3a + 5b$.</p>
+                <p><b>1. Passo Base:</b> Verifico i primi casi manualmente.<br>
+                $n=8: 3(1)+5(1)$ (OK)<br>
+                $n=9: 3(3)+5(0)$ (OK)<br>
+                $n=10: 3(0)+5(2)$ (OK)</p>
+                <p><b>2. Passo Induttivo (Forte):</b><br>
+                Voglio dimostrare per un generico $n > 10$.<br>
+                Osservo che $n = (n-3) + 3$.<br>
+                Poiché $n > 10$, allora $n-3 \\ge 8$.<br>
+                Per <b>ipotesi induttiva</b>, la proprietà vale per $n-3$:<br>
+                $n-3 = 3a' + 5b'$.<br>
+                Sostituisco:<br>
+                $n = (3a' + 5b') + 3 = 3(a' + 1) + 5b'$.<br>
+                Ho trovato i nuovi coefficienti ($a=a'+1, b=b'$). <b>C.V.D.</b></p>
+            </div>
+        ` 
+    },
+    { 
+        id: 402, 
+        category: 'aritmetica', 
+        title: "2. MCD e Bèzout", 
+        summary: "Algoritmo Euclideo Esteso per trovare x, y.", 
+        details: `
+            <p><b>Teorema di Bèzout:</b> Dati $a, b \\in \\mathbb{Z}$, il loro massimo comun divisore $d = MCD(a,b)$ è l'unico intero positivo scrivibile come combinazione lineare:</p>
+            <p>$$ax + by = d$$</p>
+            
+
+[Image of flowchart of Euclidean algorithm]
+
+            <p>Per trovare $x$ e $y$ si usa l'<b>Algoritmo Euclideo Esteso</b>:</p>
+            <ol>
+                <li>Fai le divisioni successive finché il resto è 0 per trovare l'MCD.</li>
+                <li><b>Torni indietro</b> (Sostituzione a ritroso) isolando i resti per esprimere l'MCD come combinazione di a e b.</li>
+            </ol>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio (Esame 04/02/22):</b> Trovare soluzioni intere di $13x + 19y = 1$.</p>
+                <p><b>Fase 1: Divisioni (Euclide)</b><br>
+                (a) $19 = 13 \\cdot 1 + 6$ $\\rightarrow$ (isolo resto: $6 = 19 - 13 \\cdot 1$)<br>
+                (b) $13 = 6 \\cdot 2 + 1$ $\\rightarrow$ (isolo resto: $1 = 13 - 6 \\cdot 2$)<br>
+                (c) $6 = 1 \\cdot 6 + 0$ (Stop, MCD è 1).</p>
+                <p><b>Fase 2: Risalita (Bèzout)</b><br>
+                Parto dall'equazione (b) che contiene l'MCD (1):<br>
+                $1 = 13 - 6 \\cdot 2$<br>
+                Sostituisco il 6 usando l'equazione (a):<br>
+                $1 = 13 - (19 - 13 \\cdot 1) \\cdot 2$<br>
+                Svolgo i calcoli trattando 13 e 19 come "lettere" (NON fare le somme!):<br>
+                $1 = 13 - 19 \\cdot 2 + 13 \\cdot 2$<br>
+                Raggruppo i 13 e i 19:<br>
+                $1 = 13(1 + 2) - 19(2)$<br>
+                $1 = 13(3) + 19(-2)$</p>
+                <p><b>Soluzione:</b> $x = 3, y = -2$.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 403, 
+        category: 'aritmetica', 
+        title: "3. Congruenze e Inversi", 
+        summary: "Risolvere ax = b (mod n) e calcolo inversi.", 
+        details: `
+            <p>Un'equazione $ax \\equiv b \\pmod n$ ha soluzioni se e solo se $d = MCD(a,n)$ divide $b$.</p>
+            <p>Se $d=1$, esiste un'unica soluzione modulo $n$.</p>
+            <h4>Come si risolve?</h4>
+            <ol>
+                <li>Controlla se $MCD(a,n)$ divide $b$.</li>
+                <li>Trova l'<b>inverso moltiplicativo</b> di $a$ modulo $n$. L'inverso è quel numero $a^{-1}$ tale che $a \\cdot a^{-1} \\equiv 1 \\pmod n$.</li>
+                <li>L'inverso si trova con Bèzout: $as + nt = 1 \\Rightarrow as \\equiv 1 \\pmod n$. Quindi $s$ è l'inverso.</li>
+                <li>Moltiplica tutto per l'inverso: $x \\equiv a^{-1}b \\pmod n$.</li>
+            </ol>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio Base:</b> Risolvere $5x \\equiv 3 \\pmod{14}$.</p>
+                <p>1. $MCD(5, 14) = 1$. Esiste soluzione unica.</p>
+                <p>2. Cerco inverso di 5 mod 14. Uso Bèzout su 14 e 5:<br>
+                $14 = 5 \\cdot 2 + 4$<br>
+                $5 = 4 \\cdot 1 + 1$<br>
+                Risalgo:<br>
+                $1 = 5 - 4$<br>
+                $1 = 5 - (14 - 5 \\cdot 2)$<br>
+                $1 = 5(3) - 14(1)$</p>
+                <p>Quindi $5(3) \\equiv 1 \\pmod{14}$. L'inverso è <b>3</b>.</p>
+                <p>3. Moltiplico l'equazione originale per 3:<br>
+                $3 \\cdot (5x) \\equiv 3 \\cdot 3 \\pmod{14}$<br>
+                $15x \\equiv 9 \\pmod{14}$<br>
+                $1x \\equiv 9 \\pmod{14}$.<br>
+                <b>Soluzione:</b> $x = 9$.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 404, 
+        category: 'aritmetica', 
+        title: "4. Sistemi di Congruenze", 
+        summary: "Teorema Cinese del Resto (Metodo Sostituzione).", 
+        details: `
+            <p><b>Teorema Cinese del Resto:</b> Se i moduli $n_1, n_2...$ sono <b>coprimi a due a due</b> (cioè $MCD(n_i, n_j)=1$), allora esiste una soluzione unica modulo $N = n_1 \\cdot n_2...$.</p>
+            <p><b>Metodo Pratico (Sostituzione):</b></p>
+            <ol>
+                <li>Prendi la prima equazione: $x \\equiv a \\pmod n$.</li>
+                <li>Scrivila come uguaglianza: $x = n\\cdot k + a$.</li>
+                <li>Sostituisci questa $x$ nella seconda equazione.</li>
+                <li>Risolvi per $k$.</li>
+                <li>Sostituisci $k$ indietro per trovare $x$.</li>
+            </ol>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio (Esame 22/02/22):</b><br>
+                $\\begin{cases} x \\equiv 3 \\pmod 7 \\\\ x \\equiv 6 \\pmod{11} \\end{cases}$</p>
+                <p><b>1. Dalla prima:</b> $x = 7k + 3$.</p>
+                <p><b>2. Sostituisco nella seconda:</b><br>
+                $(7k + 3) \\equiv 6 \\pmod{11}$<br>
+                $7k \\equiv 3 \\pmod{11}$</p>
+                <p><b>3. Risolvo per k:</b><br>
+                Devo eliminare il 7. Cerco inverso di 7 mod 11.<br>
+                ... calcoli Bèzout ... oppure provo: $7 \\cdot 8 = 56 = 11 \\cdot 5 + 1$. L'inverso è 8.<br>
+                Moltiplico per 8:<br>
+                $56k \\equiv 24 \\pmod{11} \\Rightarrow 1k \\equiv 2 \\pmod{11}$.<br>
+                Quindi $k = 11h + 2$.</p>
+                <p><b>4. Sostituisco k nella x originale:</b><br>
+                $x = 7(11h + 2) + 3$<br>
+                $x = 77h + 14 + 3$<br>
+                $x = 77h + 17$.</p>
+                <p><b>Soluzione:</b> $x \\equiv 17 \\pmod{77}$.</p>
+            </div>
+        ` 
+    },
+
+    // --- 5. MATRICI ---
+    { 
+        id: 501, 
+        category: 'matrici', 
+        title: "1. Operazioni e Rango", 
+        summary: "Prodotto righe per colonne e Gauss.", 
+        details: `
+            <p><b>Prodotto:</b> $(AB)_{ij}$ è il prodotto scalare della riga $i$ di A per la colonna $j$ di B.</p>
+            <p><b>Rango:</b> Numero massimo di righe indipendenti (o numero di pivot nella scala).</p>
+        `,
+        examples: `
+            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
+                <p><b>Esercizio:</b> Calcolare il rango di $A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 0 & 1 & 1 \\end{pmatrix}$.</p>
+                <p><b>Gauss:</b><br>
+                $R_2 \\leftarrow R_2 - 2R_1$: $\\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 0 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}$.<br>
+                Scambio $R_2$ e $R_3$: $\\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$.</p>
+                <p>Ci sono 2 pivot (1 e 1). <b>Rango = 2</b>.</p>
+            </div>
+        ` 
+    },
+
+    // --- 6. STRUTTURE ALGEBRICHE ---
+    { 
+        id: 601, 
+        category: 'strutture', 
+        title: "1. Gruppi e Sottogruppi", 
+        summary: "Verifica proprietà Gruppo (Abeliano).", 
+        details: `
+            <p><b>Gruppo:</b> Associativa, Neutro, Inverso.</p>
+            <p><b>Sottogruppo:</b> Chiuso rispetto al prodotto e all'inverso.</p>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esercizio: Sottogruppo Matrici</b></p>
+                <p>Insieme $M = \\{ \\begin{pmatrix} 1 & 0 \\\\ a & 1 \\end{pmatrix} \\mid a \\in \\mathbb{R} \\}$.</p>
+                <p><b>Chiusura Prodotto:</b><br>
+                $\\begin{pmatrix} 1 & 0 \\\\ a & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 \\\\ b & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ a+b & 1 \\end{pmatrix}$.<br>
+                Sta ancora in M? Sì ($a+b \\in \\mathbb{R}$).</p>
+                <p><b>Inverso:</b> $\\begin{pmatrix} 1 & 0 \\\\ -a & 1 \\end{pmatrix}$. Sta in M. OK.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 602, 
+        category: 'strutture', 
+        title: "2. Omomorfismi", 
+        summary: "Funzioni che conservano l'operazione.", 
+        details: `
+            <p><b>Omomorfismo:</b> $f(x * y) = f(x) \\circ f(y)$.</p>
+            <p><b>Isomorfismo:</b> Omomorfismo biettivo.</p>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esercizio: Test Omomorfismo</b></p>
+                <p>$f: \\mathbb{R} \\to \\mathbb{Z}$, $f(x) = \\text{parte intera}(x)$.</p>
+                <p>È omomorfismo per la somma?<br>
+                $f(0.5 + 0.5) = f(1) = 1$.<br>
+                $f(0.5) + f(0.5) = 0 + 0 = 0$.<br>
+                $1 \\neq 0$. <b>NO</b>.</p>
+                <hr>
+                <p>$f(x) = 2^x$ (da somma a prodotto).<br>
+                $f(x+y) = 2^{x+y} = 2^x \\cdot 2^y = f(x) \\cdot f(y)$. <b>SÌ</b>.</p>
+            </div>
+        ` 
+    },
+    
+    // --- 7. SPAZI VETTORIALI ---
+    { 
+        id: 701, 
+        category: 'vettori', 
+        title: "1. Basi e Dimensione", 
+        summary: "Indipendenza lineare e generatori.", 
+        details: `
+            <p><b>Base:</b> Generatori linearmente indipendenti.</p>
+            <p><b>Dimensione:</b> Numero di vettori nella base.</p>
+        `,
+        examples: `
+            <div style="background: #fdf4ff; padding: 15px; border-radius: 10px; border-left: 4px solid #c026d3;">
+                <p><b>Esercizio:</b> Verificare se $v_1=(1,0), v_2=(1,1)$ sono base di $\\mathbb{R}^2$.</p>
+                <p><b>Indipendenza:</b><br>
+                $a(1,0) + b(1,1) = (0,0)$.<br>
+                Sistema: $a+b=0$ e $b=0$.<br>
+                Quindi $b=0, a=0$. Sono indipendenti.</p>
+                <p>Sono 2 vettori in dim 2 $\\Rightarrow$ Sono una Base.</p>
             </div>
         `
     },
+
+    // --- 9. DIAGONALIZZAZIONE ---
+    { 
+        id: 901, 
+        category: 'diagonalizzazione', 
+        title: "1. Autovalori e Autovettori", 
+        summary: "Polinomio caratteristico e diagnolizzabilità.", 
+        details: `
+            <p><b>Autovalori:</b> Radici di $det(A - \\lambda I) = 0$.</p>
+            <p><b>Diagonalizzabile:</b> Se per ogni autovalore, la molteplicità algebrica e geometrica coincidono.</p>
+        `,
+        examples: `
+            <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
+                <p><b>Esercizio:</b> Autovalori di $A = \\begin{pmatrix} 2 & 1 \\\\ 0 & 3 \\end{pmatrix}$.</p>
+                <p>Matrice triangolare: gli autovalori sono sulla diagonale.<br>
+                $\\lambda_1 = 2, \\lambda_2 = 3$.</p>
+                <p>Sono distinti $\\Rightarrow$ A è diagonalizzabile.</p>
+            </div>
+        `
+    }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
