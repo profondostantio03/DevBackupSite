@@ -197,6 +197,56 @@ const mdNotes = [
         ` 
     },
     { 
+        id: 301, 
+        category: 'relazioni', 
+        title: "1. Proprietà Equivalenza (RST)", 
+        summary: "Riflessiva, Simmetrica, Transitiva.", 
+        details: `
+            <p>Una relazione $\\mathcal{R} \\subseteq A \\times A$ è di <b>Equivalenza</b> se è:</p>
+            <ol>
+                <li><b>Riflessiva:</b> Ognuno con se stesso ($a \\mathcal{R} a$).</li>
+                <li><b>Simmetrica:</b> Se vado, torno ($a \\mathcal{R} b \\Rightarrow b \\mathcal{R} a$).</li>
+                <li><b>Transitiva:</b> Ponte ($a \\mathcal{R} b \\land b \\mathcal{R} c \\Rightarrow a \\mathcal{R} c$).</li>
+            </ol>
+            <p><i>Nota:</i> Serve a "raggruppare" elementi simili.</p>
+        `,
+        examples: `
+            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                <p><b>Intuizione: "Avere la stessa età"</b><br>
+                - Io ho la mia età (Rifl).<br>
+                - Se ho la tua età, tu hai la mia (Simm).<br>
+                - Se Io=Tu e Tu=Lui, allora Io=Lui (Trans).</p>
+                <hr>
+                <p><b>Matematica: Congruenza Modulo $n$</b><br>
+                $a \\equiv b \\pmod n$ (hanno lo stesso resto divisi per $n$).<br>
+                È sempre una relazione di equivalenza.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 305, 
+        category: 'relazioni', 
+        title: "2. Classi e Insieme Quoziente", 
+        summary: "Definizione [a] e partizione indotta.", 
+        details: `
+            <p><b>Classe di Equivalenza $[a]$:</b> L'insieme di tutti gli elementi in relazione con $a$.<br>
+            $[a] = \\{x \\in A \\mid x \\mathcal{R} a\\}$.</p>
+            <p><b>Proprietà Fondamentale:</b> Due classi o sono <b>identiche</b> o sono <b>disgiunte</b> (non si sovrappongono).</p>
+            <p><b>Insieme Quoziente $A/\\mathcal{R}$:</b> L'insieme che contiene le classi (le "scatole").</p>
+        `,
+        examples: `
+            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                <p><b>Esempio:</b> $\\mathbb{Z}$ modulo 2 (Pari/Dispari).</p>
+                <p>Ci sono solo 2 classi ("scatole"):</p>
+                <ul>
+                    <li>$[0]$: I numeri pari $\\{..., 0, 2, 4 ...\\}$</li>
+                    <li>$[1]$: I numeri dispari $\\{..., 1, 3, 5 ...\\}$</li>
+                </ul>
+                <p>Il quoziente ha solo 2 elementi: $\\mathbb{Z}/_2 = \\{[0], [1]\\}$.</p>
+            </div>
+        ` 
+    },
+    { 
         id: 302, 
         category: 'relazioni', 
         title: "2. Classi e Quoziente", 
@@ -214,6 +264,29 @@ const mdNotes = [
                 $y$ tali che $1-y = 5k \\Rightarrow y = 1-5k$.<br>
                 $\\{... -9, -4, 1, 6, 11 ...\\}$.</p>
                 <p><b>Quoziente:</b> $\\{[0], [1], [2], [3], [4]\\}$.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 303, 
+        category: 'relazioni', 
+        title: "3. Teorema Fondamentale (Rel vs Part)", 
+        summary: "Corrispondenza tra Relazioni e Partizioni.", 
+        details: `
+            <p>C'è un legame profondo tra Relazioni e Partizioni:</p>
+            <ul>
+                <li><b>Relazione $\\to$ Partizione:</b> Le classi di equivalenza "tagliano" l'insieme in fette (blocchi) disgiunte.</li>
+                <li><b>Partizione $\\to$ Relazione:</b> Se ho delle scatole, posso dire che "due elementi sono in relazione se stanno nella stessa scatola".</li>
+            </ul>
+            <p><b>Concetto:</b> La relazione è la <i>Regola</i>, la Partizione è il <i>Risultato</i> (i gruppi formati).</p>
+        `,
+        examples: `
+            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                <p><b>Dalla Partizione alla Relazione:</b></p>
+                <p>Immagina di dividere gli studenti in 3 aule (A, B, C).</p>
+                <p>Questa è una <b>Partizione</b>.</p>
+                <p>La <b>Relazione</b> indotta è:<br>
+                $x \\sim y$ se e solo se $x$ e $y$ sono nella stessa aula.</p>
             </div>
         ` 
     },

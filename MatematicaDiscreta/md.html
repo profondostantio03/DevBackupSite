@@ -58,7 +58,7 @@
     </div>
 
     <div id="editModal" class="modal-overlay" onclick="closeEditModal(event)" style="display:none;">
-    <div class="modal-content glass-panel" style="max-width: 400px; text-align: left;">
+    < class="modal-content glass-panel" style="max-width: 400px; text-align: left;">
         <span class="close-modal" onclick="closeEditModal(event)">&times;</span>
         <h3 style="margin-top:0;">Modifica Flashcard</h3>
         
@@ -66,14 +66,13 @@
         <input type="text" id="editTitleInput" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;">
         
         <label style="display:block; margin-bottom:5px; font-weight:bold; color:#555;">Scegli Colore Sfondo</label>
-        <div class="color-picker" style="display: flex; gap: 10px; margin-bottom: 25px;">
-            <div onclick="selectEditColor('style-orange')" class="color-circle" style="background: linear-gradient(135deg, #ff9966, #ff5e62);"></div>
-            <div onclick="selectEditColor('style-purple')" class="color-circle" style="background: linear-gradient(135deg, #da22ff, #9733ee);"></div>
-            <div onclick="selectEditColor('style-blue')" class="color-circle" style="background: linear-gradient(135deg, #56CCF2, #2F80ED);"></div>
-            <div onclick="selectEditColor('style-green')" class="color-circle" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
-            <div onclick="selectEditColor('style-dark')" class="color-circle" style="background: linear-gradient(135deg, #434343, #000000);"></div>
+        <div class="color-picker" style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center;">
+            <div onclick="selectEditColor('style-orange')" class="color-circle style-orange-bg"></div>
+            <div onclick="selectEditColor('style-purple')" class="color-circle style-purple-bg"></div>
+            <div onclick="selectEditColor('style-blue')" class="color-circle style-blue-bg"></div>
+            <div onclick="selectEditColor('style-green')" class="color-circle style-green-bg"></div>
+            <div onclick="selectEditColor('style-dark')" class="color-circle style-dark-bg"></div>
         </div>
-
         <button onclick="saveEdit()" style="width:100%; padding:12px; background:#8b5cf6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">SALVA MODIFICHE</button>
     </div>
 </div>

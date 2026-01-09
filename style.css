@@ -14,10 +14,11 @@ body {
     color: var(--text-color);
     min-height: 100vh;
     
-    /* animazione sfondo */
-    background: linear-gradient(125deg, #d4bffd 0%, #a792ed 100%);
+    background: linear-gradient(-45deg, #b59be9, #8e78d5, #4f33cb); /*125deg*/
+
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+
+    animation: gradientBG 9s ease infinite;
 }
 
 @keyframes gradientBG {
