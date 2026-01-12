@@ -393,23 +393,23 @@ nav .nav-link.active-link {
 
 /* varianti colore */
 /* Arancione */
-.style-orange .card-header, .style-orange .card-pill {
+.style-orange .card-header, .style-orange .card-pill, .style-orange-bg {
     background: linear-gradient(135deg, #ff9966, #ff5e62);
 }
 /* Viola */
-.style-purple .card-header, .style-purple .card-pill {
+.style-purple .card-header, .style-purple .card-pill, .style-purple-bg {
     background: linear-gradient(135deg, #da22ff, #9733ee);
 }
 /* Blu */
-.style-blue .card-header, .style-blue .card-pill {
+.style-blue .card-header, .style-blue .card-pill, .style-blue-bg {
     background: linear-gradient(135deg, #56CCF2, #2F80ED);
 }
 /* Verde */
-.style-green .card-header, .style-green .card-pill {
+.style-green .card-header, .style-green .card-pill, .style-green-bg {
     background: linear-gradient(135deg, #11998e, #38ef7d);
 }
 /* Grigio/Default */
-.style-dark .card-header, .style-dark .card-pill {
+.style-dark .card-header, .style-dark .card-pill, .style-dark-bg {
     background: linear-gradient(135deg, #434343, #000000);
 }
 
