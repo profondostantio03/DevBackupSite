@@ -171,122 +171,97 @@ const mdNotes = [
         ` 
     },
 
-    // --- 3. RELAZIONI ---
+    // --- 3. RELAZIONI (Livello Algebra / Ricerca) ---
     { 
         id: 301, 
         category: 'relazioni', 
-        title: "1. Relazioni di Equivalenza", 
-        summary: "Riflessiva, Simmetrica, Transitiva.", 
+        title: "1. Definizioni e Proprietà Formali", 
+        summary: "Definizione formale di relazione e proprietà (R, S, T).", 
         details: `
-            <p>Proprietà obbligatorie:</p>
-            <ol>
-                <li><b>Riflessiva:</b> $a \\sim a$</li>
-                <li><b>Simmetrica:</b> $a \\sim b \\Rightarrow b \\sim a$</li>
-                <li><b>Transitiva:</b> $a \\sim b \\land b \\sim c \\Rightarrow a \\sim c$</li>
-            </ol>
+            <p>Sia $A$ un insieme non vuoto. Una <b>relazione binaria</b> $\\mathcal{R}$ su $A$ è un sottoinsieme del prodotto cartesiano: $\\mathcal{R} \\subseteq A \\times A$.</p>
+            <p>Proprietà fondamentali:</p>
+            <ul>
+                <li><b>Riflessiva:</b> $\\forall a \\in A, \\quad (a,a) \\in \\mathcal{R}$.</li>
+                <li><b>Simmetrica:</b> $\\forall a,b \\in A, \\quad (a,b) \\in \\mathcal{R} \\implies (b,a) \\in \\mathcal{R}$.</li>
+                <li><b>Transitiva:</b> $\\forall a,b,c \\in A, \\quad (a,b) \\in \\mathcal{R} \\land (b,c) \\in \\mathcal{R} \\implies (a,c) \\in \\mathcal{R}$.</li>
+            </ul>
+            <p>Se valgono tutte e tre, $\\mathcal{R}$ è una <b>Relazione di Equivalenza</b>.</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esercizio: Relazione su Coppie</b></p>
-                <p>Su $\\mathbb{N} \\times \\mathbb{N}$: $(a,b)\\mathcal{R}(c,d) \\iff a+d = b+c$.</p>
-                <p><b>Riflessiva:</b> $(a,b)\\mathcal{R}(a,b) \\iff a+b = b+a$. OK.</p>
-                <p><b>Simmetrica:</b> Se $a+d=b+c$, sposto i termini $\\Rightarrow c+b=d+a$. OK.</p>
-                <p><b>Classe $[(1,1)]$:</b> Coppie $(x,y)$ tali che $1+y = 1+x \\Rightarrow x=y$.<br>
-                È la diagonale (bisettrice).</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 301, 
-        category: 'relazioni', 
-        title: "1. Proprietà Equivalenza (RST)", 
-        summary: "Riflessiva, Simmetrica, Transitiva.", 
-        details: `
-            <p>Una relazione $\\mathcal{R} \\subseteq A \\times A$ è di <b>Equivalenza</b> se è:</p>
-            <ol>
-                <li><b>Riflessiva:</b> Ognuno con se stesso ($a \\mathcal{R} a$).</li>
-                <li><b>Simmetrica:</b> Se vado, torno ($a \\mathcal{R} b \\Rightarrow b \\mathcal{R} a$).</li>
-                <li><b>Transitiva:</b> Ponte ($a \\mathcal{R} b \\land b \\mathcal{R} c \\Rightarrow a \\mathcal{R} c$).</li>
-            </ol>
-            <p><i>Nota:</i> Serve a "raggruppare" elementi simili.</p>
-        `,
-        examples: `
-            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Intuizione: "Avere la stessa età"</b><br>
-                - Io ho la mia età (Rifl).<br>
-                - Se ho la tua età, tu hai la mia (Simm).<br>
-                - Se Io=Tu e Tu=Lui, allora Io=Lui (Trans).</p>
-                <hr>
-                <p><b>Matematica: Congruenza Modulo $n$</b><br>
-                $a \\equiv b \\pmod n$ (hanno lo stesso resto divisi per $n$).<br>
-                È sempre una relazione di equivalenza.</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 305, 
-        category: 'relazioni', 
-        title: "2. Classi e Insieme Quoziente", 
-        summary: "Definizione [a] e partizione indotta.", 
-        details: `
-            <p><b>Classe di Equivalenza $[a]$:</b> L'insieme di tutti gli elementi in relazione con $a$.<br>
-            $[a] = \\{x \\in A \\mid x \\mathcal{R} a\\}$.</p>
-            <p><b>Proprietà Fondamentale:</b> Due classi o sono <b>identiche</b> o sono <b>disgiunte</b> (non si sovrappongono).</p>
-            <p><b>Insieme Quoziente $A/\\mathcal{R}$:</b> L'insieme che contiene le classi (le "scatole").</p>
-        `,
-        examples: `
-            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esempio:</b> $\\mathbb{Z}$ modulo 2 (Pari/Dispari).</p>
-                <p>Ci sono solo 2 classi ("scatole"):</p>
-                <ul>
-                    <li>$[0]$: I numeri pari $\\{..., 0, 2, 4 ...\\}$</li>
-                    <li>$[1]$: I numeri dispari $\\{..., 1, 3, 5 ...\\}$</li>
-                </ul>
-                <p>Il quoziente ha solo 2 elementi: $\\mathbb{Z}/_2 = \\{[0], [1]\\}$.</p>
+                <p><b>Esempio Fondamentale: La Congruenza Modulo $n$</b></p>
+                <p>Sia $n \\in \\mathbb{Z}, n > 1$. Definiamo su $\\mathbb{Z}$:</p>
+                <p>$$a \\equiv b \\pmod n \\iff n \\mid (a-b)$$</p>
+                <p><b>Dimostrazione che è di Equivalenza:</b></p>
+                <ol>
+                    <li><b>Riflessiva:</b> $a - a = 0$. Poiché $n \\mid 0$ (infatti $0 = n \\cdot 0$), allora $a \\equiv a$.</li>
+                    <li><b>Simmetrica:</b> Se $a \\equiv b$, allora $a-b = nk$.<br>
+                    Quindi $b-a = -(a-b) = -nk = n(-k)$.<br>
+                    Poiché $-k \\in \\mathbb{Z}$, $n \\mid (b-a) \\implies b \\equiv a$.</li>
+                    <li><b>Transitiva:</b> Ipotesi: $a-b = nh$ e $b-c = nk$.<br>
+                    Sommando membro a membro:<br>
+                    $(a-b) + (b-c) = nh + nk$<br>
+                    $a - c = n(h+k)$.<br>
+                    Poiché $h+k \\in \\mathbb{Z}$, allora $n \\mid (a-c) \\implies a \\equiv c$.</li>
+                </ol>
             </div>
         ` 
     },
     { 
         id: 302, 
         category: 'relazioni', 
-        title: "2. Classi e Quoziente", 
-        summary: "Definizione [a] e partizione indotta.", 
+        title: "2. Classi di Equivalenza e Partizioni", 
+        summary: "Definizione formale di $[a]$ e Lemma delle Classi.", 
         details: `
-            <p><b>Classe $[a]$:</b> Tutti gli elementi in relazione con a.</p>
-            <p><b>Quoziente $A/\\sim$:</b> L'insieme delle classi.</p>
-            <p><b>Teorema Fondamentale:</b> Ogni relazione di equivalenza crea una partizione.</p>
+            <p>Data una relazione di equivalenza $\\sim$ su $A$, la <b>classe di equivalenza</b> di $a$ è:</p>
+            <p>$$[a] = \\{ x \\in A \\mid x \\sim a \\}$$</p>
+            <p>L'insieme di tutte le classi è l'<b>Insieme Quoziente</b> $A/{\\sim}$.</p>
+            <hr>
+            <p><b>Lemma Fondamentale delle Classi:</b></p>
+            <p>Due classi di equivalenza $[a]$ e $[b]$ sono o <b>identiche</b> o <b>disgiunte</b>.</p>
+            <p>Formalmente: $[a] \\cap [b] \\neq \\emptyset \\implies [a] = [b]$.</p>
+            
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esempio: Congruenza Modulo 5</b></p>
-                <p>$x \\sim y \\iff x-y$ è multiplo di 5.</p>
-                <p><b>Chi sta in $[1]$?</b><br>
-                $y$ tali che $1-y = 5k \\Rightarrow y = 1-5k$.<br>
-                $\\{... -9, -4, 1, 6, 11 ...\\}$.</p>
-                <p><b>Quoziente:</b> $\\{[0], [1], [2], [3], [4]\\}$.</p>
+                <p><b>Dimostrazione del Lemma (Sketch):</b></p>
+                <p>Supponiamo che l'intersezione non sia vuota. Esiste allora un $x \\in [a] \\cap [b]$.</p>
+                <p>1. $x \\in [a] \\implies x \\sim a \\implies a \\sim x$ (Simmetria).</p>
+                <p>2. $x \\in [b] \\implies x \\sim b$.</p>
+                <p>3. Per Transitività: $a \\sim x \\land x \\sim b \\implies a \\sim b$.</p>
+                <p>4. Se $a \\sim b$, allora ogni elemento correlato ad $a$ è correlato a $b$. Quindi $[a] = [b]$.</p>
+                <hr>
+                <p><b>Esempio $\\mathbb{Z}_3$:</b><br>
+                Le classi sono $[0], [1], [2]$.<br>
+                $[0] = \\{..., -3, 0, 3, 6, ...\\}$<br>
+                $[1] = \\{..., -2, 1, 4, 7, ...\\}$<br>
+                Non hanno elementi in comune. La loro unione è tutto $\\mathbb{Z}$.</p>
             </div>
         ` 
     },
     { 
         id: 303, 
         category: 'relazioni', 
-        title: "3. Teorema Fondamentale (Rel vs Part)", 
-        summary: "Corrispondenza tra Relazioni e Partizioni.", 
+        title: "3. Teorema Fondamentale su Relazioni e Partizioni", 
+        summary: "La biiezione tra l'insieme delle relazioni e delle partizioni.", 
         details: `
-            <p>C'è un legame profondo tra Relazioni e Partizioni:</p>
+            <p>Esiste una corrispondenza biunivoca tra l'insieme delle relazioni di equivalenza su $A$ e l'insieme delle partizioni di $A$.</p>
             <ul>
-                <li><b>Relazione $\\to$ Partizione:</b> Le classi di equivalenza "tagliano" l'insieme in fette (blocchi) disgiunte.</li>
-                <li><b>Partizione $\\to$ Relazione:</b> Se ho delle scatole, posso dire che "due elementi sono in relazione se stanno nella stessa scatola".</li>
+                <li><b>Relazione $\\to$ Partizione:</b> Se $\\sim$ è una relazione di equivalenza, allora l'insieme quoziente $A/{\\sim}$ è una partizione di $A$ (grazie al Lemma delle classi).</li>
+                <li><b>Partizione $\\to$ Relazione:</b> Data una partizione $\\mathcal{P} = \\{B_i\\}$, possiamo definire: $a \\sim b \\iff \\exists i$ tale che $a, b \\in B_i$ (stanno nello stesso blocco).</li>
             </ul>
-            <p><b>Concetto:</b> La relazione è la <i>Regola</i>, la Partizione è il <i>Risultato</i> (i gruppi formati).</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Dalla Partizione alla Relazione:</b></p>
-                <p>Immagina di dividere gli studenti in 3 aule (A, B, C).</p>
-                <p>Questa è una <b>Partizione</b>.</p>
-                <p>La <b>Relazione</b> indotta è:<br>
-                $x \\sim y$ se e solo se $x$ e $y$ sono nella stessa aula.</p>
+                <p><b>Esercizio Teorico (Spesso chiesto):</b></p>
+                <p>Data la partizione di $A = \\{1, 2, 3, 4\\}$ definita da $\\mathcal{P} = \\{ \\{1,2\\}, \\{3\\}, \\{4\\} \\}$, scrivere esplicitamente la relazione di equivalenza indotta.</p>
+                <p><b>Svolgimento:</b><br>
+                La relazione contiene tutte le coppie di elementi che stanno nello stesso sottoinsieme, più la riflessività.</p>
+                <p>$\\mathcal{R} = \\{$<br>
+                $(1,1), (2,2), (3,3), (4,4)$ <i>(Riflessiva)</i>,<br>
+                $(1,2), (2,1)$ <i>(Dal blocco {1,2})</i><br>
+                $\\}$.</p>
+                <p>Nota: $(3,4) \\notin \\mathcal{R}$ perché sono in blocchi diversi.</p>
             </div>
         ` 
     },
