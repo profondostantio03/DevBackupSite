@@ -9,7 +9,7 @@ const mdCategories = [
     { id: 'vettori', title: '7. Spazi Vettoriali', desc: 'Basi, dimensione, generatori', icon: '↗️', customColor: null },
     { id: 'sistemi', title: '8. Sistemi Lineari', desc: 'Rouchè-Capelli, Cramer, Gauss', icon: '🟰', customColor: null },
     { id: 'diagonalizzazione', title: '9. Diagonalizzazione', desc: 'Autovalori e autovettori', icon: '📉', customColor: null },
-    { id: 'combinatoria', title: '10. Combinatoria', desc: 'Disposizioni, combinazioni', icon: '🎲', customColor: null },
+    { id: 'combinatoria', title: '10. Combinatoria', desc: 'Inclusione-Esclusione, Piccioni', icon: '🎲', customColor: null },
     { id: 'ordini', title: '11. Relazioni Ordine', desc: 'Reticoli, Hasse, estremi', icon: '≤', customColor: null },
     { id: 'geometria', title: '12. Geometria', desc: 'Rette, piani nello spazio', icon: '📐', customColor: null }
 ];
@@ -20,59 +20,23 @@ const mdNotes = [
     { 
         id: 101, 
         category: 'insiemi', 
-        title: "1. Basi e Rappresentazione", 
-        summary: "Tabulazione, proprietà e insiemi vuoti.", 
+        title: "1. Appartenenza vs Inclusione", 
+        summary: "Differenza tra elemento e sottoinsieme.", 
         details: `
-            <p>Un insieme è una collezione non ordinata di oggetti distinti.</p>
+            <p>È fondamentale distinguere tra il simbolo $\\in$ (appartenenza) e $\\subseteq$ (inclusione).</p>
             <ul>
-                <li><b>Tabulazione:</b> $A = \\{a, b, 3\\}$.</li>
-                <li><b>Proprietà:</b> $B = \\{x \\mid P(x)\\}$.</li>
-            </ul>
-            <p><b>Nota:</b> In un insieme non conta l'ordine e non ci sono ripetizioni.</p>
-        `,
-        examples: `
-            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Esercizio: Elencazione</b></p>
-                <p>Descrivere $A = \\{ x \\in \\mathbb{Z} \\mid x^2 < 10 \\}$.</p>
-                <p><b>Svolgimento:</b><br>
-                Cerco gli interi (anche negativi) il cui quadrato è minore di 10.<br>
-                Quadrati: $0, 1, 4, 9$. ($16$ è troppo grande).<br>
-                Radici in $\\mathbb{Z}$: $0, \\pm 1, \\pm 2, \\pm 3$.<br>
-                <b>Soluzione:</b> $A = \\{-3, -2, -1, 0, 1, 2, 3\\}$.</p>
-            </div>
-            <br>
-            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Esercizio: Dimostrazione Insiemistica</b></p>
-                <p>Dimostrare che $X \\setminus (A \\cup B) = (X \\setminus A) \\cap (X \\setminus B)$.</p>
-                <p><b>Svolgimento logico:</b><br>
-                $x \\in X \\setminus (A \\cup B) \\iff x \\in X \\land x \\notin (A \\cup B)$<br>
-                $\\iff x \\in X \\land (x \\notin A \\land x \\notin B)$ (De Morgan)<br>
-                $\\iff (x \\in X \\land x \\notin A) \\land (x \\in X \\land x \\notin B)$<br>
-                $\\iff x \\in (X \\setminus A) \\cap (X \\setminus B)$.</p>
-            </div>
-        `
-    },
-    { 
-        id: 104, 
-        category: 'insiemi', 
-        title: "2. Operazioni (Unione/Intersezione)", 
-        summary: "Esercizi su unione, intersezione e differenza.", 
-        details: `
-            
-            <ul>
-                <li><b>Unione ($A \\cup B$):</b> Elementi in A oppure in B.</li>
-                <li><b>Intersezione ($A \\cap B$):</b> Elementi comuni ad A e B.</li>
-                <li><b>Differenza ($A \\setminus B$):</b> Elementi in A ma non in B.</li>
+                <li>$x \\in A$: x è un <b>oggetto</b> dentro la scatola A.</li>
+                <li>$B \\subseteq A$: B è una <b>scatola</b> contenuta nella scatola A.</li>
             </ul>
         `,
         examples: `
             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Dati:</b> $A = \\{1, 2, 3, 4\\}$ e $B = \\{3, 4, 5, 6\\}$.</p>
+                <p><b>Esercizio "Tricky" (Struttura H):</b></p>
+                <p>Dato $H = \\{ 2, \\{2, 4\\} \\}$.</p>
                 <ul>
-                    <li>$A \\cup B = \\{1, 2, 3, 4, 5, 6\\}$ (Tutti)</li>
-                    <li>$A \\cap B = \\{3, 4\\}$ (Comuni)</li>
-                    <li>$A \\setminus B = \\{1, 2\\}$ (In A tolto B)</li>
-                    <li>$B \\setminus A = \\{5, 6\\}$ (In B tolto A)</li>
+                    <li>$\\{2\\} \\in H$? <b>FALSO</b>. L'elemento $\{2\}$ (scatola con dentro il 2) non è nella lista. C'è il 2 "nudo".</li>
+                    <li>$\\{2\\} \\subseteq H$? <b>VERO</b>. Costruisco un insieme prendendo il 2 da H.</li>
+                    <li>$\\{2, 4\\} \\in H$? <b>VERO</b>. È il secondo elemento della lista.</li>
                 </ul>
             </div>
         `
@@ -80,7 +44,7 @@ const mdNotes = [
     { 
         id: 105, 
         category: 'insiemi', 
-        title: "3. Insieme delle Parti P(A)", 
+        title: "2. Insieme delle Parti P(A)", 
         summary: "Calcolo dei sottoinsiemi e cardinalità.", 
         details: `
             <p><b>$\\mathcal{P}(A)$:</b> È l'insieme di tutti i sottoinsiemi di A.</p>
@@ -91,13 +55,40 @@ const mdNotes = [
             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
                 <p><b>Esercizio:</b> Scrivere $\\mathcal{P}(A)$ per $A = \\{a, 1\\}$.</p>
                 <p><b>Svolgimento:</b> $n=2$, quindi avrò $2^2=4$ elementi.</p>
-                <ol>
-                    <li>$\\emptyset$</li>
-                    <li>$\\{a\\}$</li>
-                    <li>$\\{1\\}$</li>
-                    <li>$\\{a, 1\\}$</li>
-                </ol>
                 <p>$\\mathcal{P}(A) = \\{\\emptyset, \\{a\\}, \\{1\\}, \\{a, 1\\}\\}$.</p>
+            </div>
+        `
+    },
+    { 
+        id: 106, 
+        category: 'insiemi', 
+        title: "3. Partizioni", 
+        summary: "Suddivisione di un insieme in parti disgiunte.", 
+        details: `
+            <p>Una <b>partizione</b> di un insieme $A$ è una collezione di sottoinsiemi $A_1, A_2, ..., A_n$ che soddisfano tre regole d'oro:</p>
+            <ol>
+                <li><b>Non vuoti:</b> Nessun sottoinsieme è vuoto ($A_i \\neq \\emptyset$).</li>
+                <li><b>Disgiunti:</b> Non hanno elementi in comune ($A_i \\cap A_j = \\emptyset$ se $i \\neq j$).</li>
+                <li><b>Ricoprimento:</b> La loro unione forma tutto l'insieme di partenza ($\\bigcup A_i = A$).</li>
+            </ol>
+            <p><i>Nota bene:</i> C'è un legame strettissimo con le <b>Relazioni di Equivalenza</b>: ogni partizione crea una relazione (elementi nello stesso gruppo sono in relazione) e viceversa.</p>
+        `,
+        examples: `
+            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
+                <p><b>Esercizio: Riconoscere una Partizione</b></p>
+                <p>Dato $A = \\{1, 2, 3\\}$, quali sono partizioni valide?</p>
+                <ul>
+                    <li>$\\{\\{1, 2\\}, \\{3\\}\\}$: <b>SÌ</b>. Sono disgiunti, non vuoti e c'è tutto A.</li>
+                    <li>$\\{\\{1, 2\\}, \\{2, 3\\}\\}$: <b>NO</b>. C'è intersezione (il 2 è ripetuto).</li>
+                    <li>$\\{\\{1\\}, \\{2\\}\\}$: <b>NO</b>. Manca il 3 (l'unione non fa A).</li>
+                    <li>$\\{\\{1, 2, 3\\}, \\emptyset\\}$: <b>NO</b>. Non sono ammessi insiemi vuoti.</li>
+                </ul>
+            </div>
+            <br>
+            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
+                <p><b>Esercizio tipo Esame (Quesito 10):</b></p>
+                <p>Se $a, b, v$ devono stare insieme e $w$ deve stare separato da $a$...</p>
+                <p>La partizione corretta raggruppa chi è in relazione e separa gli altri: $\\{\\{a, b, v\\}, \\{w, c\\}\\}$.</p>
             </div>
         `
     },
@@ -106,313 +97,122 @@ const mdNotes = [
     { 
         id: 201, 
         category: 'applicazioni', 
-        title: "1. Definizioni Base", 
-        summary: "Dominio, Codominio, Immagine, Controimmagine.", 
+        title: "1. Definizione di Funzione", 
+        summary: "Esistenza e Unicità (Analisi errori comuni).", 
         details: `
-            <p>Un'applicazione $f: A \\to B$ deve rispettare esistenza (tutti partono) e unicità (una sola freccia).</p>
-            <p><b>Immagine ($Im(f)$):</b> Sottoinsieme di B degli elementi raggiunti.</p>
-            <p><b>Controimmagine ($f^{-1}(Y)$):</b> Sottoinsieme di A degli elementi che "finiscono" in Y.</p>
+            <p>Un'applicazione $f: A \\to B$ deve rispettare:</p>
+            <ol>
+                <li><b>Esistenza:</b> Ogni elemento di A deve avere una destinazione.</li>
+                <li><b>Unicità:</b> Nessun elemento di A può avere due destinazioni diverse.</li>
+            </ol>
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
-                <p><b>Esercizio: Controimmagini finite</b></p>
-                <p><b>Dati:</b> $X=\\{1..8\\}$, $Y=\\{a,b,c\\}$.<br>
-                $f(1)=a, f(2)=a, f(3)=c, f(4)=b, f(5)=a, f(6)=b, f(7)=c, f(8)=a$.</p>
-                <p><b>Calcolare $f^{-1}(\\{a\\})$:</b><br>
-                Cerco tutte le x che vanno in 'a'.<br>
-                $f^{-1}(\\{a\\}) = \\{1, 2, 5, 8\\}$.</p>
-                <p><b>È suriettiva?</b> Sì, a, b, c sono tutti raggiunti.</p>
+                <p><b>Esercizio: Caccia all'errore</b></p>
+                <p>Quale definisce un'applicazione?</p>
+                <ul>
+                    <li>$A: 2x^3 - 2x^2 = y$ da $\\mathbb{Z} \\to \\mathbb{N}$.<br>
+                    <b>FALSO:</b> Se $x=-1$, $y=-4$. Ma $-4 \\notin \\mathbb{N}$. Fallisce l'esistenza.</li>
+                    <li>$D: y^2 - x = 1$ da $\\mathbb{Z} \\to \\mathbb{Z}$.<br>
+                    <b>FALSO:</b> Se $x=3$, $y^2=4 \\to y=\\pm 2$. Due risultati. Fallisce l'unicità.</li>
+                    <li>$C: 2x = -3y$ da $\\mathbb{Z} \\to \\mathbb{Q}$.<br>
+                    <b>VERO:</b> $y = -2/3 x$. Per ogni intero x ottengo una sola frazione.</li>
+                </ul>
             </div>
         ` 
     },
     { 
-        id: 202, 
+        id: 204, 
         category: 'applicazioni', 
-        title: "2. Iniettiva e Suriettiva", 
-        summary: "Definizioni formali e test pratici.", 
+        title: "2. Conteggio Funzioni Suriettive", 
+        summary: "Il problema dei Piccioni e Stirling.", 
         details: `
-            
-            <p><b>Iniettiva:</b> $x_1 \\neq x_2 \\Rightarrow f(x_1) \\neq f(x_2)$.</p>
-            <p><b>Suriettiva:</b> $\\forall y \\in B, \\exists x : f(x)=y$.</p>
-            <p><b>Biettiva:</b> Entrambe.</p>
+            <p>Quante funzioni suriettive ci sono da un insieme di $n$ elementi a uno di $m$ elementi?</p>
+            <ul>
+                <li>Se $n < m$: <b>ZERO</b> (impossibile coprire tutti i bersagli).</li>
+                <li>Se $n \ge m$: Si usa il principio di Inclusione-Esclusione o i numeri di Stirling.</li>
+            </ul>
+             
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
-                <p><b>Esercizio con Parametro</b></p>
-                <p>Discutere $f_c: \\mathbb{Z} \\to \\mathbb{Z}$ definita da $f_c(x) = x(1-c) + c$.</p>
-                <p><b>Iniettività:</b><br>
-                $x_1(1-c) = x_2(1-c)$. Se $c \\neq 1$, divido $\\Rightarrow x_1=x_2$. (Sì).<br>
-                Se $c=1$, $f(x)=1$ (costante, no).</p>
-                <p><b>Suriettività:</b><br>
-                $y = x(1-c)+c \\Rightarrow x = \\frac{y-c}{1-c}$.<br>
-                Affinché $x$ sia sempre intero, $1-c$ deve essere $\\pm 1$.<br>
-                Quindi biettiva solo per $c=0$ o $c=2$.</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 203, 
-        category: 'applicazioni', 
-        title: "3. Composizione e Inversa", 
-        summary: "Regole g(f(x)) e Teorema Invertibilità.", 
-        details: `
-            <p><b>Composizione:</b> $(g \\circ f)(x) = g(f(x))$. Prima la destra.</p>
-            <p><b>Inversa:</b> Esiste solo se biettiva. $f^{-1}(y) = x \\iff f(x) = y$.</p>
-        `,
-        examples: `
-            <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
-                <p><b>Dati:</b> $f(x) = x+1$, $g(x) = x^2$.</p>
-                <p><b>$g \\circ f$:</b> Prima $+1$, poi $\\text{quadrato}$. $(x+1)^2$.</p>
-                <p><b>$f \\circ g$:</b> Prima $\\text{quadrato}$, poi $+1$. $x^2+1$.</p>
+                <p><b>Caso 1:</b> Da $S=\\{1,2,3\\}$ a $T=\\{a,b,c,d\\}$.<br>
+                $|S|=3, |T|=4$. Impossibile coprire T.<br>
+                <b>Risposta: 0</b>.</p>
                 <hr>
-                <p><b>Inversa di $y=3x-5$:</b><br>
-                Isolo x: $y+5 = 3x \\Rightarrow x = \\frac{y+5}{3}$.</p>
+                <p><b>Caso 2:</b> Da $T=\\{1,2,3,4\\}$ a $S=\\{a,b,c\\}$.<br>
+                Si usa la formula o il ragionamento logico (1 coppia + 2 singoli).<br>
+                Modi di fare la coppia: $\\binom{4}{2} = 6$.<br>
+                Modi di distribuire (3!): $6$.<br>
+                Totale: $6 \\times 6 = \\mathbf{36}$.</p>
             </div>
-        ` 
+        `
     },
 
-    // --- 3. RELAZIONI (Livello Algebra / Ricerca) ---
+    // --- 3. RELAZIONI ---
     { 
         id: 301, 
         category: 'relazioni', 
-        title: "1. Definizioni e Proprietà Formali", 
-        summary: "Definizione formale di relazione e proprietà (R, S, T).", 
+        title: "1. Proprietà delle Relazioni", 
+        summary: "Riflessiva, Simmetrica, Transitiva (Esempi pratici).", 
         details: `
-            <p>Sia $A$ un insieme non vuoto. Una <b>relazione binaria</b> $\\mathcal{R}$ su $A$ è un sottoinsieme del prodotto cartesiano: $\\mathcal{R} \\subseteq A \\times A$.</p>
-            <p>Proprietà fondamentali:</p>
-            <ul>
-                <li><b>Riflessiva:</b> $\\forall a \\in A, \\quad (a,a) \\in \\mathcal{R}$.</li>
-                <li><b>Simmetrica:</b> $\\forall a,b \\in A, \\quad (a,b) \\in \\mathcal{R} \\implies (b,a) \\in \\mathcal{R}$.</li>
-                <li><b>Transitiva:</b> $\\forall a,b,c \\in A, \\quad (a,b) \\in \\mathcal{R} \\land (b,c) \\in \\mathcal{R} \\implies (a,c) \\in \\mathcal{R}$.</li>
-            </ul>
-            <p>Se valgono tutte e tre, $\\mathcal{R}$ è una <b>Relazione di Equivalenza</b>.</p>
+            <p>Una relazione è di <b>Equivalenza</b> se è R, S, T.</p>
+            <p>Una relazione è d'<b>Ordine</b> se è R, Antisimmetrica, T.</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esempio Fondamentale: La Congruenza Modulo $n$</b></p>
-                <p>Sia $n \\in \\mathbb{Z}, n > 1$. Definiamo su $\\mathbb{Z}$:</p>
-                <p>$$a \\equiv b \\pmod n \\iff n \\mid (a-b)$$</p>
-                <p><b>Dimostrazione che è di Equivalenza:</b></p>
-                <ol>
-                    <li><b>Riflessiva:</b> $a - a = 0$. Poiché $n \\mid 0$ (infatti $0 = n \\cdot 0$), allora $a \\equiv a$.</li>
-                    <li><b>Simmetrica:</b> Se $a \\equiv b$, allora $a-b = nk$.<br>
-                    Quindi $b-a = -(a-b) = -nk = n(-k)$.<br>
-                    Poiché $-k \\in \\mathbb{Z}$, $n \\mid (b-a) \\implies b \\equiv a$.</li>
-                    <li><b>Transitiva:</b> Ipotesi: $a-b = nh$ e $b-c = nk$.<br>
-                    Sommando membro a membro:<br>
-                    $(a-b) + (b-c) = nh + nk$<br>
-                    $a - c = n(h+k)$.<br>
-                    Poiché $h+k \\in \\mathbb{Z}$, allora $n \\mid (a-c) \\implies a \\equiv c$.</li>
-                </ol>
+                <p><b>Esercizio "Parentela":</b></p>
+                <p>Quale relazione è Simmetrica, Transitiva ma NON Riflessiva?</p>
+                <ul>
+                    <li>"Essere padre di": No simmetrica.</li>
+                    <li>"Avere gli occhi azzurri":<br>
+                    - Simmetrica: Sì (se io ho gli occhi azzurri come te, tu li hai come me).<br>
+                    - Transitiva: Sì (tutti nel gruppo).<br>
+                    - Riflessiva? <b>NO</b> universale. Chi ha gli occhi neri non è in relazione con se stesso in questo contesto specifico.</li>
+                </ul>
             </div>
         ` 
     },
     { 
         id: 302, 
         category: 'relazioni', 
-        title: "2. Classi di Equivalenza e Partizioni", 
-        summary: "Definizione formale di $[a]$ e Lemma delle Classi.", 
+        title: "2. Partizioni e Classi", 
+        summary: "Costruire l'insieme quoziente.", 
         details: `
-            <p>Data una relazione di equivalenza $\\sim$ su $A$, la <b>classe di equivalenza</b> di $a$ è:</p>
-            <p>$$[a] = \\{ x \\in A \\mid x \\sim a \\}$$</p>
-            <p>L'insieme di tutte le classi è l'<b>Insieme Quoziente</b> $A/{\\sim}$.</p>
-            <hr>
-            <p><b>Lemma Fondamentale delle Classi:</b></p>
-            <p>Due classi di equivalenza $[a]$ e $[b]$ sono o <b>identiche</b> o <b>disgiunte</b>.</p>
-            <p>Formalmente: $[a] \\cap [b] \\neq \\emptyset \\implies [a] = [b]$.</p>
-            
+            <p>Se $a,b,v$ sono in relazione tra loro, devono stare nello stesso "sacchetto" (insieme della partizione).</p>
+            <p>Se $w$ non è in relazione con $a$, deve stare in un sacchetto diverso.</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Dimostrazione del Lemma (Sketch):</b></p>
-                <p>Supponiamo che l'intersezione non sia vuota. Esiste allora un $x \\in [a] \\cap [b]$.</p>
-                <p>1. $x \\in [a] \\implies x \\sim a \\implies a \\sim x$ (Simmetria).</p>
-                <p>2. $x \\in [b] \\implies x \\sim b$.</p>
-                <p>3. Per Transitività: $a \\sim x \\land x \\sim b \\implies a \\sim b$.</p>
-                <p>4. Se $a \\sim b$, allora ogni elemento correlato ad $a$ è correlato a $b$. Quindi $[a] = [b]$.</p>
-                <hr>
-                <p><b>Esempio $\\mathbb{Z}_3$:</b><br>
-                Le classi sono $[0], [1], [2]$.<br>
-                $[0] = \\{..., -3, 0, 3, 6, ...\\}$<br>
-                $[1] = \\{..., -2, 1, 4, 7, ...\\}$<br>
-                Non hanno elementi in comune. La loro unione è tutto $\\mathbb{Z}$.</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 303, 
-        category: 'relazioni', 
-        title: "3. Teorema Fondamentale su Relazioni e Partizioni", 
-        summary: "La biiezione tra l'insieme delle relazioni e delle partizioni.", 
-        details: `
-            <p>Esiste una corrispondenza biunivoca tra l'insieme delle relazioni di equivalenza su $A$ e l'insieme delle partizioni di $A$.</p>
-            <ul>
-                <li><b>Relazione $\\to$ Partizione:</b> Se $\\sim$ è una relazione di equivalenza, allora l'insieme quoziente $A/{\\sim}$ è una partizione di $A$ (grazie al Lemma delle classi).</li>
-                <li><b>Partizione $\\to$ Relazione:</b> Data una partizione $\\mathcal{P} = \\{B_i\\}$, possiamo definire: $a \\sim b \\iff \\exists i$ tale che $a, b \\in B_i$ (stanno nello stesso blocco).</li>
-            </ul>
-        `,
-        examples: `
-            <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esercizio Teorico (Spesso chiesto):</b></p>
-                <p>Data la partizione di $A = \\{1, 2, 3, 4\\}$ definita da $\\mathcal{P} = \\{ \\{1,2\\}, \\{3\\}, \\{4\\} \\}$, scrivere esplicitamente la relazione di equivalenza indotta.</p>
-                <p><b>Svolgimento:</b><br>
-                La relazione contiene tutte le coppie di elementi che stanno nello stesso sottoinsieme, più la riflessività.</p>
-                <p>$\\mathcal{R} = \\{$<br>
-                $(1,1), (2,2), (3,3), (4,4)$ <i>(Riflessiva)</i>,<br>
-                $(1,2), (2,1)$ <i>(Dal blocco {1,2})</i><br>
-                $\\}$.</p>
-                <p>Nota: $(3,4) \\notin \\mathcal{R}$ perché sono in blocchi diversi.</p>
+                <p><b>Esercizio:</b></p>
+                <p>Dati $a\\mathcal{R}v$, $b\\mathcal{R}v$, $a \\notin [w]$, $b \\notin [c]$. Trovare la partizione.</p>
+                <p><b>Soluzione:</b><br>
+                $\{a,b,v\}$ devono stare insieme (transitiva).<br>
+                $w$ e $c$ devono stare separati dal primo gruppo.<br>
+                Partizione corretta: $\\{\\{a, b, v\\}, \\{w, c\\}\\}$.</p>
             </div>
         ` 
     },
 
-    // --- 4. ARITMETICA (CORRETTO: Contenuti Espansi, Riassunti Puliti) ---
-    { 
-        id: 401, 
-        category: 'aritmetica', 
-        title: "1. Principio di Induzione", 
-        summary: "Dimostrazioni per P(n): Base e Passo (Debole/Forte).", 
-        details: `
-            <p>Il principio serve a dimostrare che una proprietà $P(n)$ è vera per ogni $n \\ge n_0$.</p>
-            <h4>Induzione Classica (Debole)</h4>
-            <ol>
-                <li><b>Base:</b> Dimostro che $P(n_0)$ è vera.</li>
-                <li><b>Passo:</b> Assumo $P(n)$ vera (Ipotesi) $\\Rightarrow$ Dimostro $P(n+1)$ vera (Tesi).</li>
-            </ol>
-            <hr>
-            <h4>Induzione Forte</h4>
-            <p>Nel passo induttivo, assumo che $P(k)$ sia vera per <b>tutti</b> i $k < n$, e dimostro per $n$.</p>
-            <p><i>Fondamentale quando $P(n)$ dipende da valori precedenti non consecutivi (es. $n-2$ o $n-3$).</i></p>
-        `,
-        examples: `
-            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio (Esame 04/02/22):</b> Dimostrare che $\\forall n \\ge 8, \\exists a,b \\in \\mathbb{N}_0 : n = 3a + 5b$.</p>
-                <p><b>1. Passo Base:</b> Verifico i primi casi manualmente.<br>
-                $n=8: 3(1)+5(1)$ (OK)<br>
-                $n=9: 3(3)+5(0)$ (OK)<br>
-                $n=10: 3(0)+5(2)$ (OK)</p>
-                <p><b>2. Passo Induttivo (Forte):</b><br>
-                Voglio dimostrare per un generico $n > 10$.<br>
-                Osservo che $n = (n-3) + 3$.<br>
-                Poiché $n > 10$, allora $n-3 \\ge 8$.<br>
-                Per <b>ipotesi induttiva</b>, la proprietà vale per $n-3$:<br>
-                $n-3 = 3a' + 5b'$.<br>
-                Sostituisco:<br>
-                $n = (3a' + 5b') + 3 = 3(a' + 1) + 5b'$.<br>
-                Ho trovato i nuovi coefficienti ($a=a'+1, b=b'$). <b>C.V.D.</b></p>
-            </div>
-        ` 
-    },
+    // --- 4. ARITMETICA ---
     { 
         id: 402, 
         category: 'aritmetica', 
-        title: "2. MCD e Bèzout", 
-        summary: "Algoritmo Euclideo Esteso per trovare x, y.", 
+        title: "1. MCD e Bèzout", 
+        summary: "Algoritmo Euclideo Esteso.", 
         details: `
-            <p><b>Teorema di Bèzout:</b> Dati $a, b \\in \\mathbb{Z}$, il loro massimo comun divisore $d = MCD(a,b)$ è l'unico intero positivo scrivibile come combinazione lineare:</p>
-            <p>$$ax + by = d$$</p>
+            <p><b>Teorema:</b> $MCD(a,b)$ è scrivibile come $ax + by$.</p>
             
 
 [Image of flowchart of Euclidean algorithm]
 
-            <p>Per trovare $x$ e $y$ si usa l'<b>Algoritmo Euclideo Esteso</b>:</p>
-            <ol>
-                <li>Fai le divisioni successive finché il resto è 0 per trovare l'MCD.</li>
-                <li><b>Torni indietro</b> (Sostituzione a ritroso) isolando i resti per esprimere l'MCD come combinazione di a e b.</li>
-            </ol>
         `,
         examples: `
             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio (Esame 04/02/22):</b> Trovare soluzioni intere di $13x + 19y = 1$.</p>
-                <p><b>Fase 1: Divisioni (Euclide)</b><br>
-                (a) $19 = 13 \\cdot 1 + 6$ $\\rightarrow$ (isolo resto: $6 = 19 - 13 \\cdot 1$)<br>
-                (b) $13 = 6 \\cdot 2 + 1$ $\\rightarrow$ (isolo resto: $1 = 13 - 6 \\cdot 2$)<br>
-                (c) $6 = 1 \\cdot 6 + 0$ (Stop, MCD è 1).</p>
-                <p><b>Fase 2: Risalita (Bèzout)</b><br>
-                Parto dall'equazione (b) che contiene l'MCD (1):<br>
-                $1 = 13 - 6 \\cdot 2$<br>
-                Sostituisco il 6 usando l'equazione (a):<br>
-                $1 = 13 - (19 - 13 \\cdot 1) \\cdot 2$<br>
-                Svolgo i calcoli trattando 13 e 19 come "lettere" (NON fare le somme!):<br>
-                $1 = 13 - 19 \\cdot 2 + 13 \\cdot 2$<br>
-                Raggruppo i 13 e i 19:<br>
-                $1 = 13(1 + 2) - 19(2)$<br>
-                $1 = 13(3) + 19(-2)$</p>
-                <p><b>Soluzione:</b> $x = 3, y = -2$.</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 403, 
-        category: 'aritmetica', 
-        title: "3. Congruenze e Inversi", 
-        summary: "Risolvere ax = b (mod n) e calcolo inversi.", 
-        details: `
-            <p>Un'equazione $ax \\equiv b \\pmod n$ ha soluzioni se e solo se $d = MCD(a,n)$ divide $b$.</p>
-            <p>Se $d=1$, esiste un'unica soluzione modulo $n$.</p>
-            <h4>Come si risolve?</h4>
-            <ol>
-                <li>Controlla se $MCD(a,n)$ divide $b$.</li>
-                <li>Trova l'<b>inverso moltiplicativo</b> di $a$ modulo $n$. L'inverso è quel numero $a^{-1}$ tale che $a \\cdot a^{-1} \\equiv 1 \\pmod n$.</li>
-                <li>L'inverso si trova con Bèzout: $as + nt = 1 \\Rightarrow as \\equiv 1 \\pmod n$. Quindi $s$ è l'inverso.</li>
-                <li>Moltiplica tutto per l'inverso: $x \\equiv a^{-1}b \\pmod n$.</li>
-            </ol>
-        `,
-        examples: `
-            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio Base:</b> Risolvere $5x \\equiv 3 \\pmod{14}$.</p>
-                <p>1. $MCD(5, 14) = 1$. Esiste soluzione unica.</p>
-                <p>2. Cerco inverso di 5 mod 14. Uso Bèzout su 14 e 5:<br>
-                $14 = 5 \\cdot 2 + 4$<br>
-                $5 = 4 \\cdot 1 + 1$<br>
-                Risalgo:<br>
-                $1 = 5 - 4$<br>
-                $1 = 5 - (14 - 5 \\cdot 2)$<br>
-                $1 = 5(3) - 14(1)$</p>
-                <p>Quindi $5(3) \\equiv 1 \\pmod{14}$. L'inverso è <b>3</b>.</p>
-                <p>3. Moltiplico l'equazione originale per 3:<br>
-                $3 \\cdot (5x) \\equiv 3 \\cdot 3 \\pmod{14}$<br>
-                $15x \\equiv 9 \\pmod{14}$<br>
-                $1x \\equiv 9 \\pmod{14}$.<br>
-                <b>Soluzione:</b> $x = 9$.</p>
-            </div>
-        ` 
-    },
-    { 
-        id: 404, 
-        category: 'aritmetica', 
-        title: "4. Sistemi di Congruenze", 
-        summary: "Teorema Cinese del Resto (Metodo Sostituzione).", 
-        details: `
-            <p><b>Teorema Cinese del Resto:</b> Se i moduli $n_1, n_2...$ sono <b>coprimi a due a due</b> (cioè $MCD(n_i, n_j)=1$), allora esiste una soluzione unica modulo $N = n_1 \\cdot n_2...$.</p>
-            <p><b>Metodo Pratico (Sostituzione):</b></p>
-            <ol>
-                <li>Prendi la prima equazione: $x \\equiv a \\pmod n$.</li>
-                <li>Scrivila come uguaglianza: $x = n\\cdot k + a$.</li>
-                <li>Sostituisci questa $x$ nella seconda equazione.</li>
-                <li>Risolvi per $k$.</li>
-                <li>Sostituisci $k$ indietro per trovare $x$.</li>
-            </ol>
-        `,
-        examples: `
-            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio (Esame 22/02/22):</b><br>
-                $\\begin{cases} x \\equiv 3 \\pmod 7 \\\\ x \\equiv 6 \\pmod{11} \\end{cases}$</p>
-                <p><b>1. Dalla prima:</b> $x = 7k + 3$.</p>
-                <p><b>2. Sostituisco nella seconda:</b><br>
-                $(7k + 3) \\equiv 6 \\pmod{11}$<br>
-                $7k \\equiv 3 \\pmod{11}$</p>
-                <p><b>3. Risolvo per k:</b><br>
-                Devo eliminare il 7. Cerco inverso di 7 mod 11.<br>
-                ... calcoli Bèzout ... oppure provo: $7 \\cdot 8 = 56 = 11 \\cdot 5 + 1$. L'inverso è 8.<br>
-                Moltiplico per 8:<br>
-                $56k \\equiv 24 \\pmod{11} \\Rightarrow 1k \\equiv 2 \\pmod{11}$.<br>
-                Quindi $k = 11h + 2$.</p>
-                <p><b>4. Sostituisco k nella x originale:</b><br>
-                $x = 7(11h + 2) + 3$<br>
-                $x = 77h + 14 + 3$<br>
-                $x = 77h + 17$.</p>
-                <p><b>Soluzione:</b> $x \\equiv 17 \\pmod{77}$.</p>
+                <p><b>Esercizio:</b> Trovare soluzioni di $13x + 19y = 1$.</p>
+                <p>Euclide: $19 = 13(1) + 6 \\to 13 = 6(2) + 1$.<br>
+                Risalita: $1 = 13 - 6(2) = 13 - (19-13)(2) = 13(3) - 19(2)$.<br>
+                Soluzione: $x=3, y=-2$.</p>
             </div>
         ` 
     },
@@ -421,108 +221,160 @@ const mdNotes = [
     { 
         id: 501, 
         category: 'matrici', 
-        title: "1. Operazioni e Rango", 
-        summary: "Prodotto righe per colonne e Gauss.", 
+        title: "1. Rango e Trappole", 
+        summary: "Il rango con righe uguali.", 
         details: `
-            <p><b>Prodotto:</b> $(AB)_{ij}$ è il prodotto scalare della riga $i$ di A per la colonna $j$ di B.</p>
-            <p><b>Rango:</b> Numero massimo di righe indipendenti (o numero di pivot nella scala).</p>
+            <p><b>Rango:</b> Numero massimo di righe/colonne indipendenti.</p>
+            <p><b>Regola aurea:</b> $rank(A) \\le \\min(\\text{righe}, \\text{colonne})$.</p>
         `,
         examples: `
             <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
-                <p><b>Esercizio:</b> Calcolare il rango di $A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 0 & 1 & 1 \\end{pmatrix}$.</p>
-                <p><b>Gauss:</b><br>
-                $R_2 \\leftarrow R_2 - 2R_1$: $\\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 0 & 0 \\\\ 0 & 1 & 1 \\end{pmatrix}$.<br>
-                Scambio $R_2$ e $R_3$: $\\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$.</p>
-                <p>Ci sono 2 pivot (1 e 1). <b>Rango = 2</b>.</p>
+                <p><b>Esercizio "Trappola":</b></p>
+                <p>Matrice $4 \\times 3$ con due righe uguali. Cosa è certo?</p>
+                <p>Molti dicono rango 2. <b>Errore!</b><br>
+                Se tolgo la riga doppia, me ne restano 3. Potrebbero essere tutte indipendenti.<br>
+                L'unica certezza è che avendo 3 colonne, il rango è $\\le 3$.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 502, 
+        category: 'matrici', 
+        title: "2. Rango con Parametro", 
+        summary: "Quando il determinante si annulla.", 
+        details: `
+            <p>Per abbassare il rango di una matrice quadrata $n \\times n$, il determinante deve essere 0.</p>
+        `,
+        examples: `
+            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
+                <p><b>Esercizio:</b></p>
+                <p>Per quale $k$ la matrice $3 \\times 3$ ha rango 2?</p>
+                <p>Calcolo $Det(A) = 2k - 1$.<br>
+                Impongo $Det = 0 \\Rightarrow k = 1/2$.</p>
             </div>
         ` 
     },
 
-    // --- 6. STRUTTURE ALGEBRICHE ---
+    // --- 8. SISTEMI LINEARI ---
     { 
-        id: 601, 
-        category: 'strutture', 
-        title: "1. Gruppi e Sottogruppi", 
-        summary: "Verifica proprietà Gruppo (Abeliano).", 
+        id: 801, 
+        category: 'sistemi', 
+        title: "1. Rouchè-Capelli e Cramer", 
+        summary: "Condizioni di risolubilità.", 
         details: `
-            <p><b>Gruppo:</b> Associativa, Neutro, Inverso.</p>
-            <p><b>Sottogruppo:</b> Chiuso rispetto al prodotto e all'inverso.</p>
+            <p><b>Rouchè-Capelli:</b> Un sistema ha soluzioni $\\iff rank(A) = rank(A|b)$.</p>
+            <p>Se $rank = n$ (incognite), soluzione unica (Cramer).</p>
+            <p>Se $rank < n$, infinite soluzioni ($\infty^{n-rank}$).</p>
         `,
         examples: `
-            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
-                <p><b>Esercizio: Sottogruppo Matrici</b></p>
-                <p>Insieme $M = \\{ \\begin{pmatrix} 1 & 0 \\\\ a & 1 \\end{pmatrix} \\mid a \\in \\mathbb{R} \\}$.</p>
-                <p><b>Chiusura Prodotto:</b><br>
-                $\\begin{pmatrix} 1 & 0 \\\\ a & 1 \\end{pmatrix} \\begin{pmatrix} 1 & 0 \\\\ b & 1 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ a+b & 1 \\end{pmatrix}$.<br>
-                Sta ancora in M? Sì ($a+b \\in \\mathbb{R}$).</p>
-                <p><b>Inverso:</b> $\\begin{pmatrix} 1 & 0 \\\\ -a & 1 \\end{pmatrix}$. Sta in M. OK.</p>
+            <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <p><b>Nota sui sistemi omogenei ($Ax=0$):</b></p>
+                <p>Hanno sempre almeno una soluzione (quella nulla). Non sono mai impossibili.</p>
             </div>
         ` 
-    },
-    { 
-        id: 602, 
-        category: 'strutture', 
-        title: "2. Omomorfismi", 
-        summary: "Funzioni che conservano l'operazione.", 
-        details: `
-            <p><b>Omomorfismo:</b> $f(x * y) = f(x) \\circ f(y)$.</p>
-            <p><b>Isomorfismo:</b> Omomorfismo biettivo.</p>
-        `,
-        examples: `
-            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
-                <p><b>Esercizio: Test Omomorfismo</b></p>
-                <p>$f: \\mathbb{R} \\to \\mathbb{Z}$, $f(x) = \\text{parte intera}(x)$.</p>
-                <p>È omomorfismo per la somma?<br>
-                $f(0.5 + 0.5) = f(1) = 1$.<br>
-                $f(0.5) + f(0.5) = 0 + 0 = 0$.<br>
-                $1 \\neq 0$. <b>NO</b>.</p>
-                <hr>
-                <p>$f(x) = 2^x$ (da somma a prodotto).<br>
-                $f(x+y) = 2^{x+y} = 2^x \\cdot 2^y = f(x) \\cdot f(y)$. <b>SÌ</b>.</p>
-            </div>
-        ` 
-    },
-    
-    // --- 7. SPAZI VETTORIALI ---
-    { 
-        id: 701, 
-        category: 'vettori', 
-        title: "1. Basi e Dimensione", 
-        summary: "Indipendenza lineare e generatori.", 
-        details: `
-            <p><b>Base:</b> Generatori linearmente indipendenti.</p>
-            <p><b>Dimensione:</b> Numero di vettori nella base.</p>
-        `,
-        examples: `
-            <div style="background: #fdf4ff; padding: 15px; border-radius: 10px; border-left: 4px solid #c026d3;">
-                <p><b>Esercizio:</b> Verificare se $v_1=(1,0), v_2=(1,1)$ sono base di $\\mathbb{R}^2$.</p>
-                <p><b>Indipendenza:</b><br>
-                $a(1,0) + b(1,1) = (0,0)$.<br>
-                Sistema: $a+b=0$ e $b=0$.<br>
-                Quindi $b=0, a=0$. Sono indipendenti.</p>
-                <p>Sono 2 vettori in dim 2 $\\Rightarrow$ Sono una Base.</p>
-            </div>
-        `
     },
 
     // --- 9. DIAGONALIZZAZIONE ---
     { 
         id: 901, 
         category: 'diagonalizzazione', 
-        title: "1. Autovalori e Autovettori", 
-        summary: "Polinomio caratteristico e diagnolizzabilità.", 
+        title: "1. Autovalori e Trucchi", 
+        summary: "Matrici triangolari e molteplicità.", 
         details: `
-            <p><b>Autovalori:</b> Radici di $det(A - \\lambda I) = 0$.</p>
-            <p><b>Diagonalizzabile:</b> Se per ogni autovalore, la molteplicità algebrica e geometrica coincidono.</p>
+            <p><b>Autovalori ($\lambda$):</b> Soluzioni di $\det(A - \lambda I) = 0$.</p>
+            <p><b>Trucco:</b> Se la matrice è triangolare (zeri sotto la diagonale), gli autovalori sono i numeri sulla diagonale!</p>
+             
         `,
         examples: `
             <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
-                <p><b>Esercizio:</b> Autovalori di $A = \\begin{pmatrix} 2 & 1 \\\\ 0 & 3 \\end{pmatrix}$.</p>
-                <p>Matrice triangolare: gli autovalori sono sulla diagonale.<br>
-                $\\lambda_1 = 2, \\lambda_2 = 3$.</p>
-                <p>Sono distinti $\\Rightarrow$ A è diagonalizzabile.</p>
+                <p><b>Esercizio:</b> $M = \\begin{pmatrix} 0 & 2 & 1 \\\\ 0 & 6 & -2 \\\\ 0 & 0 & 6 \\end{pmatrix}$.</p>
+                <p>Autovalori visibili sulla diagonale: $0, 6, 6$.</p>
+                <p>L'affermazione "Ha un unico autovalore 6" è <b>FALSA</b> (c'è anche lo 0).</p>
             </div>
-        `
+        ` 
+    },
+    { 
+        id: 902, 
+        category: 'diagonalizzazione', 
+        title: "2. Condizioni Diagonalizzabilità", 
+        summary: "Distinti vs Coincidenti.", 
+        details: `
+            <p>1. Se una matrice $n \\times n$ ha $n$ autovalori <b>tutti distinti</b> $\\Rightarrow$ È <b>sicuramente</b> diagonalizzabile.</p>
+            <p>2. Se ha autovalori coincidenti, bisogna controllare che $m_{alg} = m_{geom}$.</p>
+        `,
+        examples: `
+            <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
+                <p><b>Teorema:</b> Se ho 3 autovalori distinti in $\\mathbb{R}^3$, ho 3 autovettori indipendenti che formano una base. Quindi diagonalizzo.</p>
+            </div>
+        ` 
+    },
+
+    // --- 10. COMBINATORIA ---
+    { 
+        id: 1001, 
+        category: 'combinatoria', 
+        title: "1. Principio Inclusione-Esclusione", 
+        summary: "Contare unioni di insiemi.", 
+        details: `
+            <p>$|A \\cup B \\cup C| = |A| + |B| + |C| - (|A \\cap B| + ...) + |A \\cap B \\cap C|$.</p>
+        `,
+        examples: `
+            <div style="background: #fff7ed; padding: 15px; border-radius: 10px; border-left: 4px solid #f97316;">
+                <p><b>Esercizio: Divisibilità</b></p>
+                <p>Numeri < 900 divisibili per 11, 23, 29.</p>
+                <p>Calcolo i singoli: $\\lfloor 899/11 \\rfloor$, ecc.<br>
+                Tolgo le intersezioni a coppie: $\\lfloor 899/(11\\cdot23) \\rfloor$, ecc.<br>
+                Aggiungo la tripla (qui era 0).<br>
+                Risultato: $151 - 6 + 0 = 145$.</p>
+            </div>
+        ` 
+    },
+
+    // --- 11. RELAZIONI D'ORDINE ---
+    { 
+        id: 1101, 
+        category: 'ordini', 
+        title: "1. Reticoli e Divisibilità", 
+        summary: "Sup (mcm) e Inf (MCD).", 
+        details: `
+            <p>In un insieme ordinato dalla divisibilità $(\\mathbb{N}, |)$:</p>
+            <ul>
+                <li><b>Supremo (Sup):</b> Minimo Comune Multiplo (mcm).</li>
+                <li><b>Estremo Inferiore (Inf):</b> Massimo Comun Divisore (MCD).</li>
+            </ul>
+             
+
+[Image of Hasse diagram example]
+
+        `,
+        examples: `
+            <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
+                <p><b>Esercizio Sup:</b> Insieme $\{20, 2, 5, 15, 50\}$.<br>
+                Cerco mcm. Fattori vincenti: $2^2$ (dal 20), $3^1$ (dal 15), $5^2$ (dal 50).<br>
+                $4 \\cdot 3 \\cdot 25 = 300$.</p>
+                <hr>
+                <p><b>Esercizio Inf:</b> Insieme $\{4, 16, 20, 32\}$.<br>
+                Cerco MCD. Fattori comuni: solo il 2.<br>
+                Esponente più basso: $2^2$ (dal 4). Risultato: 4.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 1102, 
+        category: 'ordini', 
+        title: "2. Minimi, Massimi e Ben Ordinato", 
+        summary: "Differenze tra N e Z.", 
+        details: `
+            <p><b>Ben Ordinato:</b> Ogni sottoinsieme non vuoto ha un minimo.</p>
+            <p>$\\mathbb{N}$ è ben ordinato. $\\mathbb{Z}$ <b>NO</b> (i negativi vanno all'infinito giù).</p>
+        `,
+        examples: `
+            <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
+                <p><b>Esercizio Minimo:</b> Insieme $\{x, 3, 4, 6, 8\}$.<br>
+                Affinché esista un minimo, $x$ deve dividere tutti.<br>
+                Se $x=1$, divide 3, 4, 6, 8. Quindi 1 è il minimo.</p>
+            </div>
+        ` 
     }
 ];
 
