@@ -1,4 +1,4 @@
-// dati macro categorie
+// dati macro categorie (Invariato)
 const mdCategories = [
     { id: 'insiemi', title: '1. Insiemi', desc: 'Operazioni, parti e partizioni', icon: '∅', customColor: null },
     { id: 'applicazioni', title: '2. Applicazioni', desc: 'Iniettive, suriettive, biettive', icon: 'ƒ', customColor: null },
@@ -14,19 +14,28 @@ const mdCategories = [
     { id: 'geometria', title: '12. Geometria', desc: 'Rette, piani nello spazio', icon: '📐', customColor: null }
 ];
 
-// appunti specifici
+// appunti specifici (CORRETTO con doppio backslash)
 const mdNotes = [
     // --- 1. INSIEMI ---
     { 
         id: 101, 
         category: 'insiemi', 
         title: "1. Appartenenza vs Inclusione", 
-        summary: "Differenza tra elemento e sottoinsieme.", 
+        summary: "Definizioni formali e Doppia Inclusione.", 
         details: `
-            <p>È fondamentale distinguere tra il simbolo $\\in$ (appartenenza) e $\\subseteq$ (inclusione).</p>
+            <p><b>Definizione di Inclusione ($\\subseteq$):</b></p>
+            <p>Siano $A$ e $B$ due insiemi. Diciamo che $A \\subseteq B$ se e solo se:</p>
+            <p>$$\\forall x, \\quad x \\in A \\implies x \\in B$$</p>
+            <p><b>Principio della Doppia Inclusione (Uguaglianza):</b></p>
+            <p>Per dimostrare che due insiemi sono uguali ($A=B$), è necessario dimostrare che:</p>
+            <ol>
+                <li>$A \\subseteq B$ (ogni elemento di A sta in B)</li>
+                <li>$B \\subseteq A$ (ogni elemento di B sta in A)</li>
+            </ol>
+            <p><b>Differenza formale $\\in$ vs $\\subseteq$:</b></p>
             <ul>
-                <li>$x \\in A$: x è un <b>oggetto</b> dentro la scatola A.</li>
-                <li>$B \\subseteq A$: B è una <b>scatola</b> contenuta nella scatola A.</li>
+                <li>$\\in$ relaziona un <i>elemento</i> a un insieme.</li>
+                <li>$\\subseteq$ relaziona un <i>insieme</i> a un altro insieme.</li>
             </ul>
         `,
         examples: `
@@ -34,9 +43,10 @@ const mdNotes = [
                 <p><b>Esercizio "Tricky" (Struttura H):</b></p>
                 <p>Dato $H = \\{ 2, \\{2, 4\\} \\}$.</p>
                 <ul>
-                    <li>$\\{2\\} \\in H$? <b>FALSO</b>. L'elemento $\{2\}$ (scatola con dentro il 2) non è nella lista. C'è il 2 "nudo".</li>
-                    <li>$\\{2\\} \\subseteq H$? <b>VERO</b>. Costruisco un insieme prendendo il 2 da H.</li>
-                    <li>$\\{2, 4\\} \\in H$? <b>VERO</b>. È il secondo elemento della lista.</li>
+                    <li>$\\{2\\} \\in H$? <b>FALSO</b>. L'elemento $\\{2\\}$ non è elencato. Gli elementi sono $2$ e $\\{2,4\\}$.</li>
+                    <li>$\\{2\\} \\subseteq H$? <b>VERO</b>. Perché l'elemento $2$ appartiene ad $H$.</li>
+                    <li>$\\{2, 4\\} \\subseteq H$? <b>FALSO</b>. Affinché fosse vero, sia 2 che 4 dovrebbero essere elementi "liberi" in H. Il 4 non c'è.</li>
+                    <li>$\\{2, 4\\} \\in H$? <b>VERO</b>. È esattamente il secondo elemento.</li>
                 </ul>
             </div>
         `
@@ -44,18 +54,25 @@ const mdNotes = [
     { 
         id: 105, 
         category: 'insiemi', 
-        title: "2. Insieme delle Parti P(A)", 
-        summary: "Calcolo dei sottoinsiemi e cardinalità.", 
+        title: "2. Insieme delle Parti P(S)", 
+        summary: "Definizione rigorosa e Teorema sulla Cardinalità.", 
         details: `
-            <p><b>$\\mathcal{P}(A)$:</b> È l'insieme di tutti i sottoinsiemi di A.</p>
-            <p>Se $|A| = n$, allora $|\\mathcal{P}(A)| = 2^n$.</p>
-            <p>Ricorda: $\\emptyset \\in \\mathcal{P}(A)$ e $A \\in \\mathcal{P}(A)$.</p>
+            <p><b>Definizione:</b> Dato un insieme $S$, l'insieme delle parti $\\mathcal{P}(S)$ è l'insieme costituito da <b>tutti</b> i sottoinsiemi di $S$.</p>
+            <p>$$\\mathcal{P}(S) := \\{ X \\mid X \\subseteq S \\}$$</p>
+            <p><b>Proprietà fondamentali:</b></p>
+            <ul>
+                <li>$\\emptyset \\in \\mathcal{P}(S)$ (l'insieme vuoto è sottoinsieme di chiunque).</li>
+                <li>$S \\in \\mathcal{P}(S)$ (ogni insieme è sottoinsieme di se stesso).</li>
+            </ul>
+            <p><b>Teorema (Cardinalità):</b></p>
+            <p>Se $S$ è un insieme finito con $|S| = n$, allora $|\\mathcal{P}(S)| = 2^n$.</p>
         `,
         examples: `
             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
                 <p><b>Esercizio:</b> Scrivere $\\mathcal{P}(A)$ per $A = \\{a, 1\\}$.</p>
-                <p><b>Svolgimento:</b> $n=2$, quindi avrò $2^2=4$ elementi.</p>
-                <p>$\\mathcal{P}(A) = \\{\\emptyset, \\{a\\}, \\{1\\}, \\{a, 1\\}\\}$.</p>
+                <p><b>Svolgimento:</b> $n=2$, quindi avrò $2^2=4$ elementi (che sono insiemi!).</p>
+                <p>$\\mathcal{P}(A) = \\{ \\emptyset, \\{a\\}, \\{1\\}, \\{a, 1\\} \\}$.</p>
+                <p><i>Nota:</i> Non dimenticare le parentesi graffe interne.</p>
             </div>
         `
     },
@@ -63,32 +80,25 @@ const mdNotes = [
         id: 106, 
         category: 'insiemi', 
         title: "3. Partizioni", 
-        summary: "Suddivisione di un insieme in parti disgiunte.", 
+        summary: "Teorema fondamentale sulle Partizioni.", 
         details: `
-            <p>Una <b>partizione</b> di un insieme $A$ è una collezione di sottoinsiemi $A_1, A_2, ..., A_n$ che soddisfano tre regole d'oro:</p>
+            <p><b>Definizione:</b> Una famiglia di sottoinsiemi $\\{A_i\\}_{i \\in I}$ di $S$ è una <b>partizione</b> di $S$ se valgono:</p>
             <ol>
-                <li><b>Non vuoti:</b> Nessun sottoinsieme è vuoto ($A_i \\neq \\emptyset$).</li>
-                <li><b>Disgiunti:</b> Non hanno elementi in comune ($A_i \\cap A_j = \\emptyset$ se $i \\neq j$).</li>
-                <li><b>Ricoprimento:</b> La loro unione forma tutto l'insieme di partenza ($\\bigcup A_i = A$).</li>
+                <li><b>Non vuoti:</b> $\\forall i, A_i \\neq \\emptyset$.</li>
+                <li><b>A due a due disgiunti:</b> $\\forall i \\neq j, A_i \\cap A_j = \\emptyset$.</li>
+                <li><b>Ricoprimento totale:</b> $\\bigcup_{i \\in I} A_i = S$.</li>
             </ol>
-            <p><i>Nota bene:</i> C'è un legame strettissimo con le <b>Relazioni di Equivalenza</b>: ogni partizione crea una relazione (elementi nello stesso gruppo sono in relazione) e viceversa.</p>
+            <p><b>Teorema Fondamentale (Lezione 10):</b></p>
+            <p>Esiste una corrispondenza biunivoca tra le <i>Relazioni di Equivalenza</i> su $S$ e le <i>Partizioni</i> di $S$.</p>
+            <p>Ogni relazione di equivalenza definisce una partizione (l'Insieme Quoziente $S/\\mathcal{R}$) e viceversa.</p>
         `,
         examples: `
             <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Esercizio: Riconoscere una Partizione</b></p>
-                <p>Dato $A = \\{1, 2, 3\\}$, quali sono partizioni valide?</p>
-                <ul>
-                    <li>$\\{\\{1, 2\\}, \\{3\\}\\}$: <b>SÌ</b>. Sono disgiunti, non vuoti e c'è tutto A.</li>
-                    <li>$\\{\\{1, 2\\}, \\{2, 3\\}\\}$: <b>NO</b>. C'è intersezione (il 2 è ripetuto).</li>
-                    <li>$\\{\\{1\\}, \\{2\\}\\}$: <b>NO</b>. Manca il 3 (l'unione non fa A).</li>
-                    <li>$\\{\\{1, 2, 3\\}, \\emptyset\\}$: <b>NO</b>. Non sono ammessi insiemi vuoti.</li>
-                </ul>
-            </div>
-            <br>
-            <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 4px solid #16a34a;">
-                <p><b>Esercizio tipo Esame (Quesito 10):</b></p>
-                <p>Se $a, b, v$ devono stare insieme e $w$ deve stare separato da $a$...</p>
-                <p>La partizione corretta raggruppa chi è in relazione e separa gli altri: $\\{\\{a, b, v\\}, \\{w, c\\}\\}$.</p>
+                <p><b>Esempio di Errore:</b></p>
+                <p>Dato $A = \\{1, 2, 3\\}$. La famiglia $\\mathcal{F} = \\{ \\{1,2\\}, \\{3\\}, \\emptyset \\}$</p>
+                <p><b>NON</b> è una partizione perché contiene l'insieme vuoto.</p>
+                <p>La famiglia $\\mathcal{G} = \\{ \\{1,2\\}, \\{2,3\\} \\}$</p>
+                <p><b>NON</b> è una partizione perché l'intersezione non è vuota ($2$ è ripetuto).</p>
             </div>
         `
     },
@@ -97,29 +107,50 @@ const mdNotes = [
     { 
         id: 201, 
         category: 'applicazioni', 
-        title: "1. Definizione di Funzione", 
-        summary: "Esistenza e Unicità (Analisi errori comuni).", 
+        title: "1. Definizione di Applicazione", 
+        summary: "Totale e Funzionale (Esistenza e Unicità).", 
         details: `
-            <p>Un'applicazione $f: A \\to B$ deve rispettare:</p>
+            <p><b>Definizione Rigorosa (Lezione 5):</b></p>
+            <p>Siano $S, T$ insiemi. Una relazione $f \\subseteq S \\times T$ è un'<b>applicazione</b> $f: S \\to T$ se:</p>
             <ol>
-                <li><b>Esistenza:</b> Ogni elemento di A deve avere una destinazione.</li>
-                <li><b>Unicità:</b> Nessun elemento di A può avere due destinazioni diverse.</li>
+                <li><b>Ovunque definita (Esistenza):</b> $\\forall x \\in S, \\exists y \\in T$ t.c. $(x,y) \\in f$.</li>
+                <li><b>Funzionale (Unicità):</b> $\\forall x \\in S, \\forall y_1, y_2 \\in T$, se $(x,y_1) \\in f \\land (x,y_2) \\in f \\implies y_1=y_2$.</li>
             </ol>
+            <p>In sintesi: $\\forall x \\in S, \\exists! y \\in T$ tale che $y = f(x)$.</p>
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
                 <p><b>Esercizio: Caccia all'errore</b></p>
-                <p>Quale definisce un'applicazione?</p>
                 <ul>
-                    <li>$A: 2x^3 - 2x^2 = y$ da $\\mathbb{Z} \\to \\mathbb{N}$.<br>
-                    <b>FALSO:</b> Se $x=-1$, $y=-4$. Ma $-4 \\notin \\mathbb{N}$. Fallisce l'esistenza.</li>
-                    <li>$D: y^2 - x = 1$ da $\\mathbb{Z} \\to \\mathbb{Z}$.<br>
-                    <b>FALSO:</b> Se $x=3$, $y^2=4 \\to y=\\pm 2$. Due risultati. Fallisce l'unicità.</li>
-                    <li>$C: 2x = -3y$ da $\\mathbb{Z} \\to \\mathbb{Q}$.<br>
-                    <b>VERO:</b> $y = -2/3 x$. Per ogni intero x ottengo una sola frazione.</li>
+                    <li>$f: \\mathbb{Z} \\to \\mathbb{N}, f(x) = x$. <br><b>NON è applicazione</b>. Se $x=-2$, $-2 \\notin \\mathbb{N}$. Viola l'esistenza.</li>
+                    <li>$f: \\mathbb{R} \\to \\mathbb{R}, f(x) = \\pm\\sqrt{x}$. <br><b>NON è applicazione</b>. Per $x=4$ ho due valori ($\\pm 2$). Viola l'unicità.</li>
                 </ul>
             </div>
         ` 
+    },
+    { 
+        id: 202, 
+        category: 'applicazioni', 
+        title: "2. Tipi di Applicazioni", 
+        summary: "Definizioni formali: Iniettiva, Suriettiva, Biettiva.", 
+        details: `
+            <p><b>1. Iniettiva:</b> Elementi distinti hanno immagini distinte.</p>
+            <p>$$\\forall x_1, x_2 \\in S, f(x_1) = f(x_2) \\implies x_1 = x_2$$</p>
+            <p><b>2. Suriettiva:</b> L'immagine coincide col codominio.</p>
+            <p>$$\\forall y \\in T, \\exists x \\in S \\text{ tale che } f(x) = y$$</p>
+            <p><b>3. Biettiva:</b> Sia iniettiva che suriettiva.</p>
+            <p><b>Teorema dell'Invertibilità:</b> $f$ è invertibile $\\iff f$ è biettiva.</p>
+        `,
+        examples: `
+             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
+                <p><b>Esempio $f(x) = x^2$:</b></p>
+                <ul>
+                    <li>Su $\\mathbb{R} \\to \\mathbb{R}$: Né iniettiva ($f(-2)=f(2)$), né suriettiva ($-1$ non è quadrato).</li>
+                    <li>Su $\\mathbb{N} \\to \\text{Quadrati Perfetti}$: È biettiva.</li>
+                </ul>
+                <p><i>Morale:</i> Il dominio e il codominio sono parte integrante della definizione!</p>
+            </div>
+        `
     },
     { 
         id: 204, 
@@ -130,9 +161,8 @@ const mdNotes = [
             <p>Quante funzioni suriettive ci sono da un insieme di $n$ elementi a uno di $m$ elementi?</p>
             <ul>
                 <li>Se $n < m$: <b>ZERO</b> (impossibile coprire tutti i bersagli).</li>
-                <li>Se $n \ge m$: Si usa il principio di Inclusione-Esclusione o i numeri di Stirling.</li>
+                <li>Se $n \\ge m$: Si usa il principio di Inclusione-Esclusione o i numeri di Stirling.</li>
             </ul>
-             
         `,
         examples: `
             <div style="background: #fefce8; padding: 15px; border-radius: 10px; border-left: 4px solid #eab308;">
@@ -153,23 +183,28 @@ const mdNotes = [
     { 
         id: 301, 
         category: 'relazioni', 
-        title: "1. Proprietà delle Relazioni", 
-        summary: "Riflessiva, Simmetrica, Transitiva (Esempi pratici).", 
+        title: "1. Relazioni di Equivalenza", 
+        summary: "Le 3 proprietà formali e l'Insieme Quoziente.", 
         details: `
-            <p>Una relazione è di <b>Equivalenza</b> se è R, S, T.</p>
-            <p>Una relazione è d'<b>Ordine</b> se è R, Antisimmetrica, T.</p>
+            <p>Una relazione $\\mathcal{R} \\subseteq S \\times S$ è di <b>Equivalenza</b> se è:</p>
+            <ol>
+                <li><b>Riflessiva:</b> $\\forall x \\in S, x\\mathcal{R}x$.</li>
+                <li><b>Simmetrica:</b> $\\forall x,y \\in S, x\\mathcal{R}y \\implies y\\mathcal{R}x$.</li>
+                <li><b>Transitiva:</b> $\\forall x,y,z \\in S, x\\mathcal{R}y \\land y\\mathcal{R}z \\implies x\\mathcal{R}z$.</li>
+            </ol>
+            <p><b>Classe di equivalenza $[x]_\\mathcal{R}$:</b> L'insieme di tutti gli $y$ in relazione con $x$.</p>
+            <p><b>Insieme Quoziente $S/\\mathcal{R}$:</b> L'insieme delle classi di equivalenza (che formano una partizione).</p>
         `,
         examples: `
             <div style="background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
-                <p><b>Esercizio "Parentela":</b></p>
-                <p>Quale relazione è Simmetrica, Transitiva ma NON Riflessiva?</p>
+                <p><b>Esercizio sulle proprietà:</b></p>
+                <p>Relazione $\\le$ su $\\mathbb{Z}$.</p>
                 <ul>
-                    <li>"Essere padre di": No simmetrica.</li>
-                    <li>"Avere gli occhi azzurri":<br>
-                    - Simmetrica: Sì (se io ho gli occhi azzurri come te, tu li hai come me).<br>
-                    - Transitiva: Sì (tutti nel gruppo).<br>
-                    - Riflessiva? <b>NO</b> universale. Chi ha gli occhi neri non è in relazione con se stesso in questo contesto specifico.</li>
+                    <li>Riflessiva? SÌ ($a \\le a$).</li>
+                    <li>Transitiva? SÌ.</li>
+                    <li>Simmetrica? <b>NO</b>. $2 \\le 3$ ma $3 \\not\\le 2$.</li>
                 </ul>
+                <p>Quindi $\\le$ NON è equivalenza (è d'Ordine!).</p>
             </div>
         ` 
     },
@@ -187,7 +222,7 @@ const mdNotes = [
                 <p><b>Esercizio:</b></p>
                 <p>Dati $a\\mathcal{R}v$, $b\\mathcal{R}v$, $a \\notin [w]$, $b \\notin [c]$. Trovare la partizione.</p>
                 <p><b>Soluzione:</b><br>
-                $\{a,b,v\}$ devono stare insieme (transitiva).<br>
+                $\\{a,b,v\\}$ devono stare insieme (transitiva).<br>
                 $w$ e $c$ devono stare separati dal primo gruppo.<br>
                 Partizione corretta: $\\{\\{a, b, v\\}, \\{w, c\\}\\}$.</p>
             </div>
@@ -196,44 +231,92 @@ const mdNotes = [
 
     // --- 4. ARITMETICA ---
     { 
-        id: 402, 
+        id: 401, 
         category: 'aritmetica', 
-        title: "1. MCD e Bèzout", 
-        summary: "Algoritmo Euclideo Esteso.", 
+        title: "1. Divisione Euclidea e Primi", 
+        summary: "Teoremi di Esistenza e Unicità.", 
         details: `
-            <p><b>Teorema:</b> $MCD(a,b)$ è scrivibile come $ax + by$.</p>
-            
-
-[Image of flowchart of Euclidean algorithm]
-
+            <p><b>Teorema della Divisione Euclidea (Lezione 11):</b></p>
+            <p>Dati $a, b \\in \\mathbb{Z}$ con $b \\neq 0$, esistono e sono unici $q, r \\in \\mathbb{Z}$ tali che:</p>
+            <p>$$a = b \\cdot q + r \\quad \\text{con} \\quad \\mathbf{0 \\le r < |b|}$$</p>
+            <p><i>Nota:</i> Il resto $r$ deve essere sempre non negativo!</p>
+            <p><b>Teorema Fondamentale dell'Aritmetica:</b> Ogni intero $n \\ge 2$ si scrive in modo unico (a meno dell'ordine) come prodotto di numeri primi.</p>
         `,
         examples: `
             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio:</b> Trovare soluzioni di $13x + 19y = 1$.</p>
-                <p>Euclide: $19 = 13(1) + 6 \\to 13 = 6(2) + 1$.<br>
-                Risalita: $1 = 13 - 6(2) = 13 - (19-13)(2) = 13(3) - 19(2)$.<br>
-                Soluzione: $x=3, y=-2$.</p>
+                <p><b>Trappola del Resto Negativo:</b></p>
+                <p>Dividere $-13$ per $5$.</p>
+                <p>Errato: $-13 = 5(-2) - 3$ (Resto negativo!)</p>
+                <p>Corretto: $-13 = 5(-3) + 2$. Quoziente $-3$, Resto $2$.</p>
             </div>
         ` 
+    },
+    { 
+        id: 402, 
+        category: 'aritmetica', 
+        title: "2. Congruenze e Bèzout", 
+        summary: "MCD, Identità di Bézout e Classi di Resto.", 
+        details: `
+            <p><b>Identità di Bézout:</b> $d = MCD(a,b) \\implies \\exists x,y \\in \\mathbb{Z} : ax+by=d$.</p>
+            <p><b>Definizione di Congruenza Modulo $m$:</b></p>
+            <p>$$a \\equiv b \\pmod m \\iff m \\mid (b-a)$$</p>
+            <p>È una relazione di equivalenza compatibile con somma e prodotto.</p>
+            <p><b>Criterio risolubilità equazioni $ax \\equiv b \\pmod m$:</b></p>
+            <p>Ha soluzioni $\\iff MCD(a,m)$ divide $b$.</p>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio Bèzout:</b> $13x + 19y = 1$.</p>
+                <p>Euclide: $19 = 13(1) + 6 \\to 13 = 6(2) + 1$.</p>
+                <p>Risalita (Inversa): $1 = 13 - 6(2) = 13 - (19-13)(2) = 13(3) - 19(2)$.</p>
+                <p>Soluzione: $x=3, y=-2$.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 403, 
+        category: 'aritmetica', 
+        title: "3. Principio di Induzione", 
+        summary: "Le due forme del Principio.", 
+        details: `
+            <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
+            <p><b>Prima Forma (Debole):</b></p>
+            <ol>
+                <li><b>Passo Base:</b> $P(n_0)$ è vera.</li>
+                <li><b>Passo Induttivo:</b> $\\forall t \\ge n_0, P(t) \\implies P(t+1)$.</li>
+            </ol>
+            <p>Allora $P(n)$ è vera per ogni $n$.</p>
+            <p><b>Seconda Forma (Forte):</b> Nel passo induttivo assumo che la proprietà valga per <i>tutti</i> i $k \\le t$ per dimostrare $t+1$.</p>
+        `,
+        examples: `
+             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Dimostrazione classica:</b> $\\sum_{i=1}^n (2i-1) = n^2$.</p>
+                <p>Base $n=1$: $1 = 1^2$ (OK).</p>
+                <p>Passo: Assumo $\\sum^t (..) = t^2$.</p>
+                <p>Calcolo $\\sum^{t+1} = t^2 + (2(t+1)-1) = t^2 + 2t + 1 = (t+1)^2$. (CVD).</p>
+            </div>
+        `
     },
 
     // --- 5. MATRICI ---
     { 
         id: 501, 
         category: 'matrici', 
-        title: "1. Rango e Trappole", 
-        summary: "Il rango con righe uguali.", 
+        title: "1. Determinante e Rango", 
+        summary: "Sviluppo di Laplace e Binet.", 
         details: `
-            <p><b>Rango:</b> Numero massimo di righe/colonne indipendenti.</p>
-            <p><b>Regola aurea:</b> $rank(A) \\le \\min(\\text{righe}, \\text{colonne})$.</p>
+            <p><b>Teorema di Laplace:</b> Il determinante si calcola sviluppando lungo una riga/colonna:</p>
+            <p>$$\\det(A) = \\sum_{j=1}^n a_{ij} (-1)^{i+j} \\det(A_{ij})$$</p>
+            <p><b>Teorema di Binet:</b> $\\det(A \\cdot B) = \\det(A) \\cdot \\det(B)$.</p>
+            <p><b>Matrice Invertibile:</b> $A$ è invertibile $\\iff \\det(A) \\neq 0$.</p>
+            <p><b>Definizione Rango:</b> Ordine massimo di un minore non nullo estraibile dalla matrice.</p>
         `,
         examples: `
             <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
-                <p><b>Esercizio "Trappola":</b></p>
-                <p>Matrice $4 \\times 3$ con due righe uguali. Cosa è certo?</p>
-                <p>Molti dicono rango 2. <b>Errore!</b><br>
-                Se tolgo la riga doppia, me ne restano 3. Potrebbero essere tutte indipendenti.<br>
-                L'unica certezza è che avendo 3 colonne, il rango è $\\le 3$.</p>
+                <p><b>Trappola Rango:</b></p>
+                <p>Matrice $4 \\times 3$ (4 righe, 3 colonne).</p>
+                <p>Il rango massimo possibile è $\\min(4,3) = 3$.</p>
+                <p>Se ha due righe uguali, il rango non è per forza 2, ma sicuramente $< 4$.</p>
             </div>
         ` 
     },
@@ -264,7 +347,7 @@ const mdNotes = [
         details: `
             <p><b>Rouchè-Capelli:</b> Un sistema ha soluzioni $\\iff rank(A) = rank(A|b)$.</p>
             <p>Se $rank = n$ (incognite), soluzione unica (Cramer).</p>
-            <p>Se $rank < n$, infinite soluzioni ($\infty^{n-rank}$).</p>
+            <p>Se $rank < n$, infinite soluzioni ($\\infty^{n-rank}$).</p>
         `,
         examples: `
             <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
@@ -281,9 +364,8 @@ const mdNotes = [
         title: "1. Autovalori e Trucchi", 
         summary: "Matrici triangolari e molteplicità.", 
         details: `
-            <p><b>Autovalori ($\lambda$):</b> Soluzioni di $\det(A - \lambda I) = 0$.</p>
+            <p><b>Autovalori ($\\lambda$):</b> Soluzioni di $\\det(A - \\lambda I) = 0$.</p>
             <p><b>Trucco:</b> Se la matrice è triangolare (zeri sotto la diagonale), gli autovalori sono i numeri sulla diagonale!</p>
-             
         `,
         examples: `
             <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
@@ -334,28 +416,22 @@ const mdNotes = [
     { 
         id: 1101, 
         category: 'ordini', 
-        title: "1. Reticoli e Divisibilità", 
-        summary: "Sup (mcm) e Inf (MCD).", 
+        title: "1. Ordinamenti e Reticoli", 
+        summary: "Proprietà e Hasse.", 
         details: `
-            <p>In un insieme ordinato dalla divisibilità $(\\mathbb{N}, |)$:</p>
-            <ul>
-                <li><b>Supremo (Sup):</b> Minimo Comune Multiplo (mcm).</li>
-                <li><b>Estremo Inferiore (Inf):</b> Massimo Comun Divisore (MCD).</li>
-            </ul>
-             
-
-[Image of Hasse diagram example]
-
+            <p>Una relazione d'ordine $\\le$ deve essere:</p>
+            <ol>
+                <li><b>Riflessiva</b> ($a \\le a$)</li>
+                <li><b>Antisimmetrica</b> ($a \\le b \\land b \\le a \\implies a=b$)</li>
+                <li><b>Transitiva</b> ($a \\le b \\land b \\le c \\implies a \\le c$)</li>
+            </ol>
+            <p><b>Reticolo:</b> Un insieme ordinato dove ogni coppia di elementi ha un Inf (MCD) e un Sup (mcm).</p>
         `,
         examples: `
             <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
-                <p><b>Esercizio Sup:</b> Insieme $\{20, 2, 5, 15, 50\}$.<br>
-                Cerco mcm. Fattori vincenti: $2^2$ (dal 20), $3^1$ (dal 15), $5^2$ (dal 50).<br>
-                $4 \\cdot 3 \\cdot 25 = 300$.</p>
-                <hr>
-                <p><b>Esercizio Inf:</b> Insieme $\{4, 16, 20, 32\}$.<br>
-                Cerco MCD. Fattori comuni: solo il 2.<br>
-                Esponente più basso: $2^2$ (dal 4). Risultato: 4.</p>
+                <p><b>Differenza $\\mathbb{N}$ vs $\\mathbb{Z}$:</b></p>
+                <p>$\\mathbb{N}$ è <b>Ben Ordinato</b> (ogni sottoinsieme non vuoto ha un minimo).</p>
+                <p>$\\mathbb{Z}$ <b>NON</b> lo è (es. i pari negativi non hanno minimo).</p>
             </div>
         ` 
     },
@@ -366,11 +442,11 @@ const mdNotes = [
         summary: "Differenze tra N e Z.", 
         details: `
             <p><b>Ben Ordinato:</b> Ogni sottoinsieme non vuoto ha un minimo.</p>
-            <p>$\\mathbb{N}$ è ben ordinato. $\\mathbb{Z}$ <b>NO</b> (i negativi vanno all'infinito giù).</p>
+            <p>$\\mathbb{N}$ è ben ordinato. $\\mathbb{Z}$ <b>NON</b> lo è (i negativi vanno all'infinito giù).</p>
         `,
         examples: `
             <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
-                <p><b>Esercizio Minimo:</b> Insieme $\{x, 3, 4, 6, 8\}$.<br>
+                <p><b>Esercizio Minimo:</b> Insieme $\\{x, 3, 4, 6, 8\\}$.<br>
                 Affinché esista un minimo, $x$ deve dividere tutti.<br>
                 Se $x=1$, divide 3, 4, 6, 8. Quindi 1 è il minimo.</p>
             </div>
@@ -379,5 +455,5 @@ const mdNotes = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    initPage(mdCategories, mdNotes, "Matematica Discreta");
+    initPage(mdCategories, mdNotes, "Matematica Discreta - Teoria Rigorosa");
 });
