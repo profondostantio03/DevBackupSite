@@ -14,7 +14,7 @@ const mdCategories = [
     { id: 'geometria', title: '12. Geometria', desc: 'Rette, piani nello spazio', icon: '📐', customColor: null }
 ];
 
-// appunti specifici (CORRETTO con doppio backslash)
+// appunti specifici (AGGIORNATI CON ESERCIZI D'ESAME)
 const mdNotes = [
     // --- 1. INSIEMI ---
     { 
@@ -48,6 +48,28 @@ const mdNotes = [
                     <li>$\\{2, 4\\} \\subseteq H$? <b>FALSO</b>. Affinché fosse vero, sia 2 che 4 dovrebbero essere elementi "liberi" in H. Il 4 non c'è.</li>
                     <li>$\\{2, 4\\} \\in H$? <b>VERO</b>. È esattamente il secondo elemento.</li>
                 </ul>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #16a34a; padding-left: 15px;">
+                <p><b>Quesito (Prova 12/02/24):</b></p>
+                <p>Si consideri l'insieme $H = \\{2, \\{2,4\\}, x, y, \\{x\\}\\}$. Quale affermazione è <b>ERRATA</b>?</p>
+                <p>A) $\\{2\\} \\subseteq H$<br>
+                   B) $\\{2,4\\} \\in H$<br>
+                   C) $\\{2\\} \\in H$<br>
+                   D) $\\{x\\} \\in H$<br>
+                   E) $\\emptyset \\subseteq H$</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>Analizziamo gli elementi di H: $2$, $\\{2,4\\}$, $x$, $y$, $\\{x\\}$.</p>
+                <ul>
+                    <li><b>A)</b> $\\{2\\} \\subseteq H$: Vero se $2 \\in H$. Sì, c'è. (VERA)</li>
+                    <li><b>B)</b> $\\{2,4\\} \\in H$: Cerco il pacchetto $\\{2,4\\}$. Sì, è il secondo elemento. (VERA)</li>
+                    <li><b>C)</b> $\\{2\\} \\in H$: Cerco il pacchetto $\\{2\\}$. Non c'è! C'è il numero 2 slegato, e il pacchetto $\\{2,4\\}$, ma non $\\{2\\}$. (FALSA)</li>
+                    <li><b>D)</b> $\\{x\\} \\in H$: Sì, è l'ultimo elemento. (VERA)</li>
+                    <li><b>E)</b> $\\emptyset \\subseteq H$: L'insieme vuoto è sottoinsieme di chiunque. (VERA)</li>
+                </ul>
+                <p><b>Risposta: C</b></p>
             </div>
         `
     },
@@ -126,7 +148,23 @@ const mdNotes = [
                     <li>$f: \\mathbb{R} \\to \\mathbb{R}, f(x) = \\pm\\sqrt{x}$. <br><b>NON è applicazione</b>. Per $x=4$ ho due valori ($\\pm 2$). Viola l'unicità.</li>
                 </ul>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #eab308; padding-left: 15px;">
+                <p><b>Quesito (Prova 25/01/24):</b></p>
+                <p>Quale delle seguenti applicazioni di $\\mathbb{N}_0$ in $\\mathbb{Z}$ è <b>iniettiva</b>?</p>
+                <p>A) $f(n) = |12 - 2n|$</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>Testiamo l'iniettività ($f(n) = f(m) \\implies n=m$?).</p>
+                <p>Proviamo valori per $n$:<br>
+                - Se $n=0 \\to |12-0| = 12$<br>
+                - Se $n=12 \\to |12-24| = |-12| = 12$</p>
+                <p>Abbiamo trovato che $f(0) = 12$ e $f(12) = 12$.<br>
+                Due input diversi (0 e 12) danno lo stesso output.</p>
+                <p><b>Conclusione:</b> Non è iniettiva.</p>
+            </div>
+        `
     },
     { 
         id: 202, 
@@ -206,7 +244,24 @@ const mdNotes = [
                 </ul>
                 <p>Quindi $\\le$ NON è equivalenza (è d'Ordine!).</p>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                <p><b>Quesito 5 (Prova 12/02/24):</b></p>
+                <p>Insieme $V = \\{7h+1 | h \\in \\mathbb{Z}\\}$. Quale relazione è di equivalenza?</p>
+                <p>D) $7h+1 \\mathcal{R} 7k+1 \\iff |h-3| = |k-3|$</p>
+                <hr>
+                <p><b>Svolgimento (Trucco della Funzione):</b></p>
+                <p>La relazione è definita come l'uguaglianza di una funzione calcolata sui parametri: $f(h) = f(k)$ dove $f(x) = |x-3|$.</p>
+                <p>Ogni relazione del tipo "ho lo stesso valore di..." è sempre:</p>
+                <ul>
+                    <li><b>Riflessiva:</b> $|h-3| = |h-3|$ (Sì)</li>
+                    <li><b>Simmetrica:</b> Se A=B allora B=A (Sì)</li>
+                    <li><b>Transitiva:</b> Se A=B e B=C allora A=C (Sì)</li>
+                </ul>
+                <p><b>Risposta: D</b></p>
+            </div>
+        `
     },
     { 
         id: 302, 
@@ -226,7 +281,21 @@ const mdNotes = [
                 $w$ e $c$ devono stare separati dal primo gruppo.<br>
                 Partizione corretta: $\\{\\{a, b, v\\}, \\{w, c\\}\\}$.</p>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                <p><b>Quesito 5 (Prova 09/01/24):</b></p>
+                <p>Dato $T=\\{a,b,c,x,y,z\\}$ e le regole: $a\\mathcal{R}x$, $a\\mathcal{R}c$, $y\\mathcal{R}z$, $x \\notin [y]$, $z \\notin [b]$. Trova la partizione.</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <ol>
+                    <li>$a, x, c$ sono legati $\\to$ Gruppo 1: $\\{a,x,c\\}$.</li>
+                    <li>$y, z$ sono legati $\\to$ Gruppo 2: $\\{y,z\\}$.</li>
+                    <li>$b$ non può stare con $z$ (Gruppo 2) e non è legato ad $a$ $\\to$ Gruppo 3: $\\{b\\}$.</li>
+                </ol>
+                <p><b>Partizione Corretta:</b> $\\{\\{a,x,c\\}, \\{y,z\\}, \\{b\\}\\}$</p>
+            </div>
+        `
     },
 
     // --- 4. ARITMETICA ---
@@ -271,15 +340,37 @@ const mdNotes = [
                 <p>Risalita (Inversa): $1 = 13 - 6(2) = 13 - (19-13)(2) = 13(3) - 19(2)$.</p>
                 <p>Soluzione: $x=3, y=-2$.</p>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #e11d48; padding-left: 15px;">
+                <p><b>Quesito 8 (Prova 09/01/24):</b></p>
+                <p>Trova l'unico $x$ tra 55 e 110 tale che:</p>
+                <p>$Resto(x,5)=3 \\implies x \\equiv 3 \\pmod 5$</p>
+                <p>$Resto(x,11)=8 \\implies x \\equiv 8 \\pmod{11}$</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>Dalla seconda: $x = 11k + 8$.</p>
+                <p>Sostituisco nella prima: $11k + 8 \\equiv 3 \\pmod 5$.</p>
+                <p>Riduco modulo 5: $1k + 3 \\equiv 3 \\pmod 5 \\implies k \\equiv 0 \\pmod 5$.</p>
+                <p>Quindi $k$ è un multiplo di 5 (0, 5, 10...).</p>
+                <p>Se $k=5 \\to x = 11(5) + 8 = 55 + 8 = 63$. (Compreso tra 55 e 110).</p>
+                <p>Se $k=10 \\to x = 110 + 8 = 118$ (Fuori).</p>
+                <p><b>Risposta: 63</b></p>
+            </div>
+        `
     },
     { 
         id: 403, 
         category: 'aritmetica', 
         title: "3. Principio di Induzione", 
-        summary: "Le due forme del Principio.", 
+        summary: "Base, Ipotesi e Tesi Induttiva e le due Forme del principio", 
         details: `
             <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
+            <p>Per dimostrare $P(n)$ $\\forall n \\ge n_0$:</p>
+            <ol>
+                <li><b>Base:</b> Dimostro $P(n_0)$ vera.</li>
+                <li><b>Passo:</b> Assumo $P(t)$ vera (Ipotesi) $\\implies$ Dimostro $P(t+1)$ vera (Tesi).</li>
+            </ol>
             <p><b>Prima Forma (Debole):</b></p>
             <ol>
                 <li><b>Passo Base:</b> $P(n_0)$ è vera.</li>
@@ -297,19 +388,109 @@ const mdNotes = [
             </div>
         `
     },
+    { 
+        id: 404, 
+        category: 'aritmetica', 
+        title: "3. Numeri in Base b", 
+        summary: "Rappresentazione posizionale.", 
+        details: `
+            <p>Fissata una base $b \\ge 2$, ogni numero $n$ si scrive in modo unico come:</p>
+            <p>$$n = c_k b^k + \\dots + c_1 b + c_0$$</p>
+            <p>con $0 \\le c_i < b$.</p>
+            <p>Si ottengono le cifre con <b>divisioni successive</b> per $b$.</p>
+        `,
+        examples: ""
+    },
 
     // --- 5. MATRICI ---
     { 
         id: 501, 
         category: 'matrici', 
-        title: "1. Determinante e Rango", 
-        summary: "Sviluppo di Laplace e Binet.", 
+        title: "1. Definizioni e Tipologie", 
+        summary: "Matrici quadrate, triangolari, diagonali.", 
         details: `
-            <p><b>Teorema di Laplace:</b> Il determinante si calcola sviluppando lungo una riga/colonna:</p>
-            <p>$$\\det(A) = \\sum_{j=1}^n a_{ij} (-1)^{i+j} \\det(A_{ij})$$</p>
-            <p><b>Teorema di Binet:</b> $\\det(A \\cdot B) = \\det(A) \\cdot \\det(B)$.</p>
-            <p><b>Matrice Invertibile:</b> $A$ è invertibile $\\iff \\det(A) \\neq 0$.</p>
-            <p><b>Definizione Rango:</b> Ordine massimo di un minore non nullo estraibile dalla matrice.</p>
+            <p>Una matrice $A \\in M_{m,n}(\\mathbb{R})$ ha $m$ righe e $n$ colonne.</p>
+            <ul>
+                <li><b>Quadrata:</b> $m=n$.</li>
+                <li><b>Diagonale:</b> $a_{ij} = 0$ per ogni $i \\neq j$.</li>
+                <li><b>Triangolare Superiore:</b> $a_{ij} = 0$ per ogni $i > j$ (tutti zeri sotto la diagonale).</li>
+                <li><b>Triangolare Inferiore:</b> $a_{ij} = 0$ per ogni $i < j$.</li>
+                <li><b>Identica ($I_n$):</b> Diagonale con tutti 1. Elemento neutro del prodotto.</li>
+            </ul>
+        `,
+        examples: `
+            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
+                <p><b>Proprietà Triangolari:</b></p>
+                <p>Il determinante di una matrice triangolare (o diagonale) è semplicemente il <b>prodotto degli elementi sulla diagonale principale</b>.</p>
+            </div>
+        ` 
+    },
+    { 
+        id: 502, 
+        category: 'matrici', 
+        title: "2. Operazioni Matriciali", 
+        summary: "Prodotto righe per colonne e non commutatività.", 
+        details: `
+            <p><b>Somma:</b> Elemento per elemento (stesse dimensioni).</p>
+            <p><b>Prodotto $A \\cdot B$:</b> Possibile solo se colonne di A = righe di B.</p>
+            <p>L'elemento $c_{ij}$ è il prodotto scalare della riga $i$ di A per la colonna $j$ di B.</p>
+            <p><b>Attenzione:</b> Il prodotto <b>NON è commutativo</b> ($AB \\neq BA$ in generale).</p>
+        `,
+        examples: ""
+    },
+    { 
+        id: 503, 
+        category: 'matrici', 
+        title: "3. Matrice Inversa", 
+        summary: "Condizione di invertibilità.", 
+        details: `
+            <p>Una matrice quadrata $A$ è <b>invertibile</b> se esiste $B$ tale che $AB = BA = I_n$.</p>
+            <p><b>Teorema:</b> $A$ è invertibile $\\iff \\det(A) \\neq 0$.</p>
+            <p>L'inversa è unica.</p>
+        `,
+        examples: ""
+    },
+    { 
+        id: 504, 
+        category: 'matrici', 
+        title: "4. Rango e Gauss", 
+        summary: "Riduzione a scala e calcolo del rango.", 
+        details: `
+            <p><b>Algoritmo di Gauss:</b> Usa operazioni elementari sulle righe per trasformare la matrice in una matrice <b>a scala</b> (a gradini).</p>
+            <p><b>Rango ($rk(A)$):</b></p>
+            <ul>
+                <li>È il numero di righe non nulle nella matrice ridotta a scala (numero di Pivot).</li>
+                <li>È l'ordine del massimo minore con determinante diverso da 0.</li>
+            </ul>
+        `,
+        examples: `
+            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
+            <p><b>Esercizio:</b></p>
+            <p>Per quale $k$ la matrice $3 \\times 3$ ha rango 2?</p>
+            <p>Calcolo $Det(A) = 2k - 1$.<br>
+            Impongo $Det = 0 \\Rightarrow k = 1/2$.</p>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #db2777; padding-left: 15px;">
+                <p><b>Quesito 10 (Prova 12/02/24):</b></p>
+                <p>Se una matrice $3 \\times 5$ ha un minore di ordine 3 diverso da 0, cosa possiamo affermare?</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>La matrice ha 3 righe. Il rango massimo possibile è 3.</p>
+                <p>La definizione dice che il rango è l'ordine massimo di un minore non nullo.</p>
+                <p>Poiché abbiamo trovato un minore di ordine 3 non nullo, il rango è <b>esattamente 3</b> (non può essere di più perché ci sono solo 3 righe).</p>
+            </div>
+        `
+    },
+    { 
+        id: 505, 
+        category: 'matrici', 
+        title: "5. Determinante (Laplace)", 
+        summary: "Sviluppo e Binet.", 
+        details: `
+            <p><b>Laplace:</b> $\\det(A) = \\sum (-1)^{i+j} a_{ij} \\det(A_{ij})$. Si sviluppa lungo una riga/colonna.</p>
+            <p><b>Binet:</b> $\\det(AB) = \\det(A)\\det(B)$.</p>
         `,
         examples: `
             <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
@@ -320,22 +501,83 @@ const mdNotes = [
             </div>
         ` 
     },
+
+    // --- 6. STRUTTURE ALGEBRICHE (Dedotto da Lezione 11 - Congruenze) ---
     { 
-        id: 502, 
-        category: 'matrici', 
-        title: "2. Rango con Parametro", 
-        summary: "Quando il determinante si annulla.", 
+        id: 601, 
+        category: 'strutture', 
+        title: "1. Anelli e Campi", 
+        summary: "Differenze e Invertibilità in Zn.", 
         details: `
-            <p>Per abbassare il rango di una matrice quadrata $n \\times n$, il determinante deve essere 0.</p>
+            <p><b>Anello Commutativo Unitario $(A, +, \\cdot)$:</b> Insieme con due operazioni. La somma è gruppo abeliano, il prodotto è associativo, commutativo, distributivo e ha elemento neutro $1$.</p>
+            <p><b>Campo:</b> È un anello commutativo unitario in cui <b>ogni elemento non nullo è invertibile</b>.</p>
+            <p><b>Divisori dello Zero:</b> Elementi non nulli $a, b$ tali che $a \\cdot b = 0$. In un Campo non esistono divisori dello zero.</p>
         `,
         examples: `
-            <div style="background: #fdf2f8; padding: 15px; border-radius: 10px; border-left: 4px solid #db2777;">
-                <p><b>Esercizio:</b></p>
-                <p>Per quale $k$ la matrice $3 \\times 3$ ha rango 2?</p>
-                <p>Calcolo $Det(A) = 2k - 1$.<br>
-                Impongo $Det = 0 \\Rightarrow k = 1/2$.</p>
+            <div style="background: #f3e8ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
+                <p><b>Il caso $\\mathbb{Z}_n$:</b></p>
+                <p>$\\mathbb{Z}_n$ è un <b>Campo</b> se e solo se $n$ è <b>primo</b>.</p>
+                <p>Se $n$ non è primo (es. $\\mathbb{Z}_6$), ci sono divisori dello zero (es. $[2]\\cdot[3]=[6]=[0]$) e non è un campo.</p>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #9333ea; padding-left: 15px;">
+                <p><b>Quesito 11 (Prova 12/02/24):</b></p>
+                <p>In $(\\mathbb{Z}_{12}, +, \\cdot)$, quale affermazione è <b>ERRATA</b>?</p>
+                <p>A) $11 \\cdot 11 = 2$</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>Facciamo i calcoli in modulo 12:</p>
+                <p>$11 \\equiv -1 \\pmod{12}$.</p>
+                <p>Quindi $11 \\cdot 11 \\equiv (-1) \\cdot (-1) = 1$.</p>
+                <p>L'affermazione A dice che fa 2. Ma fa 1.</p>
+                <p><b>Quindi la A è l'affermazione ERRATA.</b></p>
+            </div>
+        `
+    },
+
+    // --- 7. VETTORI (Dedotto da Matrici 1 e Rango) ---
+    { 
+        id: 701, 
+        category: 'vettori', 
+        title: "1. Definizione Spazio Vettoriale", 
+        summary: "Assiomi e Sottospazi.", 
+        details: `
+            <p>Uno <b>Spazio Vettoriale</b> $V$ su un campo $K$ è un insieme dotato di due operazioni:</p>
+            <ul>
+                <li>Somma interna ($+: V \\times V \\to V$) che rende $V$ un gruppo abeliano.</li>
+                <li>Prodotto per scalare ($\\cdot: K \\times V \\to V$) con proprietà distributive e associative miste.</li>
+            </ul>
+            <p><b>Sottospazio Vettoriale ($W \\subseteq V$):</b></p>
+            <p>Un sottoinsieme $W$ è sottospazio se:</p>
+            <ol>
+                <li>Il vettore nullo appartiene a $W$ ($\\mathbf{0} \\in W$).</li>
+                <li>È chiuso rispetto alla somma: $\\forall u, v \\in W \\implies u+v \\in W$.</li>
+                <li>È chiuso rispetto al prodotto per scalare: $\\forall \\lambda \\in K, v \\in W \\implies \\lambda v \\in W$.</li>
+            </ol>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esempio da MD2511:</b></p>
+                <p>$V = \\{(x,y,z) \\in \\mathbb{R}^3 \\mid x^2+y^2=0\\}$</p>
+                <p>È sottospazio? Sì, nei reali l'unica soluzione è $(0,0,z)$, che è una retta (sottospazio).</p>
+                <p>$V = \\{(x,y,z) \\in \\mathbb{R}^3 \\mid x^2+y^2=1\\}$</p>
+                <p><b>NO</b>. Non contiene il vettore nullo $(0,0,0)$.</p>
+            </div>
+        `
+    },
+    { 
+        id: 702, 
+        category: 'vettori', 
+        title: "2. Generatori e Basi", 
+        summary: "Span e Indipendenza Lineare.", 
+        details: `
+            <p><b>Span (Generazione):</b> $\\langle v_1, ..., v_n \\rangle$ è l'insieme di tutte le combinazioni lineari dei vettori.</p>
+            <p><b>Indipendenza Lineare:</b> I vettori sono indipendenti se l'unica combinazione lineare che dà il vettore nullo è quella con tutti i coefficienti nulli.</p>
+            <p><b>Base:</b> Un insieme di generatori che è anche linearmente indipendente.</p>
+            <p><b>Dimensione:</b> Il numero di elementi di una base (è un invariante).</p>
+        `,
+        examples: ""
     },
 
     // --- 8. SISTEMI LINEARI ---
@@ -356,39 +598,71 @@ const mdNotes = [
             </div>
         ` 
     },
+    { 
+        id: 802, 
+        category: 'sistemi', 
+        title: "2. Numero di Soluzioni", 
+        summary: "Unica o Infinite.", 
+        details: `
+            <p>Sia $n$ il numero delle incognite e $k = rk(A) = rk(A|b)$.</p>
+            <ul>
+                <li>Se $k = n$: <b>Soluzione Unica</b> (Cramer generalizzato).</li>
+                <li>Se $k < n$: <b>Infinite soluzioni</b>. Ci sono $\\infty^{n-k}$ soluzioni (dipendono da $n-k$ parametri liberi).</li>
+            </ul>
+        `,
+        examples: `
+            <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <p><b>Sistemi Omogenei ($Ax=0$):</b></p>
+                <p>Hanno sempre almeno la soluzione nulla. Hanno soluzioni non banali solo se $rk(A) < n$.</p>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #0ea5e9; padding-left: 15px;">
+                <p><b>Quesito 14 (Prova 09/01/24):</b></p>
+                <p>Sistema di 3 equazioni in 4 incognite. Matrice incompleta ha rango 3. Cosa succede?</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>Abbiamo $n=4$ incognite. Il rango è $k=3$.</p>
+                <p>Poiché il rango massimo della completa (3x5) non può superare il numero di righe (3), anche la completa avrà rango 3 (se il sistema è compatibile).</p>
+                <p>Se è compatibile, avremo $\\infty^{n-k} = \\infty^{4-3} = \\infty^1$ soluzioni.</p>
+                <p>Cioè infinite soluzioni dipendenti da 1 parametro.</p>
+            </div>
+        `
+    },
 
     // --- 9. DIAGONALIZZAZIONE ---
     { 
         id: 901, 
         category: 'diagonalizzazione', 
-        title: "1. Autovalori e Trucchi", 
-        summary: "Matrici triangolari e molteplicità.", 
+        title: "1. Matrici Simili e Diagonalizzazione", 
+        summary: "Definizione algebrica.", 
         details: `
-            <p><b>Autovalori ($\\lambda$):</b> Soluzioni di $\\det(A - \\lambda I) = 0$.</p>
-            <p><b>Trucco:</b> Se la matrice è triangolare (zeri sotto la diagonale), gli autovalori sono i numeri sulla diagonale!</p>
+            <p>Due matrici $A, B \\in M_n(K)$ si dicono <b>simili</b> se esiste una matrice invertibile $P$ tale che:</p>
+            <p>$$B = P^{-1}AP$$</p>
+            <p><b>Definizione:</b> $A$ è diagonalizzabile se è simile a una matrice diagonale $D$.</p>
+            <p>La matrice $P$ che diagonalizza è la matrice formata dagli <b>autovettori</b>.</p>
         `,
-        examples: `
-            <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
-                <p><b>Esercizio:</b> $M = \\begin{pmatrix} 0 & 2 & 1 \\\\ 0 & 6 & -2 \\\\ 0 & 0 & 6 \\end{pmatrix}$.</p>
-                <p>Autovalori visibili sulla diagonale: $0, 6, 6$.</p>
-                <p>L'affermazione "Ha un unico autovalore 6" è <b>FALSA</b> (c'è anche lo 0).</p>
-            </div>
-        ` 
+        examples: ""
     },
     { 
         id: 902, 
         category: 'diagonalizzazione', 
-        title: "2. Condizioni Diagonalizzabilità", 
-        summary: "Distinti vs Coincidenti.", 
+        title: "2. Criterio di Diagonalizzabilità", 
+        summary: "Molteplicità Algebrica e Geometrica.", 
         details: `
-            <p>1. Se una matrice $n \\times n$ ha $n$ autovalori <b>tutti distinti</b> $\\Rightarrow$ È <b>sicuramente</b> diagonalizzabile.</p>
-            <p>2. Se ha autovalori coincidenti, bisogna controllare che $m_{alg} = m_{geom}$.</p>
+            <p>Una matrice è diagonalizzabile se e solo se valgono entrambe:</p>
+            <ol>
+                <li>La somma delle molteplicità algebriche degli autovalori è $n$ (il polinomio caratteristico si spezza interamente in $K$).</li>
+                <li>Per ogni autovalore $\\lambda$, la molteplicità geometrica coincide con quella algebrica ($m_g(\\lambda) = m_a(\\lambda)$).</li>
+            </ol>
+            <p>$$m_g(\\lambda) = \\dim(\\text{Autospazio}) = n - rk(A - \\lambda I)$$</p>
         `,
         examples: `
             <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
-                <p><b>Teorema:</b> Se ho 3 autovalori distinti in $\\mathbb{R}^3$, ho 3 autovettori indipendenti che formano una base. Quindi diagonalizzo.</p>
+                <p><b>Caso semplice:</b></p>
+                <p>Se una matrice $n \\times n$ ha $n$ autovalori <b>tutti distinti</b>, è sicuramente diagonalizzabile.</p>
             </div>
-        ` 
+        `
     },
 
     // --- 10. COMBINATORIA ---
@@ -412,45 +686,111 @@ const mdNotes = [
         ` 
     },
 
-    // --- 11. RELAZIONI D'ORDINE ---
+    // 11. RELAZIONI D'ORDINE (MASSICCIAMENTE ESPANSO da MD1711, MD2411) 
+
     { 
         id: 1101, 
         category: 'ordini', 
-        title: "1. Ordinamenti e Reticoli", 
-        summary: "Proprietà e Hasse.", 
+        title: "1. Definizione Relazione d'Ordine", 
+        summary: "Le 3 proprietà e il confronto.", 
         details: `
-            <p>Una relazione d'ordine $\\le$ deve essere:</p>
+            <p>Una relazione $\\mathcal{R}$ su $S$ (spesso indicata con $\\le$) è d'<b>Ordine</b> se è:</p>
             <ol>
-                <li><b>Riflessiva</b> ($a \\le a$)</li>
-                <li><b>Antisimmetrica</b> ($a \\le b \\land b \\le a \\implies a=b$)</li>
-                <li><b>Transitiva</b> ($a \\le b \\land b \\le c \\implies a \\le c$)</li>
+                <li><b>Riflessiva:</b> $\\forall x, x \\le x$.</li>
+                <li><b>ANTISIMMETRICA:</b> $\\forall x,y$, se $x \\le y$ e $y \\le x \\implies x=y$.</li>
+                <li><b>Transitiva:</b> $\\forall x,y,z$, se $x \\le y$ e $y \\le z \\implies x \\le z$.</li>
             </ol>
-            <p><b>Reticolo:</b> Un insieme ordinato dove ogni coppia di elementi ha un Inf (MCD) e un Sup (mcm).</p>
+            <p><b>Nota Bene:</b> A differenza dell'equivalenza, qui la simmetria è proibita (tranne se $x=y$).</p>
         `,
         examples: `
-            <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
-                <p><b>Differenza $\\mathbb{N}$ vs $\\mathbb{Z}$:</b></p>
-                <p>$\\mathbb{N}$ è <b>Ben Ordinato</b> (ogni sottoinsieme non vuoto ha un minimo).</p>
-                <p>$\\mathbb{Z}$ <b>NON</b> lo è (es. i pari negativi non hanno minimo).</p>
+            <div style="background: #fffbeb; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                <p><b>Esempio Classico: Divisibilità su $\\mathbb{N}$:</b></p>
+                <p>$a \\mathcal{R} b \\iff a$ divide $b$.</p>
+                <ul>
+                    <li>$a|a$ (Sì)</li>
+                    <li>$a|b$ e $b|a$ $\\implies a=b$ (sui positivi Sì).</li>
+                    <li>$a|b$ e $b|c$ $\\implies a|c$ (Sì).</li>
+                </ul>
+                <p>È una relazione d'ordine.</p>
             </div>
-        ` 
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #f59e0b; padding-left: 15px;">
+                <p><b>Quesito 22 (Prova 12/02/24):</b></p>
+                <p>Considera $(\\mathbb{Z}, \\le)$ con l'ordine usuale. Quale è <b>ERRATA</b>?</p>
+                <p>A) Totalmente ordinato (Vero)<br>
+                   B) Ben ordinato (Falso)<br>
+                   C) Reticolo (Vero)<br>
+                   D) Non ha minimo (Vero)<br>
+                   E) Non ha massimo (Vero)</p>
+                <hr>
+                <p><b>Svolgimento:</b></p>
+                <p>$\\mathbb{Z}$ va da $-\\infty$ a $+\\infty$.</p>
+                <p>Un insieme è <b>Ben Ordinato</b> se ogni sottoinsieme non vuoto ha un minimo. Ma i negativi $\\{-1, -2, -3...\\}$ non hanno minimo.</p>
+                <p><b>Risposta: B (è l'errata).</b></p>
+            </div>
+        `
     },
     { 
         id: 1102, 
         category: 'ordini', 
-        title: "2. Minimi, Massimi e Ben Ordinato", 
-        summary: "Differenze tra N e Z.", 
+        title: "2. Totale vs Parziale", 
+        summary: "Confrontabilità e Diagrammi di Hasse.", 
         details: `
-            <p><b>Ben Ordinato:</b> Ogni sottoinsieme non vuoto ha un minimo.</p>
-            <p>$\\mathbb{N}$ è ben ordinato. $\\mathbb{Z}$ <b>NON</b> lo è (i negativi vanno all'infinito giù).</p>
+            
+            <p><b>Confrontabilità:</b> Due elementi $x,y$ si dicono confrontabili se $x \\le y$ oppure $y \\le x$.</p>
+            <ul>
+                <li><b>Ordine Totale:</b> Tutti gli elementi sono confrontabili tra loro (es. $\\le$ su $\\mathbb{R}$). I diagrammi di Hasse sono linee dritte.</li>
+                <li><b>Ordine Parziale:</b> Esistono coppie non confrontabili. I diagrammi di Hasse hanno ramificazioni.</li>
+            </ul>
         `,
         examples: `
-            <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border-left: 4px solid #14b8a6;">
-                <p><b>Esercizio Minimo:</b> Insieme $\\{x, 3, 4, 6, 8\\}$.<br>
-                Affinché esista un minimo, $x$ deve dividere tutti.<br>
-                Se $x=1$, divide 3, 4, 6, 8. Quindi 1 è il minimo.</p>
+            <div style="background: #fffbeb; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                <p><b>Esercizio Divisibilità (MD2411):</b></p>
+                <p>In $(\\mathbb{N}, |)$, prendi 2 e 3.</p>
+                <p>2 divide 3? NO.</p>
+                <p>3 divide 2? NO.</p>
+                <p>Quindi 2 e 3 <b>non sono confrontabili</b>. L'ordine è parziale.</p>
             </div>
-        ` 
+        `
+    },
+    { 
+        id: 1103, 
+        category: 'ordini', 
+        title: "3. Elementi Notevoli (TRAPPOLA)", 
+        summary: "Massimo/Minimo vs Massimale/Minimale.", 
+        details: `
+            <p>Questa è la domanda classica dell'algebrista. Non confonderli!</p>
+            <p><b>1. Massimo (Max):</b> Un elemento $M \\in S$ tale che $x \\le M$ per <b>TUTTI</b> gli $x \\in S$. (Se esiste, è unico. È la punta unica del diagramma).</p>
+            <p><b>2. Massimale:</b> Un elemento $m \\in S$ tale che <b>NON ESISTE</b> nessun $x \\in S$ con $m < x$. (Non ha nessuno sopra di sé, ma non deve per forza essere maggiore degli altri).</p>
+            <p><i>Relazione:</i> Se esiste il Massimo, è l'unico Massimale. Ma possono esistere più Massimali senza che ci sia un Massimo.</p>
+            <p>(Stesso discorso per Minimo vs Minimale).</p>
+        `,
+        examples: `
+            <div style="background: #fffbeb; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                <p><b>Esempio visuale:</b></p>
+                <p>Immagina un insieme $\\{2, 3\\}$ ordinato per divisibilità.</p>
+                <ul>
+                    <li><b>Massimo:</b> Non esiste (nessuno è diviso da tutti).</li>
+                    <li><b>Massimali:</b> Sia 2 che 3 sono massimali (non hanno multipli nell'insieme).</li>
+                </ul>
+            </div>
+        `
+    },
+    { 
+        id: 1104, 
+        category: 'ordini', 
+        title: "4. Reticoli (Lattices)", 
+        summary: "Sup e Inf per ogni coppia.", 
+        details: `
+            <p>Un insieme ordinato $(L, \\le)$ è un <b>Reticolo</b> se <b>per ogni coppia</b> di elementi $x, y \\in L$ esistono:</p>
+            <ol>
+                <li><b>Estremo Inferiore (Inf / $\\wedge$):</b> Il più grande dei minoranti (es. MCD).</li>
+                <li><b>Estremo Superiore (Sup / $\\vee$):</b> Il più piccolo dei maggioranti (es. mcm).</li>
+            </ol>
+            <p>Se anche solo una coppia non ha sup o inf (che stia nell'insieme!), non è un reticolo.</p>
+        `,
+        examples: ""
     }
 ];
 

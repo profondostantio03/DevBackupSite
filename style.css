@@ -13,11 +13,8 @@ body {
     padding: 0;
     color: var(--text-color);
     min-height: 100vh;
-    
-    background: linear-gradient(-45deg, #b59be9, #8e78d5, #4f33cb); /*125deg*/
-
+    background: linear-gradient(-45deg, #b59be9, #8e78d5, #4f33cb); 
     background-size: 400% 400%;
-
     animation: gradientBG 9s ease infinite;
 }
 
@@ -27,7 +24,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* glassmorphism header */
+/* Header */
 header {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(12px);
@@ -50,43 +47,38 @@ header {
     letter-spacing: 1px;
 }
 
-/* navigator */
-nav button {
-    background: transparent;
-    border: none;
+/* Navigazione */
+nav .nav-link {
+    text-decoration: none;
+    display: inline-block;
     color: #6d28d9;
     margin-left: 10px;
-    cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    
-    font-weight: 600; 
-    font-size: 1.1rem; 
-    
+    font-weight: 600;
+    font-size: 1.1rem;
     padding: 10px 20px;
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-nav button:hover {
+nav .nav-link:hover {
     background: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
 }
 
-nav button.active-btn {
+nav .nav-link.active-link {
     background: var(--primary-color);
     color: white;
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
-/* glassmorphism main panel */
+/* Main Container */
 main {
     max-width: 900px;
     margin: 40px auto;
     padding: 3rem;
     min-height: 60vh;
-    position: relative; /* necessario per posizionare lo zoom */
-    
-    /* effetto vetro */
+    position: relative;
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -95,7 +87,7 @@ main {
     box-shadow: var(--shadow);
 }
 
-/* zoom controls */
+/* Zoom Controls */
 .zoom-wrapper {
     position: absolute;
     top: 20px;
@@ -125,7 +117,6 @@ main {
     transform: scale(1.1);
 }
 
-/* nascosto di default */
 #zoomActions {
     display: none; 
     animation: fadeIn 0.3s ease;
@@ -136,7 +127,7 @@ main {
     align-items: center;
 }
 
-/* search bar */
+/* Search Bar */
 .search-container {
     margin-bottom: 30px;
     margin-top: 10px;
@@ -162,9 +153,10 @@ main {
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
 }
 
+/* Page Header */
 .page-header {
     display: flex;
-    align-items: center; /* allineamento verticale perfetto */
+    align-items: center;
     gap: 15px;
     margin-bottom: 30px;
     min-height: 50px;
@@ -176,11 +168,11 @@ main {
     padding: 0;
     border: none;
     font-size: 1.8rem;
-    line-height: 1; /* evita spazi extra verticali */
+    line-height: 1;
 }
 
 #backBtn {
-    display: none; /* gestito da js */
+    display: none;
     padding: 8px 20px;
     border-radius: 50px;
     border: none;
@@ -198,7 +190,7 @@ main {
     transform: translateX(-3px);
 }
 
-/* content styles */
+/* Typography */
 h2 {
     color: var(--primary-color);
     border-bottom: 2px solid rgba(139, 92, 246, 0.3);
@@ -206,61 +198,15 @@ h2 {
     margin-top: 0;
 }
 
-/* applichiamo transition font-size per zoom fluido */
 p, li, .note-text {
     line-height: 1.8;
     color: #4a4a4a;
     transition: font-size 0.2s ease; 
 }
 
-pre {
-    background: rgba(0, 0, 0, 0.8);
-    color: #a5b4fc;
-    padding: 20px;
-    border-radius: 12px;
-    overflow-x: auto;
-    font-family: 'Consolas', monospace;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-    transition: font-size 0.2s ease;
-}
-
-/* animazioni */
-.exam-content {
-    display: none;
-    animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.exam-content.active {
-    display: block;
-}
-
-nav .nav-link {
-    text-decoration: none; /* Rimuove sottolineatura link */
-    display: inline-block;
-    color: #6d28d9;
-    margin-left: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-nav .nav-link:hover {
-    background: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-}
-
-nav .nav-link.active-link {
-    background: var(--primary-color);
-    color: white;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-}
-
+/* Modals */
 .modal-overlay {
-    display: none; /* nasconde la finestra finché il javascript non dice di aprirla */
-    
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -301,6 +247,7 @@ nav .nav-link.active-link {
     transform: scale(1.2);
 }
 
+/* Grid & Cards */
 .flashcard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -308,7 +255,6 @@ nav .nav-link.active-link {
     padding: 20px 0;
 }
 
-/* stile card*/
 .modern-card {
     background: white;
     border-radius: 20px;
@@ -339,9 +285,8 @@ nav .nav-link.active-link {
     margin-bottom: 10px;
 }
 
-/* icona */
 .card-icon {
-    font-size: 3rem; /* dimensione emoji */
+    font-size: 3rem;
     background: rgba(255, 255, 255, 0.25);
     width: 80px;
     height: 80px;
@@ -353,7 +298,6 @@ nav .nav-link.active-link {
     backdrop-filter: blur(4px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 
 .card-body {
     padding: 10px 25px 30px;
@@ -379,6 +323,7 @@ nav .nav-link.active-link {
     line-height: 1.5;
 }
 
+/* Card Button Styling */
 .card-pill {
     margin-top: auto;
     color: white;
@@ -388,32 +333,9 @@ nav .nav-link.active-link {
     border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-transform: uppercase;
-    pointer-events: none;
+    pointer-events: none; /* Disabilitato di base, abilitato via inline style in JS */
 }
 
-/* varianti colore */
-/* Arancione */
-.style-orange .card-header, .style-orange .card-pill, .style-orange-bg {
-    background: linear-gradient(135deg, #ff9966, #ff5e62);
-}
-/* Viola */
-.style-purple .card-header, .style-purple .card-pill, .style-purple-bg {
-    background: linear-gradient(135deg, #da22ff, #9733ee);
-}
-/* Blu */
-.style-blue .card-header, .style-blue .card-pill, .style-blue-bg {
-    background: linear-gradient(135deg, #56CCF2, #2F80ED);
-}
-/* Verde */
-.style-green .card-header, .style-green .card-pill, .style-green-bg {
-    background: linear-gradient(135deg, #11998e, #38ef7d);
-}
-/* Grigio/Default */
-.style-dark .card-header, .style-dark .card-pill, .style-dark-bg {
-    background: linear-gradient(135deg, #434343, #000000);
-}
-
-/* tasto edit */
 .card-pill.edit-btn {
     background: rgba(0,0,0,0.2); 
     cursor: pointer;
@@ -427,6 +349,24 @@ nav .nav-link.active-link {
     color: #333;
 }
 
+/* Varianti Colore Card */
+.style-orange .card-header, .style-orange .card-pill:not(.edit-btn), .style-orange-bg {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+}
+.style-purple .card-header, .style-purple .card-pill:not(.edit-btn), .style-purple-bg {
+    background: linear-gradient(135deg, #da22ff, #9733ee);
+}
+.style-blue .card-header, .style-blue .card-pill:not(.edit-btn), .style-blue-bg {
+    background: linear-gradient(135deg, #56CCF2, #2F80ED);
+}
+.style-green .card-header, .style-green .card-pill:not(.edit-btn), .style-green-bg {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+.style-dark .card-header, .style-dark .card-pill:not(.edit-btn), .style-dark-bg {
+    background: linear-gradient(135deg, #434343, #000000);
+}
+
+/* Color Picker Edit Modal */
 .color-circle {
     width: 40px;
     height: 40px;
@@ -435,40 +375,20 @@ nav .nav-link.active-link {
     border: 3px solid transparent;
     transition: transform 0.2s;
 }
-.color-circle:hover {
-    transform: scale(1.1);
-}
-.color-circle.selected {
-    border-color: #333; 
-    transform: scale(1.1);
-}
+.color-circle:hover { transform: scale(1.1); }
+.color-circle.selected { border-color: #333; transform: scale(1.1); }
 
-@keyframes fadeInModal {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+/* Animations */
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
+/* Mobile */
 @media (max-width: 768px) {
     header { flex-direction: column; padding: 1rem; }
     .logo { margin-bottom: 1rem; }
     nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-    
-    nav button { 
-        margin: 0; 
-        font-size: 1rem; 
-        background: rgba(255,255,255,0.3);
-    }
-    
+    nav .nav-link { margin: 0; font-size: 1rem; background: rgba(255,255,255,0.3); }
     main { margin: 20px; padding: 1.5rem; border-radius: 16px; }
     .zoom-wrapper { top: 10px; right: 10px; }
 }

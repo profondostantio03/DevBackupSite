@@ -136,6 +136,10 @@ function openModal(event, id, type) {
             mTitle.innerText = "Esempi: " + item.title;
             // Se non ci sono esempi, mostra un messaggio cortese
             mBody.innerHTML = item.examples ? item.examples : "<p style='text-align:center; padding:20px; color:#666;'>Nessun esempio disponibile per questo argomento.</p>";
+        } else if (type === 'exercises') {
+            mTitle.innerText = "Esercizi d'Esame: " + item.title;
+            mBody.innerHTML = item.exercises ? item.exercises : "<p style='text-align:center; padding:20px; color:#666;'>Nessun esercizio caricato per questo argomento.</p>";
+        
         } else {
             // Default: Teoria
             mTitle.innerText = item.title;
@@ -237,4 +241,61 @@ function filterNotes() {
             items[i].style.display = "none";
         }
     }
+}
+
+// --- DETTAGLIO: APPUNTI (AGGIORNATO CON PULSANTE ESERCIZI) ---
+function loadNotesByCategory(catId, catTitle, parentColorClass) {
+    const grid = document.getElementById('math-grid');
+    const title = document.getElementById('pageTitle');
+    const backBtn = document.getElementById('backBtn');
+    
+    grid.innerHTML = '';
+    title.innerText = catTitle; 
+    backBtn.style.display = 'block'; 
+    backBtn.onclick = loadMacroCategories; 
+
+    let notesToShow = (catId === 'all') 
+        ? appData.notes 
+        : appData.notes.filter(item => item.category === catId);
+
+    if (notesToShow.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#666; font-size:1.1rem;">Nessun appunto trovato.</p>';
+        return;
+    }
+
+    notesToShow.forEach((item, index) => {
+        const card = document.createElement('div');
+        const colorClass = parentColorClass || colorStyles[index % colorStyles.length];
+        
+        card.className = `modern-card ${colorClass} note-item`;
+        
+        // Clic sulla carta -> Apre TEORIA (default)
+        card.onclick = () => openModal(null, item.id, 'theory'); 
+        
+        // NOTA: Aggiunto div contenitore per i bottoni con flexbox
+        card.innerHTML = `
+            <div class="card-header" style="height: 100px;">
+                <div class="card-icon" style="font-size: 2rem; width: 60px; height: 60px;">📝</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title" style="font-size: 1.1rem;">${item.title}</h3>
+                <p class="card-text" style="font-size: 0.85rem;">${item.summary}</p>
+                
+                <div class="button-container" style="margin-top: auto; display: flex; gap: 10px; width: 100%; justify-content: center;">
+                    <button class="card-pill" 
+                            style="cursor:pointer; border:none; pointer-events: auto; flex: 1; font-size: 0.75rem; padding: 8px 5px;" 
+                            onclick="openModal(event, ${item.id}, 'examples')">
+                        ESEMPI 💡
+                    </button>
+                    
+                    <button class="card-pill" 
+                            style="cursor:pointer; border:none; pointer-events: auto; flex: 1; font-size: 0.75rem; padding: 8px 5px; background: rgba(188, 175, 175, 0.4); color: #333;" 
+                            onclick="openModal(event, ${item.id}, 'exercises')">
+                        ESERCIZI 🎓
+                    </button>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
 }
