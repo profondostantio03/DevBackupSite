@@ -299,3 +299,28 @@ function loadNotesByCategory(catId, catTitle, parentColorClass) {
         grid.appendChild(card);
     });
 }
+
+// --- GESTIONE DARK MODE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const themeBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // controllo se l'utente aveva già scelto il tema scuro in passato
+    const savedTheme = localStorage.getItem('site-theme');
+
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        if(themeBtn) themeBtn.textContent = '☀️';
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+
+            // salva la preferenza nella memoria del browser
+            localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+        });
+    }
+});

@@ -2,9 +2,33 @@
     /* palette colori */
     --primary-color: #8b5cf6;
     --text-color: #4c1d95;
+    --card-title-color: #333;
+    --card-text-color: #666;
     --glass-bg: rgba(255, 255, 255, 0.65);
     --glass-border: rgba(255, 255, 255, 0.4);
     --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+    --bg-gradient-1: #d4bffd;
+    --bg-gradient-2: #a792ed;
+    --bg-gradient-3: #d4bffd;
+
+    --card-bg: white;
+}
+
+body.dark-mode {
+    --primary-color: #a78bfa;
+    --text-color: #e0e7ff;
+    --card-title-color: #white;
+    --card-text-color: #d9c4dd;
+    --glass-bg: rgba(30, 30, 40, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    --bg-gradient-1: #2e1065;
+    --bg-gradient-2: #4c1d95;
+    --bg-gradient-3: #0f172a;
+    
+    --card-bg: #402465;
 }
 
 body {
@@ -13,8 +37,11 @@ body {
     padding: 0;
     color: var(--text-color);
     min-height: 100vh;
-    background: linear-gradient(-45deg, #b59be9, #8e78d5, #4f33cb); 
+    transition: color 0.3s ease;
+
+    background: linear-gradient(-45deg, var(--bg-gradient-1), var(--bg-gradient-2), var(--bg-gradient-3));; 
     background-size: 400% 400%;
+    background-attachment: fixed;
     animation: gradientBG 9s ease infinite;
 }
 
@@ -26,7 +53,7 @@ body {
 
 /* Header */
 header {
-    background: rgba(255, 255, 255, 0.25);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
@@ -43,8 +70,13 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #5b21b6;
+    color: var(--primary-color);
     letter-spacing: 1px;
+}
+
+.logo a {
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 /* Navigazione */
@@ -200,7 +232,7 @@ h2 {
 
 p, li, .note-text {
     line-height: 1.8;
-    color: #4a4a4a;
+    color: var(--text-color);;
     transition: font-size 0.2s ease; 
 }
 
@@ -221,7 +253,8 @@ p, li, .note-text {
 }
 
 .modal-content {
-    background: #fdfdfd;
+    background: var(--card-bg);
+    color: var(--text-color);
     width: 90%;
     max-width: 800px;
     max-height: 85vh;
@@ -256,7 +289,7 @@ p, li, .note-text {
 }
 
 .modern-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0,0,0,0.05);
@@ -267,6 +300,24 @@ p, li, .note-text {
     border: none;
     cursor: pointer;
     position: relative;
+}
+
+.theme-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color); /* Bordo colorato */
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(15deg) scale(1.1);
 }
 
 .modern-card:hover {
@@ -312,13 +363,13 @@ p, li, .note-text {
     font-size: 1.2rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #333;
+    color: var(--card-title-color);
     letter-spacing: 0.5px;
 }
 
 .card-text {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--card-text-color);
     margin-bottom: 20px;
     line-height: 1.5;
 }
@@ -391,4 +442,69 @@ p, li, .note-text {
     nav .nav-link { margin: 0; font-size: 1rem; background: rgba(255,255,255,0.3); }
     main { margin: 20px; padding: 1.5rem; border-radius: 16px; }
     .zoom-wrapper { top: 10px; right: 10px; }
+}
+
+/* --- OVERRIDE COLORI ESERCIZI PER DARK MODE --- */
+
+/* Verdi (Insiemi) */
+body.dark-mode div[style*="#f0fdf4"], 
+body.dark-mode div[style*="#16a34a"] {
+    background-color: #064e3b !important;
+    border-left-color: #34d399 !important;
+    color: #ecfdf5 !important;
+}
+
+/* Gialli (Applicazioni) */
+body.dark-mode div[style*="#fefce8"], 
+body.dark-mode div[style*="#eab308"] {
+    background-color: #451a03 !important;
+    border-left-color: #fbbf24 !important;
+    color: #fffbeb !important;
+}
+
+/* Blu (Relazioni/Strutture/Sistemi) */
+body.dark-mode div[style*="#eff6ff"], 
+body.dark-mode div[style*="#3b82f6"],
+body.dark-mode div[style*="#e0f2fe"], 
+body.dark-mode div[style*="#0284c7"],
+body.dark-mode div[style*="#f0f9ff"], 
+body.dark-mode div[style*="#0ea5e9"] {
+    background-color: #172554 !important;
+    border-left-color: #60a5fa !important;
+    color: #dbeafe !important;
+}
+
+/* Rossi (Aritmetica) */
+body.dark-mode div[style*="#fff1f2"], 
+body.dark-mode div[style*="#e11d48"] {
+    background-color: #4c0519 !important;
+    border-left-color: #fb7185 !important;
+    color: #ffe4e6 !important;
+}
+
+/* Viola (Matrici/Diag) */
+body.dark-mode div[style*="#fdf2f8"], 
+body.dark-mode div[style*="#db2777"],
+body.dark-mode div[style*="#faf5ff"], 
+body.dark-mode div[style*="#9333ea"] {
+    background-color: #4a044e !important;
+    border-left-color: #e879f9 !important;
+    color: #fdf4ff !important;
+}
+
+/* Arancioni (Ordini/Combinatoria) */
+body.dark-mode div[style*="#fffbeb"], 
+body.dark-mode div[style*="#f59e0b"],
+body.dark-mode div[style*="#fff7ed"],
+body.dark-mode div[style*="#f97316"] {
+    background-color: #431407 !important;
+    border-left-color: #f59e0b !important;
+    color: #fff7ed !important;
+}
+
+/* Codice preformattato */
+body.dark-mode pre {
+    background: #1e1e1e !important;
+    color: #dcdcdc !important;
+    border: 1px solid rgba(255,255,255,0.1);
 }
