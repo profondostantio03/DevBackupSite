@@ -508,3 +508,26 @@ body.dark-mode pre {
     color: #dcdcdc !important;
     border: 1px solid rgba(255,255,255,0.1);
 }
+
+/* Filtro luce Blu, si attiva solo quando c'è la classe .dark-mode */
+body.dark-mode::after {
+    content: "";
+    position: fixed; /* fisso anche quando si scorre */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Colore del filtro */
+    background-color: rgba(255, 149, 0, 0.10);
+    /* effetto seppia per ammorbidire ulteriormente i bianchi */
+    backdrop-filter: sepia(30%);
+    /* rende il filtro "invisibile" al mouse, così si possono cliccare i bottoni che stanno sotto */
+    pointer-events: none;
+    
+    /* Z-Index altissimo per stare sopra a tutto (header, modali, ecc.) */
+    z-index: 3333333;
+    
+    /* Transizione morbida quando attivi/disattivi */
+    transition: background-color 0.5s ease;
+}
