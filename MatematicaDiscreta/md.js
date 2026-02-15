@@ -461,9 +461,46 @@ const mdNotes = [
         exercises: ""
     },
     { 
+        id: 406, 
+        category: 'aritmetica', 
+        title: "3. Algoritmo di Euclide e MCD/mcm", 
+        summary: "Calcolo MCD con divisioni successive e relazione con mcm.", 
+        details: `
+            <p><b>Algoritmo delle Divisioni Successive (Euclide):</b></p>
+            <p>Per calcolare $MCD(a,b)$ con $a > b > 0$:</p>
+            <ol>
+                <li>Dividi $a$ per $b$: $a = bq_1 + r_1$ (con $0 \\le r_1 < b$).</li>
+                <li>Se $r_1 = 0$, allora $MCD(a,b) = b$.</li>
+                <li>Se $r_1 \\neq 0$, dividi $b$ per $r_1$: $b = r_1q_2 + r_2$.</li>
+                <li>Continua finché ottieni resto 0. L'<b>ultimo resto non nullo</b> è il MCD.</li>
+            </ol>
+            <p><b>Proprietà Fondamentale MCD e mcm:</b></p>
+            <p>Per ogni coppia di interi positivi $a, b$ vale:</p>
+            <p>$$a \\cdot b = MCD(a,b) \\cdot mcm(a,b)$$</p>
+            <p>Da cui si ricava: $mcm(a,b) = \\frac{a \\cdot b}{MCD(a,b)}$.</p>
+            <p>Se $MCD(a,b)=1$, allora $mcm(a,b) = a \\cdot b$.</p>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esempio da Lezione 14:</b> Calcolare $MCD(824, 376)$.</p>
+                <ol>
+                    <li>$824 = 376 \\cdot 2 + 72$</li>
+                    <li>$376 = 72 \\cdot 5 + 16$</li>
+                    <li>$72 = 16 \\cdot 4 + 8$</li>
+                    <li>$16 = 8 \\cdot 2 + 0$ (Stop)</li>
+                </ol>
+                <p>L'ultimo resto non nullo è <b>8</b>. Quindi $MCD(824, 376) = 8$.</p>
+                <hr>
+                <p><b>Calcolo mcm:</b></p>
+                <p>$mcm(824, 376) = \\frac{824 \\cdot 376}{8} = 38.728$.</p>
+            </div>
+        `,
+        exercises: ""
+    },
+    { 
         id: 402, 
         category: 'aritmetica', 
-        title: "3. Congruenze e Bèzout", 
+        title: "4. Congruenze e Bèzout", 
         summary: "MCD, Identità di Bézout e Classi di Resto.", 
         details: `
             <p><b>Identità di Bézout:</b> $d = MCD(a,b) \\implies \\exists x,y \\in \\mathbb{Z} : ax+by=d$.</p>
@@ -507,7 +544,7 @@ const mdNotes = [
     { 
         id: 403, 
         category: 'aritmetica', 
-        title: "4. Principio di Induzione", 
+        title: "5. Principio di Induzione", 
         summary: "Base, Ipotesi e Tesi Induttiva.", 
         details: `
             <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
@@ -548,7 +585,7 @@ const mdNotes = [
     { 
         id: 404, 
         category: 'aritmetica', 
-        title: "5. Numeri in Base b", 
+        title: "6. Numeri in Base b", 
         summary: "Rappresentazione posizionale.", 
         details: `
             <p>Fissata una base $b \\ge 2$, ogni numero $n$ si scrive in modo unico come:</p>
