@@ -396,11 +396,15 @@ const mdNotes = [
         title: "1. Divisione Euclidea e Primi", 
         summary: "Teoremi di Esistenza e Unicità.", 
         details: `
-            <p><b>Teorema della Divisione Euclidea (Lezione 11):</b></p>
+            <p><b>Teorema della Divisione Euclidea:</b></p>
             <p>Dati $a, b \\in \\mathbb{Z}$ con $b \\neq 0$, esistono e sono unici $q, r \\in \\mathbb{Z}$ tali che:</p>
             <p>$$a = b \\cdot q + r \\quad \\text{con} \\quad \\mathbf{0 \\le r < |b|}$$</p>
-            <p><i>Nota:</i> Il resto $r$ deve essere sempre non negativo!</p>
-            <p><b>Teorema Fondamentale dell'Aritmetica:</b> Ogni intero $n \\ge 2$ si scrive in modo unico come prodotto di numeri primi.</p>
+            <p><i>Nota Fondamentale:</i> Il resto $r$ è sempre <b>non negativo</b> ($r \\ge 0$).</p>
+            <hr>
+            <p><b>Teorema Fondamentale dell'Aritmetica (Esistenza e Unicità):</b></p>
+            <p>Ogni intero $n \\ge 2$ si può scrivere come prodotto di numeri primi:</p>
+            <p>$$n = p_1 \\cdot p_2 \\cdot ... \\cdot p_k$$</p>
+            <p>Tale fattorizzazione è <b>unica</b> a meno dell'ordine dei fattori.</p>
         `,
         examples: `
             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
@@ -435,9 +439,31 @@ const mdNotes = [
         `
     },
     { 
+        id: 405, 
+        category: 'aritmetica', 
+        title: "2. Teorema di Euclide (Infinità dei Primi)", 
+        summary: "Dimostrazione per assurdo classica.", 
+        details: `
+            <p><b>Enunciato:</b> Esistono infiniti numeri primi.</p>
+            <p><b>Dimostrazione (per Assurdo):</b></p>
+            <ol>
+                <li>Supponiamo che i numeri primi siano in numero finito: $P = \\{p_1, p_2, ..., p_n\\}$.</li>
+                <li>Consideriamo il numero $M = (p_1 \\cdot p_2 \\cdot ... \\cdot p_n) + 1$.</li>
+                <li>$M$ è chiaramente maggiore di ogni $p_i$.</li>
+                <li>Per il Teorema Fondamentale dell'Aritmetica, $M$ deve avere un divisore primo $q$.</li>
+                <li>Questo $q$ deve essere uno dei primi nel nostro insieme finito $P$ (perché $P$ li contiene tutti).</li>
+                <li>Ma se $q$ divide il prodotto $(p_1...p_n)$ e divide anche $M$ (che è il prodotto + 1), allora $q$ deve dividere la differenza: $M - (p_1...p_n) = 1$.</li>
+                <li>Ma nessun numero primo divide 1. <b>Assurdo!</b></li>
+            </ol>
+            <p>Quindi l'insieme dei numeri primi deve essere infinito.</p>
+        `,
+        examples: "",
+        exercises: ""
+    },
+    { 
         id: 402, 
         category: 'aritmetica', 
-        title: "2. Congruenze e Bèzout", 
+        title: "3. Congruenze e Bèzout", 
         summary: "MCD, Identità di Bézout e Classi di Resto.", 
         details: `
             <p><b>Identità di Bézout:</b> $d = MCD(a,b) \\implies \\exists x,y \\in \\mathbb{Z} : ax+by=d$.</p>
@@ -481,7 +507,7 @@ const mdNotes = [
     { 
         id: 403, 
         category: 'aritmetica', 
-        title: "3. Principio di Induzione", 
+        title: "4. Principio di Induzione", 
         summary: "Base, Ipotesi e Tesi Induttiva.", 
         details: `
             <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
@@ -522,7 +548,7 @@ const mdNotes = [
     { 
         id: 404, 
         category: 'aritmetica', 
-        title: "3. Numeri in Base b", 
+        title: "5. Numeri in Base b", 
         summary: "Rappresentazione posizionale.", 
         details: `
             <p>Fissata una base $b \\ge 2$, ogni numero $n$ si scrive in modo unico come:</p>
