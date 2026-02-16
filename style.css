@@ -531,3 +531,58 @@ body.dark-mode::after {
     /* Transizione morbida quando attivi/disattivi */
     transition: background-color 0.5s ease;
 }
+
+/* --- FOOTER STYLES --- */
+footer {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border);
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 40px; /* Spazio dal contenuto */
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.social-container p {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Effetto Hover sulle icone */
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    color: var(--text-color); /* Cambia colore al passaggio */
+    filter: drop-shadow(0 0 8px var(--primary-color)); /* Effetto "neon" */
+}
+
+/*per il footer*/
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 20px;
+    font-weight: 300;
+}
+@media (max-width: 768px) {
+    .social-icons {
+        gap: 15px;
+    }
+    .social-icons a {
+        font-size: 1.5rem;
+    }
+}
