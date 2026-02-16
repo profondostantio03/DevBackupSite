@@ -461,9 +461,59 @@ const mdNotes = [
         exercises: ""
     },
     { 
+        id: 402, 
+        category: 'aritmetica', 
+        title: "3. Congruenze e Bèzout", 
+        summary: "MCD, Identità di Bézout e Classi di Resto.", 
+        details: `
+            <p><b>Identità di Bézout:</b> $d = MCD(a,b) \\implies \\exists x,y \\in \\mathbb{Z} : ax+by=d$.</p>
+            <p><b>Definizione di Congruenza Modulo $m$:</b></p>
+            <p>$$a \\equiv b \\pmod m \\iff m \\mid (b-a)$$</p>
+            <p>È una relazione di equivalenza compatibile con somma e prodotto.</p>
+            <p><b>Equazioni Congruenziali Lineari:</b></p>
+            <p>L'equazione $ax \\equiv b \\pmod m$ ha soluzioni se e solo se $d=MCD(a,m)$ divide $b$.</p>
+            <p>Se $d=1$, esiste un'unica soluzione modulo $m$ (l'inverso moltiplicativo).</p>
+        `,
+        examples: `
+            <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Esercizio Bèzout:</b> Risolvere $12x \\equiv 8 \\pmod{35}$.</p>
+                <p>1. Calcolo MCD(12, 35) con Euclide:</p>
+                <p>$35 = 12 \\cdot 2 + 11$</p>
+                <p>$12 = 11 \\cdot 1 + 1$ (MCD è 1, quindi invertibile).</p>
+                <p>2. Risalgo per trovare l'inverso:</p>
+                <p>$1 = 12 - 11 = 12 - (35 - 12 \\cdot 2) = 12 \\cdot 3 - 35$.</p>
+                <p>Quindi $12 \\cdot 3 \\equiv 1 \\pmod{35}$. L'inverso è 3.</p>
+                <p>3. Moltiplico l'equazione originale per 3:</p>
+                <p>$x \\equiv 8 \\cdot 3 = 24 \\pmod{35}$.</p>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #e11d48; padding-left: 15px;">
+                <p><b>Quesito (Prova 09/01/24):</b></p>
+                <p>Trova l'unico $x$ tra 55 e 110 tale che $Resto(x,5)=3$ e $Resto(x,11)=8$.</p>
+                <ul style="list-style:none; padding-left:0;">
+                    <li>A) 58</li>
+                    <li>B) 63</li>
+                    <li>C) 118</li>
+                    <li>D) 98</li>
+                    <li>E) 83</li>
+                </ul>
+                <hr>
+                <p><b>Analisi delle Opzioni:</b></p>
+                <ul>
+                    <li><b>A) 58:</b> Diviso 5 dà resto 3 (58 = 5*11 + 3). OK. <br>Diviso 11? $58 = 11*5 + 3$. Resto 3 (non 8). <b>Errata.</b></li>
+                    <li><b>B) 63:</b> Diviso 5 dà resto 3 ($63 = 5*12 + 3$). OK. <br>Diviso 11? $63 = 11*5 + 8$. Resto 8. OK. <b>ESATTA.</b></li>
+                    <li><b>C) 118:</b> È fuori dall'intervallo richiesto (55-110). <b>Errata a priori.</b></li>
+                    <li><b>D) 98:</b> Diviso 5 dà resto 3. Diviso 11? $98 = 11*8 + 10$. Resto 10. <b>Errata.</b></li>
+                    <li><b>E) 83:</b> Diviso 5 dà resto 3. Diviso 11? $83 = 11*7 + 6$. Resto 6. <b>Errata.</b></li>
+                </ul>
+            </div>
+        `
+    },
+    { 
         id: 406, 
         category: 'aritmetica', 
-        title: "3. Algoritmo di Euclide e MCD/mcm", 
+        title: "3b. Algoritmo di Euclide e MCD/mcm", 
         summary: "Calcolo MCD con divisioni successive e relazione con mcm.", 
         details: `
             <p><b>Algoritmo delle Divisioni Successive (Euclide):</b></p>
@@ -498,53 +548,61 @@ const mdNotes = [
         exercises: ""
     },
     { 
-        id: 402, 
+        id: 407, 
         category: 'aritmetica', 
-        title: "4. Congruenze e Bèzout", 
-        summary: "MCD, Identità di Bézout e Classi di Resto.", 
+        title: "3c. Teorema Cinese del Resto", 
+        summary: "Sistemi di congruenze con moduli coprimi.", 
         details: `
-            <p><b>Identità di Bézout:</b> $d = MCD(a,b) \\implies \\exists x,y \\in \\mathbb{Z} : ax+by=d$.</p>
-            <p><b>Definizione di Congruenza Modulo $m$:</b></p>
-            <p>$$a \\equiv b \\pmod m \\iff m \\mid (b-a)$$</p>
-            <p>È una relazione di equivalenza compatibile con somma e prodotto.</p>
-            <p><b>Criterio risolubilità equazioni $ax \\equiv b \\pmod m$:</b></p>
-            <p>Ha soluzioni $\\iff MCD(a,m)$ divide $b$.</p>
+            <p><b>Enunciato:</b> Un sistema di congruenze:</p>
+            <p>$\\begin{cases} x \\equiv a_1 \\pmod{m_1} \\\\ x \\equiv a_2 \\pmod{m_2} \\end{cases}$</p>
+            <p>Ammette soluzione se e solo se i moduli sono coprimi a due a due ($MCD(m_i, m_j) = 1$).</p>
+            <p>La soluzione è unica modulo $M = m_1 \\cdot m_2 \\cdot ... \\cdot m_k$.</p>
+            <p><b>Metodo di Risoluzione (Sostituzione):</b></p>
+            <ol>
+                <li>Scrivi la prima equazione come $x = m_1 k + a_1$.</li>
+                <li>Sostituisci nella seconda: $m_1 k + a_1 \\equiv a_2 \\pmod{m_2}$.</li>
+                <li>Risolvi per $k$.</li>
+                <li>Sostituisci $k$ nell'espressione del punto 1.</li>
+            </ol>
         `,
         examples: `
             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Esercizio Bèzout:</b> $13x + 19y = 1$.</p>
-                <p>Euclide: $19 = 13(1) + 6 \\to 13 = 6(2) + 1$.</p>
-                <p>Risalita (Inversa): $1 = 13 - 6(2) = 13 - (19-13)(2) = 13(3) - 19(2)$.</p>
-                <p>Soluzione: $x=3, y=-2$.</p>
+                <p><b>Esempio:</b> $\\begin{cases} x \\equiv 2 \\pmod 3 \\\\ x \\equiv 3 \\pmod 4 \\end{cases}$</p>
+                <p>1. Da (1): $x = 3k + 2$.</p>
+                <p>2. Sostituisco in (2): $3k + 2 \\equiv 3 \\pmod 4$.</p>
+                <p>3. $3k \\equiv 1 \\pmod 4$. Moltiplico per l'inverso di 3 mod 4 (che è 3, perché $3\\cdot3=9\\equiv1$).</p>
+                <p>4. $k \\equiv 3 \\pmod 4 \\implies k = 4h + 3$.</p>
+                <p>5. Sostituisco k: $x = 3(4h + 3) + 2 = 12h + 9 + 2 = 12h + 11$.</p>
+                <p><b>Soluzione:</b> $x \\equiv 11 \\pmod{12}$.</p>
             </div>
         `,
         exercises: `
             <div style="border-left: 4px solid #e11d48; padding-left: 15px;">
-                <p><b>Quesito (Prova 09/01/24):</b></p>
-                <p>Trova l'unico $x$ tra 55 e 110 tale che $Resto(x,5)=3$ e $Resto(x,11)=8$.</p>
+                <p><b>Quesito 8 (Prova 25/01/24):</b></p>
+                <p>Sistema: $\\begin{cases} x \\equiv 3 \\pmod{13} \\\\ x \\equiv 2 \\pmod{11} \\end{cases}$</p>
+                <p>Quale affermazione è esatta?</p>
                 <ul style="list-style:none; padding-left:0;">
-                    <li>A) 58</li>
-                    <li>B) 63</li>
-                    <li>C) 118</li>
-                    <li>D) 98</li>
-                    <li>E) 83</li>
+                    <li>A) Soluzione $[68]_{143}$</li>
+                    <li>B) Soluzione $[68]_{11}$</li>
+                    <li>C) Soluzione $[68]_{13}$</li>
+                    <li>D) Soluzione $[16]_{143}$</li>
+                    <li>E) Nessuna soluzione</li>
                 </ul>
                 <hr>
-                <p><b>Analisi delle Opzioni:</b></p>
-                <ul>
-                    <li><b>A) 58:</b> Diviso 5 dà resto 3 (58 = 5*11 + 3). OK. <br>Diviso 11? $58 = 11*5 + 3$. Resto 3 (non 8). <b>Errata.</b></li>
-                    <li><b>B) 63:</b> Diviso 5 dà resto 3 ($63 = 5*12 + 3$). OK. <br>Diviso 11? $63 = 11*5 + 8$. Resto 8. OK. <b>ESATTA.</b></li>
-                    <li><b>C) 118:</b> È fuori dall'intervallo richiesto (55-110). <b>Errata a priori.</b></li>
-                    <li><b>D) 98:</b> Diviso 5 dà resto 3. Diviso 11? $98 = 11*8 + 10$. Resto 10. <b>Errata.</b></li>
-                    <li><b>E) 83:</b> Diviso 5 dà resto 3. Diviso 11? $83 = 11*7 + 6$. Resto 6. <b>Errata.</b></li>
-                </ul>
+                <p><b>Svolgimento:</b></p>
+                <p>Da (1): $x = 13k + 3$. Sostituisco in (2):</p>
+                <p>$13k + 3 \\equiv 2 \\pmod{11}$. Riduco: $2k + 3 \\equiv 2 \\implies 2k \\equiv -1 \\equiv 10 \\pmod{11}$.</p>
+                <p>Divido per 2 (invertibile): $k \\equiv 5 \\pmod{11}$.</p>
+                <p>$k = 11h + 5$. Sostituisco in x:</p>
+                <p>$x = 13(11h + 5) + 3 = 143h + 65 + 3 = 143h + 68$.</p>
+                <p><b>Risposta: A (Soluzione 68 mod 143).</b></p>
             </div>
         `
     },
     { 
         id: 403, 
         category: 'aritmetica', 
-        title: "5. Principio di Induzione", 
+        title: "4. Principio di Induzione", 
         summary: "Base, Ipotesi e Tesi Induttiva.", 
         details: `
             <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
@@ -585,7 +643,7 @@ const mdNotes = [
     { 
         id: 404, 
         category: 'aritmetica', 
-        title: "6. Numeri in Base b", 
+        title: "5. Numeri in Base b", 
         summary: "Rappresentazione posizionale.", 
         details: `
             <p>Fissata una base $b \\ge 2$, ogni numero $n$ si scrive in modo unico come:</p>
