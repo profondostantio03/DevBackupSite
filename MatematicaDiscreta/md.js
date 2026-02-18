@@ -993,7 +993,54 @@ const mdNotes = [
     { 
         id: 601, 
         category: 'strutture', 
-        title: "1. Anelli e Campi", 
+        title: "1. Gruppi e Gruppi Abeliani", 
+        summary: "Definizione formale (Associativa, Neutro, Inverso).", 
+        details: `
+            <p>Un <b>Gruppo</b> $(G, *)$ è un insieme dotato di un'operazione interna che soddisfa rigorosamente tre assiomi:</p>
+            <ol>
+                <li><b>Proprietà Associativa:</b> $\\forall x, y, z \\in G, \\quad (x * y) * z = x * (y * z)$.</li>
+                <li><b>Elemento Neutro:</b> $\\exists e \\in G$ tale che $\\forall x \\in G, \\quad x * e = e * x = x$.</li>
+                <li><b>Elemento Inverso:</b> $\\forall x \\in G, \\exists x^{-1} \\in G$ tale che $x * x^{-1} = x^{-1} * x = e$.</li>
+            </ol>
+            <p>Se l'operazione soddisfa anche la proprietà commutativa ($x * y = y * x$), il gruppo si dice <b>Gruppo Abeliano</b>.</p>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esempi Classici e Trappole (Lezione 18):</b></p>
+                <ul>
+                    <li>$(\\mathbb{Z}, +)$ è un <b>Gruppo Abeliano</b> (neutro = 0, inverso = $-x$).</li>
+                    <li>$(\\mathbb{Z}, \\cdot)$ <b>NON è un gruppo</b>. Ha il neutro (1), ma manca l'inverso (es. l'inverso di 2 sarebbe $1/2$, che non sta in $\\mathbb{Z}$).</li>
+                    <li>Le matrici invertibili con il prodotto formano un <b>Gruppo NON Abeliano</b> (perché il prodotto tra matrici $AB \\neq BA$).</li>
+                </ul>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #0284c7; padding-left: 15px;">
+                <p><b>Quesito Tipico:</b></p>
+                <p>Quale delle seguenti strutture algebriche è un GRUPPO?</p>
+                <ul style="list-style:none; padding-left:0;">
+                    <li>A) L'insieme dei numeri naturali $\\mathbb{N}_0$ con l'addizione.</li>
+                    <li>B) L'insieme dei numeri interi $\\mathbb{Z}$ con la moltiplicazione.</li>
+                    <li>C) L'insieme dei numeri razionali privati dello zero $\\mathbb{Q} \\setminus \\{0\\}$ con la moltiplicazione.</li>
+                    <li>D) L'insieme delle matrici quadrate aventi determinante uguale a 0, con il prodotto.</li>
+                    <li>E) L'insieme dei numeri dispari con l'addizione.</li>
+                </ul>
+                <hr>
+                <p><b>Analisi delle Opzioni:</b></p>
+                <ul>
+                    <li><b>A) Errata.</b> In $\\mathbb{N}_0$ mancano gli elementi inversi per l'addizione (i numeri negativi non esistono in N).</li>
+                    <li><b>B) Errata.</b> In $\\mathbb{Z}$ manca l'inverso per la moltiplicazione (es. l'inverso di 3 è 1/3 che non è intero).</li>
+                    <li><b>C) ESATTA.</b> È chiuso rispetto al prodotto, è associativo, ha il neutro (1), e ogni elemento $a/b$ ha il suo inverso $b/a$ in $\\mathbb{Q}$.</li>
+                    <li><b>D) Errata.</b> Le matrici con det=0 non sono invertibili per definizione, quindi manca l'elemento inverso.</li>
+                    <li><b>E) Errata.</b> Non è chiusa rispetto alla somma (dispari + dispari = pari).</li>
+                </ul>
+            </div>
+        `
+    },
+    { 
+        id: 602, 
+        category: 'strutture', 
+        title: "2. Anelli e Campi", 
         summary: "Differenze e Invertibilità in Zn.", 
         details: `
             <p><b>Anello Commutativo Unitario:</b> Somma (gruppo abeliano), Prodotto (associativo, commutativo, neutro 1).</p>
@@ -1026,6 +1073,78 @@ const mdNotes = [
                     <li><b>C) Vera.</b> $MCD(5, 12) = 1$, quindi 5 è invertibile.</li>
                     <li><b>D) Vera.</b> $3 \\cdot 4 = 12 \\equiv 0$. Poiché il prodotto fa 0 con fattori non nulli, 3 è divisore dello zero.</li>
                     <li><b>E) Vera.</b> Invertibili $\\{1, 5, 7, 11\\}$. Sono 4.</li>
+                </ul>
+            </div>
+        `
+    },
+    { 
+        id: 603, 
+        category: 'strutture', 
+        title: "2. Anelli", 
+        summary: "Strutture con due operazioni: gruppo abeliano per la somma, più un prodotto associativo e distributivo.", 
+        details: `
+            <p>Un <b>Anello</b> $(A, +, \\cdot)$ è un insieme dotato di due operazioni interne che soddisfa rigorosamente tre condizioni:</p>
+            <ol>
+                <li>$(A, +)$ è un <b>Gruppo Abeliano</b> [1].</li>
+                <li>L'operazione di prodotto $\\cdot$ è <b>associativa</b>: $\\forall x, y, z \\in A, \\quad x(yz) = (xy)z$ [1].</li>
+                <li>Valgono le <b>proprietà distributive</b> del prodotto rispetto alla somma: $\\forall x, y, z \\in A, \\quad x(y+z) = xy + xz$ e $(x+y)z = xz + yz$ [1].</li>
+            </ol>
+            <p>Definizioni aggiuntive [1]:</p>
+            <ul>
+                <li><b>Anello Commutativo:</b> Se il prodotto gode della proprietà commutativa ($xy = yx$).</li>
+                <li><b>Anello Unitario:</b> Se esiste un elemento neutro per il prodotto (indicato spesso con $1$).</li>
+            </ul>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esempi Classici (Lezione 18):</b></p>
+                <ul>
+                    <li>$(\\mathbb{Z}, +, \\cdot)$ è un <b>Anello commutativo unitario</b> [1].</li>
+                    <li>L'insieme delle matrici $n \\times n$, indicato con $\\mathcal{M}_n(\\mathbb{R})$, dotato di somma e prodotto tra matrici, è un <b>Anello unitario NON commutativo</b> (il prodotto tra matrici in genere non commuta) [1].</li>
+                    <li>L'insieme delle classi di resto $\\mathbb{Z}_m$ con l'addizione e moltiplicazione modulare è un <b>Anello unitario</b> [1, 2].</li>
+                </ul>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #0284c7; padding-left: 15px;">
+                <p><b>Nota di Attenzione:</b></p>
+                <p>In un anello unitario non tutti gli elementi hanno necessariamente un inverso moltiplicativo. Ad esempio in $\\mathbb{Z}_m$, un elemento $\\bar{a}$ è invertibile rispetto al prodotto <b>solo se</b> il Massimo Comune Divisore $\\text{MCD}(a, m) = 1$ [2].</p>
+            </div>
+        `
+    },
+    { 
+        id: 604, 
+        category: 'strutture', 
+        title: "3. Campi", 
+        summary: "Anelli in cui ogni elemento non nullo possiede un inverso moltiplicativo.", 
+        details: `
+            <p>Un <b>Campo</b> $(F, +, \\cdot)$ è la struttura algebrica più ricca. Si definisce come un <b>Anello commutativo unitario</b> in cui <b>ogni elemento non nullo è invertibile</b> [1].</p>
+            <p>In termini formali: $\\forall a \\in F \\setminus \\{0\\}, \\exists a^{-1} \\in F$ tale che $a \\cdot a^{-1} = 1$ [1].</p>
+        `,
+        examples: `
+            <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
+                <p><b>Esempi di Campi (Lezione 18):</b></p>
+                <ul>
+                    <li>L'insieme dei numeri Razionali $(\\mathbb{Q}, +, \\cdot)$ e Reali $(\\mathbb{R}, +, \\cdot)$ sono <b>Campi</b> [1].</li>
+                    <li>L'insieme degli interi $(\\mathbb{Z}, +, \\cdot)$ <b>NON è un campo</b>: gli unici elementi invertibili rispetto al prodotto sono $1$ e $-1$ [1].</li>
+                    <li>Le classi di resto $\\mathbb{Z}_m$ formano un Campo <b>se e solo se $m$ è un numero primo</b>. Ad esempio, $\\mathbb{Z}_5$ è un campo, ma $\\mathbb{Z}_6$ non lo è (in $\\mathbb{Z}_6$, elementi come $\\bar{2}$ o $\\bar{3}$ non sono invertibili) [2].</li>
+                </ul>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #0284c7; padding-left: 15px;">
+                <p><b>Quesito Tipico:</b></p>
+                <p>Considerando la struttura $\\mathbb{Z}_{m}$, per quale dei seguenti valori di $m$ l'insieme è un CAMPO?</p>
+                <ul style="list-style:none; padding-left:0;">
+                    <li>A) $m = 8$</li>
+                    <li>B) $m = 9$</li>
+                    <li>C) $m = 7$</li>
+                    <li>D) $m = 10$</li>
+                </ul>
+                <hr>
+                <p><b>Analisi delle Opzioni:</b></p>
+                <ul>
+                    <li><b>C) ESATTA.</b> $\\mathbb{Z}_m$ è un campo se e solo se $m$ è primo [2]. $7$ è l'unico numero primo tra le opzioni. Negli altri casi ci saranno elementi non invertibili, chiamati "divisori dello zero".</li>
                 </ul>
             </div>
         `
