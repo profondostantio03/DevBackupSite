@@ -517,20 +517,13 @@ body.dark-mode::after {
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* Colore del filtro */
-    background-color: rgba(255, 149, 0, 0.10);
-    /* effetto seppia per ammorbidire ulteriormente i bianchi */
-    backdrop-filter: sepia(30%);
-    /* rende il filtro "invisibile" al mouse, così si possono cliccare i bottoni che stanno sotto */
-    pointer-events: none;
-    
-    /* Z-Index altissimo per stare sopra a tutto (header, modali, ecc.) */
-    z-index: 3333333;
-    
-    /* Transizione morbida quando attivi/disattivi */
+    background-color: rgba(255, 149, 0, 0.10); /* colore del filtro */
+    backdrop-filter: sepia(30%); /* effetto seppia per ammorbidire ulteriormente i bianchi */
+    pointer-events: none; /* rende il filtro "invisibile" al mouse, così si possono cliccare i bottoni che stanno sotto */
+    z-index: 3333333; /* Z-Index altissimo per stare sopra a tutto (header, modali, ecc.) */
     transition: background-color 0.5s ease;
 }
+
 
 /* --- FOOTER STYLES --- */
 footer {
@@ -571,7 +564,6 @@ footer {
     filter: drop-shadow(0 0 8px var(--primary-color)); /* Effetto "neon" */
 }
 
-/*per il footer*/
 .copyright {
     font-size: 0.9rem;
     opacity: 0.7;
@@ -585,4 +577,59 @@ footer {
     .social-icons a {
         font-size: 1.5rem;
     }
+}
+
+
+/* --- BOTTONE DOMANDE ORALE --- */
+.help-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+    margin-left: 10px; /* distanzia dal titolo */
+}
+
+.help-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: #7c3aed;
+    color: white;
+}
+
+.page-header { /* allineamento page-header */
+    flex-wrap: wrap; 
+}
+
+.qa-section-header {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(128, 128, 128, 0.05);
+}
+
+.qa-section-header:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .toggle-icon {
+    color: #fff;
 }

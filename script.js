@@ -324,3 +324,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- GESTIONE MODALE DOMANDE ORALE ---
+function openQaModal() {
+    const mDiv = document.getElementById('qaModal');
+    if (mDiv) {
+        mDiv.style.display = 'flex';
+        // MathJax per formattare la matematica dentro il modale
+        if (window.MathJax) {
+            MathJax.typesetPromise([document.getElementById('qaBody')]).then(() => {});
+        }
+    }
+}
+
+function closeQaModal(event) {
+    if (!event || event.target.id === 'qaModal' || event.target.classList.contains('close-modal')) {
+        document.getElementById('qaModal').style.display = 'none';
+    }
+}
+
+function toggleQaSection(headerElement) { // trova il div contenuto 
+    const content = headerElement.nextElementSibling;
+    const icon = headerElement.querySelector('.toggle-icon');
+
+    // se è nascosto lo mostra, altrimenti lo nasconde
+    if (content.style.display === "none") {
+        content.style.display = "block";
+        if(icon) icon.style.transform = "rotate(180deg)"; 
+    } else {
+        content.style.display = "none";
+        if(icon) icon.style.transform = "rotate(0deg)";
+    }
+}

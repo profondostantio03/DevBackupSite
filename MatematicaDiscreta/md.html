@@ -48,6 +48,7 @@
                 ⬅ Categorie
             </button>
             <h2 id="pageTitle">Macro Aree</h2>
+            <button id="qaBtn" class="help-btn" onclick="openQaModal()" title="Domande Ripasso Orale">❓</button>
         </div>
         
         <div id="math-grid" class="flashcard-grid"></div>
@@ -79,6 +80,315 @@
                 <div onclick="selectEditColor('style-dark')" class="color-circle style-dark-bg"></div>
             </div>
             <button onclick="saveEdit()" style="width:100%; padding:12px; background:#8b5cf6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">SALVA MODIFICHE</button>
+        </div>
+    </div>
+
+    <div id="qaModal" class="modal-overlay" onclick="closeQaModal(event)" style="display:none;">
+        <div class="modal-content glass-panel" style="max-width: 850px; text-align: left;">
+            <span class="close-modal" onclick="closeQaModal(event)">&times;</span>
+            <h2 style="margin-top:0; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">Domande Ripasso Orale</h2>
+            
+            <div id="qaBody" style="margin-top: 20px;">
+                
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #3b82f6;">
+                    🟦 Sezione 1: Logica e Induzione <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Qual è la definizione del Principio di Induzione?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il Principio di Induzione è una proprietà fondamentale dei numeri naturali ($\mathbb{N}_0$) che permette di dimostrare la validità di una proposizione $P(n)$ per ogni $n \ge n_0$. Si articola in due fasi:</p>
+                        <ol>
+                            <li><b>Base dell'induzione:</b> Si verifica che $P(n_0)$ sia vera.</li>
+                            <li><b>Passo induttivo:</b> Si assume che $P(n)$ sia vera (Ipotesi Induttiva) e si dimostra che allora anche $P(n+1)$ è vera (Tesi).</li>
+                        </ol>
+                        <p>Se entrambi i passi sono soddisfatti, la proposizione è vera per ogni $n$.</p>
+                    </div>
+
+                    <p><b>Qual è la proprietà fondamentale dell'insieme $\mathbb{N}_0$ collegata all'induzione?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>È il <b>Principio del Buon Ordinamento</b>: ogni sottoinsieme non vuoto di $\mathbb{N}$ ammette un elemento minimo. Questo garantisce che il processo induttivo sia ben fondato.</p>
+                    </div>
+
+                    <p><b>Come si dimostra per induzione che $2^0 + 2^1 + \dots + 2^n = 2^{n+1} - 1$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <ul>
+                            <li><b>Base ($n=0$):</b> $2^0 = 2^1 - 1 \implies 1 = 1$ (Vero).</li>
+                            <li><b>Passo induttivo:</b> Assumiamo la somma fino a $n$ e aggiungiamo il termine $2^{n+1}$.<br>
+                            $(2^{n+1} - 1) + 2^{n+1} = 2 \cdot 2^{n+1} - 1 = 2^{n+2} - 1$.<br>
+                            La tesi è verificata.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Come si dimostra per induzione che $43 \mid (44^n - 1)$ per ogni $n \ge 0$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <ul>
+                            <li><b>Base ($n=0$):</b> $44^0 - 1 = 0$. Poiché $43 \cdot 0 = 0$, la base è vera.</li>
+                            <li><b>Ipotesi Induttiva:</b> Supponiamo $44^n - 1 = 43k$.</li>
+                            <li><b>Tesi ($n+1$):</b> $44^{n+1} - 1 = 44 \cdot 44^n - 1 = 44(43k + 1) - 1 = 44 \cdot 43k + 44 - 1 = 44 \cdot 43k + 43 = 43(44k + 1)$.<br>
+                            L'espressione è divisibile per 43.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Qual è la definizione di Coefficiente Binomiale?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
+                        <p>Dati due interi $n, k$ con $n \ge k \ge 0$, il coefficiente binomiale è definito come:</p>
+                        <p>$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$</p>
+                        <p>Rappresenta il numero di sottoinsiemi di $k$ elementi estraibili da un insieme di $n$ elementi.</p>
+                    </div>
+                </div>
+
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #16a34a;">
+                    🟩 Sezione 2: Applicazioni e Relazioni <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Cosa si intende per applicazione $f: S \to T$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un'applicazione è una legge che associa ad ogni elemento $x \in S$ (dominio) un <b>unico</b> elemento $y \in T$ (codominio).</p>
+                    </div>
+
+                    <p><b>Cosa si intende per controimmagine di un sottoinsieme $Y \subseteq T$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La controimmagine $f^{-1}(Y)$ è l'insieme di tutti gli elementi del dominio che hanno immagine in $Y$:</p>
+                        <p>$$f^{-1}(Y) = \{x \in S \mid f(x) \in Y\}$$</p>
+                    </div>
+
+                    <p><b>Quali sono le proprietà della funzione composta $g \circ f$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Siano $f: S \to T$ e $g: T \to V$:</p>
+                        <ul>
+                            <li>Se $g \circ f$ è <b>iniettiva</b>, allora $f$ deve essere iniettiva.</li>
+                            <li>Se $g \circ f$ è <b>suriettiva</b>, allora $g$ deve essere suriettiva.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Qual è un esempio di applicazione non iniettiva e non suriettiva?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>L'applicazione $f: \mathbb{Z} \to \mathbb{N}$ definita da $f(z) = 5z^2 + 4$.</p>
+                        <ul>
+                            <li><b>Non iniettiva:</b> $f(1) = 9$ e $f(-1) = 9$. Due elementi diversi hanno stessa immagine.</li>
+                            <li><b>Non suriettiva:</b> Ad esempio $1 \in \mathbb{N}$ non ha controimmagine ($5z^2+4=1 \implies 5z^2=-3$, impossibile).</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Qual è la definizione di Relazione di Equivalenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una relazione $R$ su un insieme $S$ è di equivalenza se soddisfa tre proprietà:</p>
+                        <ol>
+                            <li><b>Riflessiva:</b> $xRx$ per ogni $x \in S$.</li>
+                            <li><b>Simmetrica:</b> se $xRy$, allora $yRx$.</li>
+                            <li><b>Transitiva:</b> se $xRy$ e $yRz$, allora $xRz$.</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Cosa afferma il Teorema Fondamentale delle relazioni di equivalenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Afferma che esiste una corrispondenza biunivoca tra le relazioni di equivalenza su un insieme $S$ e le partizioni di $S$. L'insieme delle classi di equivalenza è detto <b>insieme quoziente</b> ($S/R$).</p>
+                    </div>
+
+                    <p><b>Dato $S=\{1,2,3,a,b\}$ e partizione $F=\{\{1\}, \{2,a\}, \{3, b\}\}$, qual è la classe di $a$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La classe di $a$, indicata con $[a]$, è l'insieme della partizione che contiene $a$, ovvero $[a] = \{2, a\}$.</p>
+                    </div>
+
+                    <p><b>Qual è la differenza tra una relazione d'ordine e una di equivalenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
+                        <p>La relazione d'ordine è <b>antisimmetrica</b> ($xRy \land yRx \implies x=y$), mentre quella di equivalenza è <b>simmetrica</b>. Un ordine è <b>totale</b> se ogni coppia di elementi è confrontabile.</p>
+                    </div>
+                </div>
+
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #eab308;">
+                    🟨 Sezione 3: Strutture Algebriche e Congruenze <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Cosa definisce un Gruppo?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un gruppo $(G, \ast)$ è un insieme dotato di un'operazione binaria che è:</p>
+                        <ol>
+                            <li><b>Associativa.</b></li>
+                            <li>Dotata di <b>elemento neutro</b>.</li>
+                            <li>Dotata di <b>elemento inverso</b> per ogni elemento del gruppo.</li>
+                        </ol>
+                        <p>Se vale anche la proprietà commutativa, il gruppo si dice <b>Abeliano</b>.</p>
+                    </div>
+
+                    <p><b>Cosa sono gli elementi invertibili in $(\mathbb{Z}_m, \cdot)$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un elemento $[a] \in \mathbb{Z}_m$ è invertibile se e solo se $\text{MCD}(a, m) = 1$.</p>
+                        <p><i>Esempio in $\mathbb{Z}_6$:</i> gli invertibili sono $\{1, 5\}$. L'elemento $[2]$ non è invertibile perché $\text{MCD}(2, 6) = 2 \neq 1$.</p>
+                    </div>
+
+                    <p><b>Cosa è un anello?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un anello è un insieme dotato di due operazioni, solitamente somma(+) e prodotto($\cdot$), che rispettano alcune regole:</p>
+                        <ul>
+                            <li>rispetto alla somma deve essere un gruppo abeliano (commutativa, associativa elemento neutro ed ogni elemento deve avere l'opposto)</li>
+                            <li>rispetto al prodotto deve essere associativo($a \cdot (b \cdot c) = (a \cdot b) \cdot c$)</li>
+                            <li>il prodotto deve distribuirsi rispetto alla somma: $a \cdot (b + c) = ab + ac$</li>
+                        </ul>
+                        <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
+                            <b>Importante:</b> Esempio classico di Anello è l'insieme dei numeri interi <b>$\mathbb{Z}$</b>. Puoi sommare, sottrarre e moltiplicare, ma <b>non puoi sempre dividere</b>: ad esempio, $1$ diviso $2$ non fa un numero intero.
+                        </div>
+                    </div>
+
+                    <p><b>Cosa è un Anello Unitario?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un anello si dice <b>unitario</b> se, oltre alle proprietà base (somma e prodotto), possiede un <b>elemento neutro rispetto al prodotto</b>.</p>
+                        <p>In termini poveri: esiste un elemento (che chiamiamo solitamente <b>$1$</b>) tale che, moltiplicato per qualsiasi altro elemento $a$ dell'anello, lo lascia invariato.</p>
+                        <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
+                            <b>Importante:</b> Non tutti gli anelli sono unitari. Ad esempio, l'insieme dei <b>numeri pari</b> ($2\mathbb{Z}$) è un anello (se sommi o moltiplichi due numeri pari ottieni sempre un numero pari), ma <b>non è unitario</b> perché il numero $1$ non è un numero pari e non appartiene all'insieme.
+                        </div>
+                    </div>
+
+                    <p><b>Cosa è un campo?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un campo è un anello PERFETTO, oltre a tutte le proprietà degli anelli se ne aggiungono altre tre:</p>
+                        <ol>
+                            <li>commutatività del prodotto: $a \cdot b = b \cdot a$.</li>
+                            <li>esistenza dell'unità: deve esistere il numero 1 (elemento neutro del prodotto)</li>
+                            <li>esistenza dell'inverso (possibilità di dividere): ogni elemento diverso da 0 deve avere un inverso (l'inverso di 5 è 1/5)</li>
+                        </ol>
+                        <p>In un campo si possono fare tutte e 4 le operazioni fondamentali ($+$, $-$, $\cdot$, $:$) uscendo dall'insieme soltanto con la divisione per 0.</p>
+                        <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
+                            <b>Importante:</b> Esempio classico di Campo I numeri reali <b>$\mathbb{R}$</b> o i numeri razionali <b>$\mathbb{Q}$</b>. Qui la divisione è sempre possibile (tranne per zero).
+                        </div>
+                    </div>
+
+                    <p><b>Quali sono le differenze tra anello e campo?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Le differenze tra anelli e campi è che in un anello la divisione NON è sempre possibile, mentre in un campo la divisione è sempre possibile per tutti gli elementi escluso lo 0.</p>
+                        <p><b>Esempio esame ($Z_6$ vs $Z_{11}$):</b></p>
+                        <ul>
+                            <li><b>$\mathbb{Z}_6$ è un Anello</b> ma non un campo: non puoi dividere per $2$, perché non esiste un numero in $\mathbb{Z}_6$ che moltiplicato per $2$ faccia $1$.</li>
+                            <li><b>$\mathbb{Z}_{11}$ è un Campo</b>: poiché $11$ è primo, ogni numero (tranne lo zero) ha un inverso. L'inverso di $5$ in $\mathbb{Z}_{11}$ è $9$.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Che struttura ha $(\mathbb{Z}_6, +, \cdot)$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>È un <b>Anello Commutativo Unitario</b>. Non è un campo perché esistono divisori dello zero (es. $2 \cdot 3 \equiv 0 \pmod 6$) e non tutti gli elementi non nulli sono invertibili.</p>
+                    </div>
+
+                    <p><b>Come si risolve l'equazione $5x \equiv 1 \pmod{11}$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Poiché $11$ è primo e $\text{MCD}(5, 11) = 1$, l'inverso esiste. Si cerca $x$ tale che $5x = 11k + 1$. Per $k=4$, $5x = 45 \implies x = 9$. La soluzione è $x \equiv 9 \pmod{11}$.</p>
+                    </div>
+
+                    <p><b>Qual è la definizione di Reticolo?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
+                        <p>Un reticolo è un insieme parzialmente ordinato in cui per ogni coppia di elementi $\{a, b\}$ esistono sempre l'estremo superiore (sup) e l'estremo inferiore (inf).</p>
+                    </div>
+                </div>
+
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #f97316;">
+                    🟧 Sezione 4: Algebra Lineare e Geometria <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Cos'è uno Scalare?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Uno scalare è semplicemente un elemento di un <b>Campo</b> (solitamente $\mathbb{R}$, $\mathbb{Q}$ o $\mathbb{C}$).</p>
+                        <ul>
+                            <li><b>A cosa serve:</b> In algebra lineare, lo scalare funge da "fattore di scala". Serve a moltiplicare i vettori per allungarli, accorciarli o invertirne la direzione.</li>
+                            <li><b>Esempio:</b> Se moltiplichi un vettore $v$ per lo scalare $2$, ottieni un vettore lungo il doppio.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Cos'è un Vettore?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Formalmente, un vettore è un <b>elemento di uno Spazio Vettoriale</b>.</p>
+                        <ul>
+                            <li>Non è solo una "freccia" o una lista di numeri $(x, y, z)$; quella è solo una loro rappresentazione.</li>
+                            <li><b>Proprietà:</b> I vettori sono entità che possono essere sommate tra loro o moltiplicate per uno scalare, producendo sempre un altro vettore dello stesso insieme.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Cosa è uno Spazio Vettoriale?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Uno spazio vettoriale su un campo K (scalari) è un insieme V dotato di due operazioni che soddisfano 8 proprietà fondamentali.</p>
+                        <ul>
+                            <li><i>Somma interna</i> ($+$): Prendi due vettori e ne ottieni un terzo. Deve essere un Gruppo Abeliano (associativa, commutativa, esiste lo zero, esiste l'opposto).</li>
+                            <li><i>Prodotto per scalare</i> ($\cdot$): Prendi uno scalare $k \in K$ e un vettore $v \in V$ e ottieni un vettore $kv$. Deve rispettare:
+                                <ul>
+                                    <li>Proprietà distributive (rispetto alla somma di vettori e alla somma di scalari).</li>
+                                    <li>Proprietà associativa del prodotto tra scalari.</li>
+                                    <li>Esistenza dell'elemento neutro dello scalare ($1 \cdot v = v$).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
+                            <b>Senza Campo non c'è Spazio Vettoriale:</b> Per definire uno spazio vettoriale, devi prima avere un <b>Campo</b> di scalari. Se avessi solo un anello (come $\mathbb{Z}$), la struttura si chiamerebbe "Modulo" e non spazio vettoriale, perché non potresti sempre dividere gli scalari.
+                        </div>
+                    </div>
+
+                    <p><b>Qual è la differenza tra vettore e scalare?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un vettore è un elemento di uno spazio vettoriale (un'entità che si può sommare e scalare), mentre uno scalare è un elemento del campo su cui lo spazio è definito (un numero che serve a moltiplicare il vettore).</p>
+                    </div>
+
+                    <p><b>Perché si dice che lo spazio delle matrici $M_{2 \times 2}(\mathbb{R})$ è uno spazio vettoriale?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Perché soddisfa tutte le proprietà richieste: la somma di due matrici $2 \times 2$ è ancora una matrice $2 \times 2$ (ed è commutativa/associativa), esiste la matrice nulla, e il prodotto di una matrice per un numero reale (scalare) è ancora una matrice $2 \times 2$.</p>
+                    </div>
+
+                    <p><b>Cos'è una base di uno spazio vettoriale?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una base di uno spazio vettoriale V è l'insieme di vettori $\mathcal{B} = \{v_1, v_2, \dots, v_n\}$ che soddisfa due condizioni contemporaneamente:</p>
+                        <ol>
+                            <li><b>Indipendenza Lineare:</b> Nessun vettore della base può essere scritto come combinazione lineare degli altri. (Non ci sono "vettori inutili" o ridondanti).</li>
+                            <li><b>Sistema di generatori:</b> Ogni vettore dello spazio V può essere espresso come combinazione lineare dei vettori della base.</li>
+                        </ol>
+                        <p>Una base permette di identificare ogni vettore dello spazio tramite delle <b>coordinate uniche</b>. Il numero di vettori presenti in una base è chiamato <b>Dimensione</b> dello spazio vettoriale.</p>
+                    </div>
+
+                    <p><b>Cos'è un'applicazione lineare?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un'applicazione lineare (o trasformazione lineare) è una funzione $f: V \to W$ tra due spazi vettoriali che "rispetta" le operazioni dello spazio. Per essere definita lineare, deve soddisfare due proprietà:</p>
+                        <ol>
+                            <li><b>Additività:</b> $f(v_1 + v_2) = f(v_1) + f(v_2)$ (L'immagine della somma è la somma delle immagini).</li>
+                            <li><b>Omogeneità:</b> $f(k \cdot v) = k \cdot f(v)$ (L'immagine del vettore scalato è lo scalare per l'immagine del vettore).</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Qual è il legame tra applicazioni lineari e matrici?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Fissata una base, ogni applicazione lineare tra spazi vettoriali a dimensione finita può essere rappresentata in modo unico da una matrice. Moltiplicare un vettore per questa matrice equivale ad applicare la funzione lineare al vettore.</p>
+                    </div>
+
+                    <p><b>Cos'è il Nucleo ($\text{Ker}$) e l'Immagine ($\text{Im}$) di un'applicazione lineare?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il <b>Nucleo $\text{Ker}(f)$</b> è l'insieme dei vettori del dominio $v$ tali che la loro immagine è il vettore nullo: $f(v) = \mathbf{0}$. È sempre un sottospazio vettoriale del dominio.</p>
+                        <p>L'<b>Immagine $\text{Im}(f)$</b> è l'insieme di tutti i vettori del codominio che vengono "colpiti" da almeno un vettore del dominio. È un sottospazio del codominio.</p>
+                    </div>
+
+                    <p><b>Quando una matrice è diagonalizzabile?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una matrice $A$ di ordine $n$ è diagonalizzabile se e solo se:</p>
+                        <ol>
+                            <li>Il suo polinomio caratteristico ha $n$ radici nel campo (contate con molteplicità).</li>
+                            <li>Per ogni autovalore $\lambda$, la molteplicità algebrica $m_a(\lambda)$ è uguale alla molteplicità geometrica $m_g(\lambda)$.</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Che cos'è una matrice a scala?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>È una matrice ottenuta tramite l'algoritmo di Gauss in cui il numero di zeri iniziali di ogni riga aumenta riga dopo riga. I primi elementi non nulli di ogni riga sono detti <b>pivot</b>.</p>
+                    </div>
+
+                    <p><b>Quando due rette nello spazio si dicono sghembe?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Due rette si dicono sghembe se non sono parallele e non hanno punti di intersezione (ovvero non sono complanari).</p>
+                    </div>
+
+                    <p><b>Come si determina la posizione tra retta e piano?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si analizza il sistema tra l'equazione del piano e della retta:</p>
+                        <ol>
+                            <li><b>Incidenti:</b> Il sistema ha un'unica soluzione.</li>
+                            <li><b>Parallela esterna:</b> Il sistema non ha soluzioni.</li>
+                            <li><b>Contenuta (Giacitura):</b> Il sistema ha infinite soluzioni.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
