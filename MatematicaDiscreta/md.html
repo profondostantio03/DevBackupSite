@@ -90,6 +90,65 @@
             
             <div id="qaBody" style="margin-top: 20px;">
                 
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #8b5cf6;">
+                    🟪 Sezione 0: Insiemistica <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Qual è la definizione di Insieme delle Parti P(S)?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Dato un insieme $S$, si chiama insieme delle parti di $S$ l'insieme i cui elementi sono tutti e soli i sottoinsiemi di $S$.</p>
+                        <p>In simboli: $P(S) := \{X \mid X \subseteq S\}$</p>
+                    </div>
+
+                    <p><b>Se S={a,b,c}, mi scriva tutti gli elementi di P(S). Appartiene l'insieme vuoto a P(S)?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Se $S = \{a, b, c\}$, gli elementi di $P(S)$ sono tutti i possibili raggruppamenti dei suoi elementi, inclusi l'insieme vuoto e l'insieme stesso:</p>
+                        <ul>
+                            <li><b>$\emptyset$</b> (Insieme vuoto), <b>$\{a\}, \{b\}, \{c\}$</b> (I singoli elementi)</li>
+                            <li><b>$\{a, b\}, \{a, c\}, \{b, c\}$</b> (Coppie), <b>$\{a, b, c\}$</b> (L'insieme $S$ stesso)</li>
+                        </ul>
+                        <p>In totale, poiché $S$ ha 3 elementi, $P(S)$ contiene $2^3 = 8$ elementi.</p>
+                        <p>L'insieme vuoto appartiene sempre a $P(S)$ perché l'insieme vuoto è un sottoinsieme di ogni insieme ($\emptyset \subseteq S$).</p>
+                    </div>
+
+                    <p><b>Definizione di Prodotto Cartesiano S×T. Il prodotto cartesiano gode della proprietà commutativa?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Siano $S$ e $T$ due insiemi. Il prodotto cartesiano $S \times T$ è l'insieme costituito da tutte le coppie ordinate $(x, y)$ in cui il primo elemento appartiene a $S$ e il secondo appartiene a $T$.</p>
+                        <p>In simboli: $S \times T := \{(x, y) \mid x \in S \wedge y \in T\}$.</p>
+                        <p>Il prodotto cartesiano <b>non gode della proprietà commutativa</b> ($S \times T \neq T \times S$). Le uniche eccezioni si verificano se:</p>
+                        <ol>
+                            <li><b>$S = T$</b> (I due insiemi sono identici).</li>
+                            <li><b>$S = \emptyset$ oppure $T = \emptyset$</b> (Uno dei due è vuoto, rendendo il prodotto vuoto).</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Cosa è e come si indica una classe di equivalenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $R$ una relazione di equivalenza su un insieme $S$. Preso un elemento $x$ appartenente a $S$, la sua <b>classe di equivalenza</b> è l'insieme di tutti gli elementi $y$ di $S$ che sono in relazione con $x$.</p>
+                        <p>Esistono tre modi principali per indicarla:</p>
+                        <ul>
+                            <li><i>Con le parentesi quadre:</i> $[x]$. È la notazione più usata. Si legge "la classe di $x$".</li>
+                            <li><i>Con la barra sopra:</i> $\bar{x}$. Molto usata quando si parla di classi di resto (congruenze).</li>
+                            <li><i>Definizione formale (Insiemistica):</i> $[x] = \{y \in S \mid yRx\}$. Questa scrittura dice letteralmente: "La classe di $x$ è l'insieme degli $y$ tali che $y$ è in relazione con $x$".</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Fammi un esempio di classe di equivalenza.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Se la relazione è "avere la stessa parità" nell'insieme dei numeri naturali:</p>
+                        <ul>
+                            <li>La classe <b>$[0]$</b> (o $[pari]$) contiene $\{0, 2, 4, 6, \dots\}$</li>
+                            <li>La classe <b>$[1]$</b> (o $[dispari]$) contiene $\{1, 3, 5, 7, \dots\}$</li>
+                        </ul>
+                        <p>In questo caso, tutti i numeri pari appartengono alla stessa classe perché sono tutti in relazione tra loro (sono tutti pari).</p>
+                    </div>
+
+                    <p><b>Dato $S=\{1,2,3,a,b\}$ e partizione $F=\{\{1\}, \{2,a\}, \{3, b\}\}$, qual è la classe di $a$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
+                        <p>La classe di $a$, indicata con $[a]$, è l'insieme della partizione che contiene $a$, ovvero $[a] = \{2, a\}$.</p>
+                    </div>
+                </div>
+
                 <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #3b82f6;">
                     🟦 Sezione 1: Logica e Induzione <span class="toggle-icon">▼</span>
                 </h3>
@@ -141,6 +200,12 @@
                     🟩 Sezione 2: Applicazioni e Relazioni <span class="toggle-icon">▼</span>
                 </h3>
                 <div class="qa-section-content" style="display: none;">
+                    <p><b>Cos'è una relazione binaria tra due insiemi? Fammi un esempio di relazione binaria che non è una funzione.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una relazione binaria tra due insiemi $S$ e $T$ è un qualsiasi sottoinsieme del prodotto cartesiano $S \times T$. In altre parole, è una collezione di coppie ordinate $(x, y)$ dove $x$ appartiene a $S$ e $y$ appartiene a $T$.</p>
+                        <p>Dati due insiemi $A = \{a, b, c\}$ e $B = \{1, 2\}$, la relazione $R_1 = \{(a, 1), (a, 2)\}$ è una relazione ma non è una funzione (perché l'elemento 'a' ha due immagini diverse, violando l'unicità).</p>
+                    </div>
+
                     <p><b>Cosa si intende per applicazione $f: S \to T$?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
                         <p>Un'applicazione è una legge che associa ad ogni elemento $x \in S$ (dominio) un <b>unico</b> elemento $y \in T$ (codominio).</p>
@@ -148,8 +213,25 @@
 
                     <p><b>Cosa si intende per controimmagine di un sottoinsieme $Y \subseteq T$?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>La controimmagine $f^{-1}(Y)$ è l'insieme di tutti gli elementi del dominio che hanno immagine in $Y$:</p>
-                        <p>$$f^{-1}(Y) = \{x \in S \mid f(x) \in Y\}$$</p>
+                        <p>La controimmagine $f^{-1}(Y)$ è l'insieme di tutti gli elementi del dominio che hanno immagine in $Y$: $f^{-1}(Y) = \{x \in S \mid f(x) \in Y\}$</p>
+                    </div>
+
+                    <p><b>Qual è la definizione di applicazione iniettiva e suriettiva?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un'applicazione $f: S \to T$ si dice <b>iniettiva</b> se a elementi distinti del dominio corrispondono elementi distinti del codominio.</p>
+                        <p>In simboli: $\forall x_1, x_2 \in S, x_1 \neq x_2 \implies f(x_1) \neq f(x_2)$</p>
+                        <p>Un'applicazione $f: S \to T$ si dice <b>suriettiva</b> se ogni elemento del codominio $T$ è immagine di almeno un elemento del dominio $S$. In altre parole, l'immagine della funzione coincide con il codominio: $f(S) = T$.</p>
+                        <p>In simboli: $\forall y \in T, \exists x \in S \text{ tale che } f(x) = y$</p>
+                    </div>
+
+                    <p><b>Come si dimostra, in generale, che una funzione è iniettiva?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si dimostra che elementi distinti hanno sempre immagini distinte:</p>
+                        <ul>
+                            <li>Si parte dall'ipotesi che $f(x_1) = f(x_2)$.</li>
+                            <li>Svolgendo i calcoli algebrici, si deve arrivare obbligatoriamente a dimostrare che $x_1 = x_2$. Se questo è vero, la funzione è iniettiva.</li>
+                        </ul>
+                        <p>Per dimostrare che una funzione <b>non</b> è iniettiva basta invece trovare un controesempio numerico.</p>
                     </div>
 
                     <p><b>Quali sono le proprietà della funzione composta $g \circ f$?</b></p>
@@ -159,6 +241,23 @@
                             <li>Se $g \circ f$ è <b>iniettiva</b>, allora $f$ deve essere iniettiva.</li>
                             <li>Se $g \circ f$ è <b>suriettiva</b>, allora $g$ deve essere suriettiva.</li>
                         </ul>
+                        <p>Se $g \circ f$ è iniettiva, <b>non è detto che $g$ sia iniettiva</b>. $g$ potrebbe anche unire degli elementi, a patto che quegli elementi non siano quelli che provengono da $f$.</p>
+                    </div>
+
+                    <p><b>Perché se $g \circ f$ è iniettiva, allora necessariamente $f$ deve essere iniettiva?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Supponiamo per assurdo che $f$ <b>non</b> sia iniettiva.</p>
+                        <ol>
+                            <li>Se $f$ non è iniettiva, esistono nel dominio due elementi distinti $x_1 \neq x_2$ tali che vengono mandati nello stesso elemento, quindi: $f(x_1) = f(x_2)$.</li>
+                            <li>Poiché $g$ è una funzione (e quindi a un input corrisponde un solo output), avremo necessariamente: $g(f(x_1)) = g(f(x_2))$.</li>
+                            <li>Ma $g(f(x))$ è per definizione la funzione composta $(g \circ f)(x)$. Quindi abbiamo ottenuto che: $(g \circ f)(x_1) = (g \circ f)(x_2)$ nonostante $x_1 \neq x_2$.</li>
+                        </ol>
+                        <p>Questo risultato contraddice l'ipotesi iniziale che $g \circ f$ sia iniettiva. Di conseguenza $f$ deve essere per forza iniettiva.</p>
+                    </div>
+
+                    <p><b>Date due funzioni $f: S \to T$ e $g: T \to V$, perché se la composta $g \circ f$ è suriettiva, allora necessariamente $g$ deve essere suriettiva?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Possiamo concludere con assoluta certezza che la "seconda" funzione, ovvero <b>$g$, è suriettiva</b>. Non abbiamo garanzie su $f$ (potrebbe essere suriettiva oppure no). La dimostrazione si fonda sul fatto che l'immagine della funzione composta è interamente contenuta nell'immagine di $g$: se la composta riesce a coprire tutto il codominio finale $V$, a maggior ragione deve riuscirci $g$.</p>
                     </div>
 
                     <p><b>Qual è un esempio di applicazione non iniettiva e non suriettiva?</b></p>
@@ -168,6 +267,24 @@
                             <li><b>Non iniettiva:</b> $f(1) = 9$ e $f(-1) = 9$. Due elementi diversi hanno stessa immagine.</li>
                             <li><b>Non suriettiva:</b> Ad esempio $1 \in \mathbb{N}$ non ha controimmagine ($5z^2+4=1 \implies 5z^2=-3$, impossibile).</li>
                         </ul>
+                    </div>
+
+                    <p><b>Quand'è che un'applicazione ammette l'inversa ($f^{-1}$)? Fai un esempio di funzione biettiva e trovane l'inversa.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un'applicazione $f: S \to T$ ammette l'inversa (ovvero è invertibile) se e solo se è <i>biettiva</i> (o biunivoca).</p>
+                        <p>Consideriamo la funzione $f: \mathbb{R} \to \mathbb{R}$ definita da: $f(x) = 3x + 2$</p>
+                        <p><i>Verifica della biettività:</i></p>
+                        <ul>
+                            <li><i>Iniettività</i>: Se poniamo $f(x_1) = f(x_2)$, otteniamo $3x_1 + 2 = 3x_2 + 2$, da cui $3x_1 = 3x_2$ e quindi $x_1 = x_2$. È iniettiva.</li>
+                            <li><i>Suriettività</i>: Per ogni valore reale $y$, possiamo sempre trovare un valore $x$ tale che $y = 3x + 2$ (ovvero $x = \frac{y-2}{3}$). È suriettiva.</li>
+                        </ul>
+                        <p>Per trovare l'espressione dell'inversa $f^{-1}(y)$, dobbiamo risolvere l'equazione $y = f(x)$ rispetto a $x$:</p>
+                        <ol>
+                            <li>Scriviamo l'equazione: $y = 3x + 2$</li>
+                            <li>Isoliamo il termine con la $x$: $3x = y - 2$</li>
+                            <li>Dividiamo per 3: $x = \frac{y - 2}{3}$</li>
+                        </ol>
+                        <p>Quindi, l'applicazione inversa $f^{-1}: \mathbb{R} \to \mathbb{R}$ è definita da: $f^{-1}(y) = \frac{y - 2}{3}$</p>
                     </div>
 
                     <p><b>Qual è la definizione di Relazione di Equivalenza?</b></p>
@@ -180,24 +297,182 @@
                         </ol>
                     </div>
 
+                    <p><b>Cosa è una classe di equivalenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $R$ una relazione di equivalenza su un insieme $S$. Per ogni elemento $x \in S$, la <i>classe di equivalenza</i> di $x$ rispetto a $R$ (indicata generalmente con $[x]_R$) è l'insieme di tutti gli elementi $y \in S$ che sono in relazione con $x$.</p>
+                        <p>In simboli: $[x]_R = \{y \in S \mid xRy\}$</p>
+                        <p>Tutti gli elementi all'interno di una stessa classe sono "equivalenti" tra loro secondo la relazione data.</p>
+                        <p><i>Proprietà:</i></p>
+                        <ol>
+                            <li>Ogni classe di equivalenza non è mai vuota (contiene almeno $x$ stesso per la proprietà riflessiva).</li>
+                            <li>Due classi di equivalenza sono o identiche o completamente disgiunte (non hanno elementi in comune).</li>
+                            <li>L'unione di tutte le classi di equivalenza restituisce l'insieme di partenza $S$.</li>
+                        </ol>
+                        <p><b>Insieme Quoziente:</b> L'insieme che ha come elementi tutte le diverse classi di equivalenza si chiama <i>insieme quoziente</i> e si indica con $S/R$.</p>
+                    </div>
+
                     <p><b>Cosa afferma il Teorema Fondamentale delle relazioni di equivalenza?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
                         <p>Afferma che esiste una corrispondenza biunivoca tra le relazioni di equivalenza su un insieme $S$ e le partizioni di $S$. L'insieme delle classi di equivalenza è detto <b>insieme quoziente</b> ($S/R$).</p>
                     </div>
 
-                    <p><b>Dato $S=\{1,2,3,a,b\}$ e partizione $F=\{\{1\}, \{2,a\}, \{3, b\}\}$, qual è la classe di $a$?</b></p>
+                    <p><b>Trovami 3 esempi di relazioni di equivalenza nell'insieme dei numeri naturali $\mathbb{N}_0$.</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>La classe di $a$, indicata con $[a]$, è l'insieme della partizione che contiene $a$, ovvero $[a] = \{2, a\}$.</p>
+                        <ol>
+                            <li>L'uguaglianza ($x=y$).</li>
+                            <li>La congruenza modulo m ($x \equiv y \pmod m$).</li>
+                            <li>Avere la stessa parità (essere entrambi pari o entrambi dispari).</li>
+                        </ol>
                     </div>
 
-                    <p><b>Qual è la differenza tra una relazione d'ordine e una di equivalenza?</b></p>
+                    <p><b>Cosa è una congruenza?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una congruenza è una relazione di equivalenza definita nell'insieme dei numeri interi che raggruppa gli elementi che, divisi per un intero fissato <i>m</i> (detto modulo), forniscono lo stesso resto.</p>
+                    </div>
+
+                    <p><b>Definizione formale di congruenza modulo m. Cosa significa che a ≡ b (mod m)?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Siano <i>a, b</i> in $\mathbb{Z}$ e <i>m</i> un numero naturale con $m > 1$. Si dice che <i>a</i> è congruo a <i>b</i> modulo <i>m</i> se la differenza $(a - b)$ è un multiplo di <i>m</i>, ovvero se <i>m</i> divide $(a - b)$.</p>
+                        <p>In simboli: $a \equiv b \pmod m \iff m \mid (a - b)$.</p>
+                    </div>
+
+                    <p><b>Dimostra che la congruenza modulo m è una relazione di equivalenza.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <ol>
+                            <li><i>Riflessiva:</i> $a \equiv a \pmod m$ perché $m$ divide $a - a = 0$ (vero per ogni $m$).</li>
+                            <li><i>Simmetrica:</i> Se $m \mid (a-b)$, allora $a-b = km$. Moltiplicando per -1 ottengo $b-a = -km = (-k)m$, quindi $m \mid (b-a) \implies b \equiv a \pmod m$.</li>
+                            <li><i>Transitiva:</i> Se $m \mid (a-b)$ e $m \mid (b-c)$, allora la loro somma $(a-b)+(b-c) = a-c$ è ancora un multiplo di $m$, quindi $m \mid (a-c) \implies a \equiv c \pmod m$.</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Dimostrami le proprietà fondamentali delle Classi di Equivalenza.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia R una relazione di equivalenza su un insieme S. Le classi di equivalenza godono di tre proprietà fondamentali che garantiscono che l'insieme venga suddiviso in modo esatto:</p>
+                        <ol>
+                            <li><b>Non vacuità:</b> ogni classe $[x]$ contiene almeno l'elemento $x$ stesso, poiché per la proprietà riflessiva $xRx$. Quindi $[x]$ non è mai l'insieme vuoto.</li>
+                            <li><b>Disgiunzione o Identità:</b> date due classi $[x]$ e $[y]$, esse o coincidono perfettamente ($[x] = [y]$) oppure sono completamente disgiunte, cioè non hanno alcun elemento in comune. Non è possibile che due classi diverse si sovrappongano solo parzialmente.</li>
+                            <li><b>Partizione (Unione totale):</b> l'unione di tutte le classi di equivalenza distinte coincide con l'intero insieme $S$. Ogni elemento di $S$ appartiene a una e una sola classe di equivalenza.</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Differenza formale tra l'insieme $7\mathbb{Z}$ e l'insieme $\mathbb{Z}_7$.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>$7\mathbb{Z}$ è l'insieme dei <i>multipli</i> interi di 7 (..., -7, 0, 7, 14, ...).</p>
+                        <p>Invece, $\mathbb{Z}_7$ è l'<b>insieme quoziente</b> della relazione di congruenza modulo 7: è formato da 7 elementi (le 7 classi di resto $\{[0], [1], [2], [3], [4], [5], [6]\}$).</p>
+                    </div>
+
+                    <p><b>Cosa significa che la congruenza è "compatibile" con addizione e moltiplicazione? Dimostralo.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Significa che se abbiamo due coppie di numeri congrui tra loro modulo m, allora anche la loro somma e il loro prodotto saranno congrui modulo m.</p>
+                        <p>In termini formali, se $a \equiv b \pmod m$ e $c \equiv d \pmod m$, allora $(a + c) \equiv (b + d) \pmod m$ e $(ac) \equiv (bd) \pmod m$.</p>
+                        <p>Per dimostrarlo, partiamo dalle ipotesi: $a - b = km$ e $c - d = hm$ per opportuni interi $k, h$.</p>
+                        <ul>
+                            <li><b>Per l'addizione:</b> $(a + c) - (b + d) = (a - b) + (c - d) = km + hm = (k + h)m$. Poiché il risultato è un multiplo di $m$, la somma è compatibile.</li>
+                            <li><b>Per la moltiplicazione:</b> $ac - bd = ac - bc + bc - bd = c(a - b) + b(c - d) = c(km) + b(hm) = m(ck + bh)$. Poiché anche questo risultato è un multiplo di $m$, il prodotto è compatibile.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Quando un elemento [a] è invertibile rispetto al prodotto in $\mathbb{Z}_m$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La classe di resto $[a]$ appartenente a $\mathbb{Z}_m$ ammette un inverso rispetto alla moltiplicazione (ovvero esiste una classe $[x]$ tale che $[a][x] = [1]$) se e solo se il rappresentante $a$ e il modulo $m$ sono coprimi tra loro. In termini matematici, la condizione necessaria e sufficiente è che il massimo comun divisore tra $a$ e $m$ sia uguale a 1, ovvero $\text{MCD}(a, m) = 1$.</p>
+                    </div>
+
+                    <p><b>Enunciato del Teorema Cinese del Resto. A cosa serve?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Serve per risolvere sistemi di equazioni congruenziali lineari. Afferma che se abbiamo un sistema di equazioni $x \equiv b_i \pmod{m_i}$, e i moduli $m_i$ sono a due a due coprimi (MCD tra loro = 1), allora il sistema ammette un'unica soluzione modulo $M = m_1 \cdot m_2 \cdots m_k$.</p>
+                    </div>
+
+                    <p><b>Risolvi il seguente sistema di congruenze: $x \equiv 3 \pmod 5$ e $x \equiv 2 \pmod 7$.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Risolviamo col metodo di sostituzione:</p>
+                        <ol>
+                            <li><b>Traduciamo la prima condizione:</b> Se un numero diviso per 5 dà resto 3, si può scrivere come $x = 5k + 3$.</li>
+                            <li><b>Usiamo la seconda condizione:</b> Sostituiamo nella seconda: $5k + 3 \equiv 2 \pmod 7$.<br>
+                            Spostiamo il 3: $5k \equiv -1 \pmod 7$.<br>
+                            In aritmetica modulare, i negativi si trasformano aggiungendo il modulo: $-1 + 7 = 6$.<br>
+                            L'equazione diventa: <b>$5k \equiv 6 \pmod 7$</b>.</li>
+                            <li><b>Troviamo il valore di $k$:</b> Dobbiamo trovare un $k$ che moltiplicato per 5 dia resto 6 diviso per 7. Facciamo prove:
+                                <ul>
+                                    <li>$k=1 \implies 5 \cdot 1 = 5$ (resto 5) -> No</li>
+                                    <li>$k=2 \implies 5 \cdot 2 = 10$ (resto 3) -> No</li>
+                                    <li>$k=3 \implies 5 \cdot 3 = 15$ (resto 1) -> No</li>
+                                    <li><b>$k=4 \implies 5 \cdot 4 = 20$</b> ($20 = 7 \cdot 2 + 6$, resto 6) -> <b>SI!</b></li>
+                                </ul>
+                                Quindi $k = 4$.
+                            </li>
+                        </ol>
+                        <p>Torniamo alla formula iniziale $x = 5k + 3$ e sostituiamo $k=4$:</p>
+                        <p>$x = 5 \cdot (4) + 3 = 23$.</p>
+                        <p>Siccome i moduli erano 5 e 7, la soluzione è unica modulo $5 \cdot 7 = 35$. Quindi: <b>$x \equiv 23 \pmod{35}$</b>.</p>
+                    </div>
+
+                    <p><b>Quando un insieme ordinato si dice "totalmente ordinato"?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un insieme ordinato $(S, \le)$ si dice totalmente ordinato se ogni coppia di elementi di $S$ è confrontabile rispetto alla relazione d'ordine. In altre parole, per ogni $a, b \in S$, deve valere necessariamente che $a \le b$ oppure $b \le a$.</p>
+                    </div>
+
+                    <p><b>Fammi un esempio di ordine non totale.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un esempio classico di ordine non totale (ovvero parziale) è la relazione di inclusione ($\subseteq$) tra i sottoinsiemi di un insieme fissato. Ad esempio, se consideriamo l'insieme $S = \{a, b\}$, i suoi sottoinsiemi $\{a\}$ e $\{b\}$ non sono confrontabili tra loro, poiché $\{a\}$ non è contenuto in $\{b\}$ e $\{b\}$ non è contenuto in $\{a\}$.</p>
+                    </div>
+
+                    <p><b>Cosa è il Diagramma di Hasse?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il diagramma di Hasse è lo strumento grafico principale usato per visualizzare un insieme parzialmente ordinato $(S, \le)$ in modo semplice, eliminando tutte le informazioni ridondanti.</p>
+                        <p>In un diagramma di Hasse, gli elementi dell'insieme sono rappresentati da punti (nodi). Se un elemento $a$ è minore di $b$ ($a < b$), il punto $b$ viene disegnato più in alto rispetto ad $a$.</p>
+                        <p>Per evitare che il disegno diventi un groviglio di linee, si seguono due regole di semplificazione:</p>
+                        <ol>
+                            <li><b>Si eliminano i cappi:</b> Sappiamo che ogni elemento è in relazione con se stesso ($a \le a$), ma non disegniamo frecce che tornano sul punto.</li>
+                            <li><b>Si elimina la transitività:</b> Se $a < b$ e $b < c$, sappiamo già che $a < c$. Quindi tiriamo una linea tra $a$ e $b$, e una tra $b$ e $c$, ma <b>non</b> tiriamo una linea diretta tra $a$ e $c$.</li>
+                        </ol>
+                    </div>
+
+                    <p><b>In un insieme ordinato, definisci cosa sono l'Estremo Superiore (sup) e il Maggiorante.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $(S, \le)$ un insieme ordinato e $T$ un suo sottoinsieme.</p>
+                        <p>Un elemento $M \in S$ si dice <b>maggiorante</b> di $T$ se $x \le M$ per ogni $x \in T$.</p>
+                        <p>Se l'insieme dei maggioranti di $T$ ammette un minimo, tale elemento è detto <b>estremo superiore</b> di $T$ (indicato con $\sup T$). In altre parole, il sup è il più piccolo dei maggioranti.</p>
+                    </div>
+
+                    <p><b>Definizione di elemento minimale e massimale. Qual è la differenza tra Massimo ed elemento Massimale?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>In un insieme ordinato $(S, \le)$:</p>
+                        <ul>
+                            <li>Un elemento $m$ si dice <b>massimale</b> se non esiste alcun elemento $x \in S$ tale che $m < x$.</li>
+                            <li>Un elemento $n$ si dice <b>minimale</b> se non esiste alcun elemento $x \in S$ tale che $x < n$.</li>
+                        </ul>
+                        <p>La differenza tra massimo e massimale risiede nel fatto che il <b>massimo</b> deve essere confrontabile con ogni altro elemento dell'insieme (ogni $x$ è minore o uguale al massimo), mentre un elemento <b>massimale</b> è semplicemente un elemento che non ha nessuno sopra di sé, pur potendo non essere confrontabile con altri rami dell'insieme. In un ordine parziale possono esserci più massimali, ma il massimo, se esiste, è unico.</p>
+                    </div>
+
+                    <p><b>Definizione di Reticolo.</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un reticolo è un insieme parzialmente ordinato $(S, \le)$ in cui per ogni coppia di elementi $\{x, y\} \subseteq S$ esistono sempre sia l'estremo superiore che l'estremo inferiore.</p>
+                        <p>In termini tecnici:</p>
+                        <ul>
+                            <li>L'estremo superiore di $\{x, y\}$ viene chiamato <i>join</i> (o unione) e si indica con $x \lor y$.</li>
+                            <li>L'estremo inferiore di $\{x, y\}$ viene chiamato <i>meet</i> (o intersezione) e si indica con $x \land y$.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Fammi un esempio pratico di reticolo.</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
-                        <p>La relazione d'ordine è <b>antisimmetrica</b> ($xRy \land yRx \implies x=y$), mentre quella di equivalenza è <b>simmetrica</b>. Un ordine è <b>totale</b> se ogni coppia di elementi è confrontabile.</p>
+                        <p>Consideriamo l'insieme $D_{12}$ dei divisori del numero 12: $S = \{1, 2, 3, 4, 6, 12\}$, ordinati secondo la relazione di <i>divisibilità</i> ($a \le b$ se $a$ divide $b$).</p>
+                        <p>In questo insieme:</p>
+                        <ul>
+                            <li>L'estremo superiore ($x \lor y$) tra due numeri corrisponde al loro <i>minimo comune multiplo</i> (m.c.m.).</li>
+                            <li>L'estremo inferiore ($x \land y$) tra due numeri corrisponde al loro <i>massimo comun divisore</i> (M.C.D.).</li>
+                        </ul>
+                        <p>Ad esempio, presi 4 e 6:</p>
+                        <ul>
+                            <li>$4 \lor 6 = \text{m.c.m.}(4, 6) = 12$ (che appartiene all'insieme).</li>
+                            <li>$4 \land 6 = \text{M.C.D.}(4, 6) = 2$ (che appartiene all'insieme).</li>
+                        </ul>
+                        <p>Poiché per ogni coppia di divisori di 12 puoi calcolare m.c.m. e M.C.D. e questi restano dentro l'insieme, $(D_{12}, \mid)$ è un reticolo.</p>
                     </div>
                 </div>
 
                 <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #eab308;">
-                    🟨 Sezione 3: Strutture Algebriche e Congruenze <span class="toggle-icon">▼</span>
+                    🟨 Sezione 3: Strutture Algebriche <span class="toggle-icon">▼</span>
                 </h3>
                 <div class="qa-section-content" style="display: none;">
                     <p><b>Cosa definisce un Gruppo?</b></p>
@@ -211,6 +486,23 @@
                         <p>Se vale anche la proprietà commutativa, il gruppo si dice <b>Abeliano</b>.</p>
                     </div>
 
+                    <p><b>Qual è la definizione di elemento invertibile?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $(A, +, \cdot)$ un anello unitario con elemento neutro $1$. Un elemento $a \in A$ si dice <b>invertibile</b> se esiste un elemento $b \in A$ tale che: $a \cdot b = b \cdot a = 1$.</p>
+                        <p>In tal caso, $b$ è l'inverso di $a$ e si scrive $b = a^{-1}$.</p>
+                    </div>
+
+                    <p><b>Quali sono gli elementi invertibili in $(\mathbb{Z}, \cdot)$?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>In $\mathbb{Z}$ gli unici elementi invertibili sono $1$ e $-1$. Un elemento in $\mathbb{Z}$ è invertibile rispetto alla moltiplicazione se esiste un intero $b$ tale che $a \cdot b = 1$.</p>
+                        <ul>
+                            <li>$1$ è l'inverso di se stesso perché $1 \cdot 1 = 1$.</li>
+                            <li>$-1$ è l'inverso di se stesso perché $(-1) \cdot (-1) = 1$.</li>
+                            <li>Per ogni altro intero $n$ tale che $|n| > 1$, l'inverso $n^{-1} = \frac{1}{n} \notin \mathbb{Z}$ (dato che le frazioni non appartengono all'insieme $\mathbb{Z}$).</li>
+                        </ul>
+                        <p>L'insieme degli elementi invertibili in $\mathbb{Z}$ viene scritto come $\mathbb{Z}^* = \{1, -1\}$.</p>
+                    </div>
+
                     <p><b>Cosa sono gli elementi invertibili in $(\mathbb{Z}_m, \cdot)$?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
                         <p>Un elemento $[a] \in \mathbb{Z}_m$ è invertibile se e solo se $\text{MCD}(a, m) = 1$.</p>
@@ -221,171 +513,363 @@
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
                         <p>Un anello è un insieme dotato di due operazioni, solitamente somma(+) e prodotto($\cdot$), che rispettano alcune regole:</p>
                         <ul>
-                            <li>rispetto alla somma deve essere un gruppo abeliano (commutativa, associativa elemento neutro ed ogni elemento deve avere l'opposto)</li>
-                            <li>rispetto al prodotto deve essere associativo($a \cdot (b \cdot c) = (a \cdot b) \cdot c$)</li>
-                            <li>il prodotto deve distribuirsi rispetto alla somma: $a \cdot (b + c) = ab + ac$</li>
+                            <li>rispetto alla somma deve essere un gruppo abeliano (commutativa, associativa, elemento neutro ed ogni elemento deve avere l'opposto).</li>
+                            <li>rispetto al prodotto deve essere associativo ($a \cdot (b \cdot c) = (a \cdot b) \cdot c$).</li>
+                            <li>il prodotto deve distribuirsi rispetto alla somma: $a \cdot (b + c) = ab + ac$.</li>
                         </ul>
                         <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
-                            <b>Importante:</b> Esempio classico di Anello è l'insieme dei numeri interi <b>$\mathbb{Z}$</b>. Puoi sommare, sottrarre e moltiplicare, ma <b>non puoi sempre dividere</b>: ad esempio, $1$ diviso $2$ non fa un numero intero.
+                            <b>Importante:</b> L'insieme dei numeri interi <b>$\mathbb{Z}$</b> è un anello. Puoi sommare, sottrarre e moltiplicare, ma <b>non puoi sempre dividere</b>: ad esempio, $1$ diviso $2$ non fa un numero intero.
                         </div>
                     </div>
 
                     <p><b>Cosa è un Anello Unitario?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Un anello si dice <b>unitario</b> se, oltre alle proprietà base (somma e prodotto), possiede un <b>elemento neutro rispetto al prodotto</b>.</p>
-                        <p>In termini poveri: esiste un elemento (che chiamiamo solitamente <b>$1$</b>) tale che, moltiplicato per qualsiasi altro elemento $a$ dell'anello, lo lascia invariato.</p>
+                        <p>Un anello si dice <b>unitario</b> se, oltre alle proprietà base (somma e prodotto), possiede un <b>elemento neutro rispetto al prodotto</b> (solitamente indicato con $1$).</p>
                         <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
-                            <b>Importante:</b> Non tutti gli anelli sono unitari. Ad esempio, l'insieme dei <b>numeri pari</b> ($2\mathbb{Z}$) è un anello (se sommi o moltiplichi due numeri pari ottieni sempre un numero pari), ma <b>non è unitario</b> perché il numero $1$ non è un numero pari e non appartiene all'insieme.
+                            <b>Importante:</b> Non tutti gli anelli sono unitari. L'insieme dei <b>numeri pari</b> ($2\mathbb{Z}$) è un anello chiuso rispetto a somma e prodotto, ma <b>non è unitario</b> perché il numero $1$ non appartiene all'insieme.
                         </div>
                     </div>
 
                     <p><b>Cosa è un campo?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Un campo è un anello PERFETTO, oltre a tutte le proprietà degli anelli se ne aggiungono altre tre:</p>
+                        <p>Un campo è un anello PERFETTO, dove oltre a tutte le proprietà degli anelli se ne aggiungono altre tre:</p>
                         <ol>
-                            <li>commutatività del prodotto: $a \cdot b = b \cdot a$.</li>
-                            <li>esistenza dell'unità: deve esistere il numero 1 (elemento neutro del prodotto)</li>
-                            <li>esistenza dell'inverso (possibilità di dividere): ogni elemento diverso da 0 deve avere un inverso (l'inverso di 5 è 1/5)</li>
+                            <li>Commutatività del prodotto: $a \cdot b = b \cdot a$.</li>
+                            <li>Esistenza dell'unità: deve esistere il numero 1 (elemento neutro del prodotto).</li>
+                            <li>Esistenza dell'inverso (possibilità di dividere): ogni elemento diverso da 0 deve avere un inverso (es. l'inverso di 5 è 1/5).</li>
                         </ol>
-                        <p>In un campo si possono fare tutte e 4 le operazioni fondamentali ($+$, $-$, $\cdot$, $:$) uscendo dall'insieme soltanto con la divisione per 0.</p>
+                        <p>In un campo si possono fare tutte e 4 le operazioni fondamentali uscendo dall'insieme soltanto con la divisione per 0.</p>
                         <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
-                            <b>Importante:</b> Esempio classico di Campo I numeri reali <b>$\mathbb{R}$</b> o i numeri razionali <b>$\mathbb{Q}$</b>. Qui la divisione è sempre possibile (tranne per zero).
+                            <b>Esempio classico:</b> I numeri reali <b>$\mathbb{R}$</b> o i razionali <b>$\mathbb{Q}$</b>. Qui la divisione è sempre possibile.
                         </div>
                     </div>
 
                     <p><b>Quali sono le differenze tra anello e campo?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Le differenze tra anelli e campi è che in un anello la divisione NON è sempre possibile, mentre in un campo la divisione è sempre possibile per tutti gli elementi escluso lo 0.</p>
-                        <p><b>Esempio esame ($Z_6$ vs $Z_{11}$):</b></p>
+                        <p>La differenza principale è che in un anello la divisione NON è sempre possibile (mancano gli inversi moltiplicativi), mentre in un campo la divisione è sempre possibile per tutti gli elementi escluso lo 0.</p>
+                        <p><b>Esempio esame ($\mathbb{Z}_6$ vs $\mathbb{Z}_{11}$):</b></p>
                         <ul>
-                            <li><b>$\mathbb{Z}_6$ è un Anello</b> ma non un campo: non puoi dividere per $2$, perché non esiste un numero in $\mathbb{Z}_6$ che moltiplicato per $2$ faccia $1$.</li>
-                            <li><b>$\mathbb{Z}_{11}$ è un Campo</b>: poiché $11$ è primo, ogni numero (tranne lo zero) ha un inverso. L'inverso di $5$ in $\mathbb{Z}_{11}$ è $9$.</li>
+                            <li><b>$\mathbb{Z}_6$ è un Anello</b> ma non un campo: non puoi dividere per $2$, perché non esiste un numero in $\mathbb{Z}_6$ che moltiplicato per $2$ faccia $1$. (Inoltre ci sono i divisori dello zero).</li>
+                            <li><b>$\mathbb{Z}_{11}$ è un Campo</b>: poiché $11$ è primo, ogni numero (tranne lo zero) ha un inverso.</li>
                         </ul>
+                    </div>
+
+                    <p><b>In $\mathbb{Z}_{11}$ come hai trovato che l'inverso di 5 è proprio 9?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Ho cercato un multiplo di 5 che fosse 'vicino' a un multiplo di 11 con una differenza di 1. Sapendo che $11 \times 4 = 44$, il numero successivo è $45$, che è esattamente $5 \times 9$. Quindi $5 \times 9 = 45 \equiv 1 \pmod{11}$.</p>
+                    </div>
+
+                    <p><b>Sotto quale condizione l'anello $\mathbb{Z}_m$ diventa un Campo?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>L'anello $\mathbb{Z}_m$ diventa un campo se e solo se il modulo $m$ è un numero primo. In questa circostanza, ogni elemento non nullo dell'insieme ammette un inverso moltiplicativo, poiché per ogni $a$ non divisibile per $m$ si ha che il $\text{MCD}(a, m) = 1$.</p>
                     </div>
 
                     <p><b>Che struttura ha $(\mathbb{Z}_6, +, \cdot)$?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>È un <b>Anello Commutativo Unitario</b>. Non è un campo perché esistono divisori dello zero (es. $2 \cdot 3 \equiv 0 \pmod 6$) e non tutti gli elementi non nulli sono invertibili.</p>
-                    </div>
-
-                    <p><b>Come si risolve l'equazione $5x \equiv 1 \pmod{11}$?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Poiché $11$ è primo e $\text{MCD}(5, 11) = 1$, l'inverso esiste. Si cerca $x$ tale che $5x = 11k + 1$. Per $k=4$, $5x = 45 \implies x = 9$. La soluzione è $x \equiv 9 \pmod{11}$.</p>
-                    </div>
-
-                    <p><b>Qual è la definizione di Reticolo?</b></p>
                     <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 35px;">
-                        <p>Un reticolo è un insieme parzialmente ordinato in cui per ogni coppia di elementi $\{a, b\}$ esistono sempre l'estremo superiore (sup) e l'estremo inferiore (inf).</p>
+                        <p>È un <b>Anello Commutativo Unitario</b>. Non è un campo perché esistono divisori dello zero (es. $2 \cdot 3 = 6 \equiv 0 \pmod 6$) e non tutti gli elementi non nulli sono invertibili.</p>
                     </div>
                 </div>
 
-                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #f97316;">
-                    🟧 Sezione 4: Algebra Lineare e Geometria <span class="toggle-icon">▼</span>
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #db2777;">
+                    🟧 Sezione 4: Matrici <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Cosa è una matrice?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una matrice di tipo $m \times n$ su un campo $\mathbb{R}$ è una <b>tabella di $m \cdot n$ numeri reali</b> disposti secondo $m$ righe e $n$ colonne.</p>
+                        <ul>
+                            <li>Viene indicata come $A \in M_{m,n}(\mathbb{R})$.</li>
+                            <li>Il generico elemento della matrice che appartiene alla riga $i$ e alla colonna $j$ si indica con $a_{ij}$ ed è detto <b>termine di posto $(i,j)$</b>.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Cosa è una matrice trasposta?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Data una matrice $A \in M_{m,n}(\mathbb{R})$, la sua <b>trasposta</b>, indicata con $A^T \in M_{n,m}(\mathbb{R})$, è la matrice che si ottiene da $A$ <b>scambiando le righe con le colonne</b>.</p>
+                        <p>Se $a_{ij}$ è l'elemento di posto $(i,j)$ di $A$, l'elemento di posto $(j,i)$ della trasposta $A^T$ sarà $a_{ji}$. Se $A$ è una matrice $3 \times 4$, la sua trasposta $A^T$ sarà una matrice $4 \times 3$.</p>
+                    </div>
+
+                    <p><b>Come si definisce una matrice simmetrica in base alla sua trasposta?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>In algebra lineare una matrice quadrata $A$ si definisce <b>simmetrica</b> se coincide con la sua trasposta, ovvero quando: $A = A^T$. Questo implica che per ogni coppia di indici deve valere la condizione $a_{ij} = a_{ji}$.</p>
+                    </div>
+
+                    <p><b>Definizione formale di prodotto righe per colonne. Quando è possibile effettuarlo?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il prodotto righe per colonne tra due matrici $A$ e $B$ è definito solo se <b>il numero delle colonne della prima matrice $A$ è uguale al numero delle righe della seconda matrice $B$</b>.</p>
+                        <p>Se $A$ è $m \times n$ e $B$ è $n \times t$, la matrice prodotto $C = AB$ sarà di tipo $m \times t$. Il termine generico $c_{ij}$ è la somma dei prodotti dei termini della riga $i$ di $A$ per i corrispondenti termini della colonna $j$ di $B$.</p>
+                    </div>
+
+                    <p><b>Il prodotto tra matrici quadrate è commutativo? Fai un esempio o dimostralo.</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il prodotto tra matrici quadrate dello stesso ordine non è, in generale, commutativo. Ovvero, spesso accade che $AB \neq BA$.</p>
+                        <p>Sia, ad esempio: $A = \begin{pmatrix} 3 & 2 \\ 2 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 1 \\ -1 & 0 \end{pmatrix}$</p>
+                        <p>Calcolando $AB$: $AB = \begin{pmatrix} 1 & 3 \\ 2 & 2 \end{pmatrix}$</p>
+                        <p>Calcolando $BA$: $BA = \begin{pmatrix} 5 & 2 \\ -3 & -2 \end{pmatrix}$</p>
+                        <p>Poiché $AB \neq BA$, l'operazione non è commutativa.</p>
+                    </div>
+
+                    <p><b>Cosa significa che una matrice è invertibile?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una matrice quadrata $A$ di ordine $n$ si dice <i>invertibile</i> se esiste una matrice $B$ tale che il prodotto di $A$ per $B$ (e viceversa) restituisca la <i>matrice identità</i> $I_{n}$. In simboli: $AB = BA = I_{n}$.</p>
+                        <p>Tale matrice $B$ è unica, viene indicata con $A^{-1}$, e la condizione affinché esista è che $\det(A) \neq 0$ (matrice non singolare).</p>
+                    </div>
+
+                    <p><b>Come si applica il metodo di Gauss-Jordan per trovare l'inversa?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si affianca alla matrice di partenza $A$ la matrice identità $I$, creando un'unica grande matrice $(A|I)$. Si applicano le operazioni elementari di riga di Gauss finché la parte sinistra (dove c'era $A$) diventa la matrice identità a scala ridotta. A quel punto, ciò che si troverà nella metà di destra sarà esattamente la matrice inversa $A^{-1}$.</p>
+                    </div>
+
+                    <p><b>Dimostra o spiega perché l'anello delle matrici quadrate $M_n(\mathbb{R})$ ha i divisori dello zero.</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Basta trovare due matrici non nulle il cui prodotto dia la matrice nulla. Ad esempio, siano:</p>
+                        <p>$A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \neq 0$ e $B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \neq 0$.</p>
+                        <p>Moltiplicandole: $AB = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = \mathbf{0}$. Poiché $AB=0$ ma $A \neq 0$ e $B \neq 0$, $M_n(\mathbb{R})$ possiede divisori dello zero.</p>
+                    </div>
+
+                    <p><b>Definizione formale di matrice a scala. Che cos'è un pivot?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Una matrice è a scala se il primo elemento non nullo di ogni riga (chiamato <b>pivot</b>) si trova sempre più a destra rispetto al pivot della riga precedente, e le eventuali righe composte di soli zeri si trovano tutte in fondo alla matrice.</p>
+                    </div>
+
+                    <p><b>Definizione di matrice a scala ridotta. A cosa serve?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>È una matrice a scala in cui tutti i pivot sono esattamente uguali a 1, e in ogni colonna contenente un pivot ci sono solo zeri sia sotto che <i>sopra</i> il pivot stesso. Serve, dal punto di vista pratico, a risolvere immediatamente i sistemi lineari leggendo le soluzioni direttamente dall'ultima colonna.</p>
+                    </div>
+
+                    <p><b>Definizione di Rango di una matrice (tramite i minori).</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il rango di una matrice $A$ è l'ordine massimo di un minore quadrato (sottomatrice) estraibile da $A$ il cui determinante sia diverso da zero.</p>
+                    </div>
+
+                    <p><b>Che legame c'è tra il Rango di una matrice e i suoi pivot se la riduciamo a scala con Gauss?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il rango di una matrice coincide esattamente con il numero totale dei suoi pivot (ovvero le righe non nulle) ottenuti dopo averla ridotta a scala. Le operazioni elementari di Gauss non alterano il rango della matrice.</p>
+                    </div>
+
+                    <p><b>Dimostrare che se due matrici sono equivalenti per righe (ottenute tramite operazioni di Gauss), esse hanno lo stesso rango.</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il rango corrisponde al numero massimo di righe linearmente indipendenti. Le operazioni elementari di riga (scambio di righe, moltiplicazione per scalare non nullo, somma di una riga con un multiplo di un'altra) per definizione non creano né distruggono l'indipendenza lineare del sistema di righe. Quindi il numero di righe indipendenti (il rango) rimane invariato.</p>
+                    </div>
+
+                    <p><b>Enunciato del Teorema di Laplace per il calcolo del determinante. Cos'è il complemento algebrico?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il determinante di una matrice quadrata $A$ è pari alla somma dei prodotti degli elementi di una qualsiasi riga (o colonna) per i rispettivi complementi algebrici.</p>
+                        <p>Il <b>complemento algebrico</b> $A_{ij}$ associato all'elemento $a_{ij}$ è calcolato come $(-1)^{i+j}$ moltiplicato per il determinante del minore che si ottiene eliminando la riga $i$ e la colonna $j$ dalla matrice originaria.</p>
+                    </div>
+
+                    <p><b>Qual'è l'Enunciato del Teorema di Binet?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Afferma che il determinante del prodotto di due matrici quadrate $A$ e $B$ dello stesso ordine è uguale al prodotto dei singoli determinanti. In simboli: $\det(AB) = \det(A) \cdot \det(B)$.</p>
+                        <ul>
+                            <li><b>Invertibilità:</b> Il prodotto di due matrici è invertibile se e solo se lo sono entrambe le matrici originali (poiché il prodotto dei determinanti sarà $\neq 0$ solo se entrambi lo sono).</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Qual è la condizione necessaria e sufficiente affinchè una matrice $A \in M_n(\mathbb{R})$ sia invertibile?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La condizione è che il suo determinante sia diverso da zero ($\det(A) \neq 0$), ovvero che la matrice sia "non singolare".</p>
+                    </div>
+
+                    <p><b>Usando il Teorema di Binet, dimostra che se A è invertibile, allora $\det(A^{-1}) = (\det A)^{-1}$.</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Per definizione di matrice inversa, $A \cdot A^{-1} = I$ (matrice identità).</p>
+                        <p>Applichiamo il determinante a entrambi i membri: $\det(A \cdot A^{-1}) = \det(I)$.</p>
+                        <p>Per il Teorema di Binet a sinistra, e sapendo che $\det(I)=1$ a destra: $\det(A) \cdot \det(A^{-1}) = 1$.</p>
+                        <p>Poiché A è invertibile, $\det(A) \neq 0$. Dividendo entrambi i membri per $\det(A)$, otteniamo: $\det(A^{-1}) = \frac{1}{\det(A)}$, ovvero la tesi.</p>
+                    </div>
+
+                    <p><b>Qual'è l'enunciato del teorema di Rouche-Capelli?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il sistema lineare $AX=B$ ammette soluzioni (è compatibile) se e solo se il rango della matrice incompleta $A$ è uguale al rango della matrice completa $(A|B)$. In simboli: $rg(A) = rg(A|B)$.</p>
+                        <p>Il numero di soluzioni dipende dal numero delle incognite $n$:</p>
+                        <ul>
+                            <li>Se $rg(A) = rg(A|B) = n$: il sistema ammette una <b>sola soluzione</b> (sistema determinato, caso di Cramer).</li>
+                            <li>Se $rg(A) = rg(A|B) = r < n$: il sistema ammette <b>infinite soluzioni</b> dipendenti da $n - r$ parametri ($\infty^{n-r}$ soluzioni).</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Se la matrice incompleta A di un sistema AX=B è quadrata e ha determinante diverso da zero, quante soluzioni ha il sistema?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Avendo determinante non nullo, il rango della matrice incompleta è massimo ed è pari al numero di incognite ($n$). Anche il rango della completa sarà $n$. Trattandosi di un sistema di Cramer, esso ammette <b>una e una sola soluzione</b>.</p>
+                    </div>
+
+                    <p><b>Perché un sistema lineare omogeneo (AX=0) è sempre compatibile? L'insieme delle sue soluzioni che struttura algebrica forma?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>È sempre compatibile perché ammette sempre almeno la <b>soluzione nulla</b> (tutte le incognite pari a 0 rendono vere le equazioni, e l'aggiunta di una colonna di zeri non cambia mai il rango della matrice). L'insieme delle sue soluzioni forma sempre un <b>sottospazio vettoriale</b>.</p>
+                    </div>
+
+                    <p><b>Definizione di matrici simili. Qual è la relazione di similitudine?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Due matrici quadrate $A$ e $B$ si dicono <b>simili</b> se esiste una matrice invertibile $P$ (detta matrice di passaggio) tale che: $B = P^{-1}AP$.</p>
+                        <p>La similitudine è una relazione di equivalenza (è Riflessiva, Simmetrica e Transitiva).</p>
+                        <p>Matrici simili rappresentano lo stesso operatore lineare in basi diverse, e condividono gli <i>invarianti</i>: stesso determinante, stesso rango, stessa traccia e stesso polinomio caratteristico.</p>
+                    </div>
+
+                    <p><b>Due matrici simili hanno lo stesso determinante? E lo stesso polinomio caratteristico?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sì a entrambe. Per il determinante, la dimostrazione usa Binet:<br>
+                        $\det(B) = \det(P^{-1}AP) = \det(P^{-1}) \cdot \det(A) \cdot \det(P) = (\frac{1}{\det P}) \cdot \det(A) \cdot \det(P) = \det(A)$.</p>
+                    </div>
+
+                    <p><b>Definizione di Autovalore e Autovettore.</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $A$ una matrice quadrata di ordine $n$. Un vettore non nullo $v$ si dice <b>autovettore</b> se esiste uno scalare $\lambda$ tale che $Av = \lambda v$. Lo scalare $\lambda$ viene chiamato <b>autovalore</b> associato.</p>
+                        <p>Geometricamente, un autovettore è un vettore la cui direzione non viene ruotata dalla matrice $A$, ma viene solo dilatato, contratto o invertito di verso in base al fattore di scala $\lambda$.</p>
+                    </div>
+
+                    <p><b>Cos'è il polinomio caratteristico? Qual è il suo grado per una matrice n×n?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Il polinomio caratteristico $P(\lambda)$ è il determinante della matrice ottenuta sottraendo ad $A$ la matrice identità moltiplicata per $\lambda$: $P(\lambda) = \det(A - \lambda I)$.</p>
+                        <p>Per una matrice $n \times n$, è sempre un polinomio di <b>grado $n$</b>. Le radici di questo polinomio sono gli autovalori della matrice.</p>
+                    </div>
+
+                    <p><b>Qual è la differenza tra molteplicità algebrica e geometrica di un autovalore? Che disuguaglianza le lega?</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La <b>molteplicità algebrica ($m_a$)</b> è il numero di volte in cui l'autovalore appare come radice del polinomio caratteristico.</p>
+                        <p>La <b>molteplicità geometrica ($m_g$)</b> è la dimensione del relativo autospazio vettoriale, calcolata come $n - \text{rango}(A - \lambda I)$.</p>
+                        <p>Vale sempre la disuguaglianza: $1 \le m_g \le m_a \le n$.</p>
+                    </div>
+
+                    <p><b>Quando una matrice è diagonalizzabile? (Teorema/Criterio di diagonalizzabilità)</b></p>
+                    <div style="border-left: 4px solid #db2777; padding-left: 15px; margin-bottom: 35px;">
+                        <p>Una matrice $A$ di ordine $n$ è diagonalizzabile se e solo se:</p>
+                        <ol>
+                            <li>Il suo polinomio caratteristico ha $n$ radici nel campo (contate con la loro molteplicità algebrica).</li>
+                            <li>Per <i>ogni singolo autovalore</i> trovato, la molteplicità algebrica $m_a$ coincide esattamente con la molteplicità geometrica $m_g$.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #0ea5e9;">
+                    🟦 Sezione 5: Algebra Lineare e Spazi Vettoriali <span class="toggle-icon">▼</span>
                 </h3>
                 <div class="qa-section-content" style="display: none;">
                     <p><b>Cos'è uno Scalare?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
                         <p>Uno scalare è semplicemente un elemento di un <b>Campo</b> (solitamente $\mathbb{R}$, $\mathbb{Q}$ o $\mathbb{C}$).</p>
-                        <ul>
-                            <li><b>A cosa serve:</b> In algebra lineare, lo scalare funge da "fattore di scala". Serve a moltiplicare i vettori per allungarli, accorciarli o invertirne la direzione.</li>
-                            <li><b>Esempio:</b> Se moltiplichi un vettore $v$ per lo scalare $2$, ottieni un vettore lungo il doppio.</li>
-                        </ul>
+                        <p>In algebra lineare, lo scalare funge da "fattore di scala". Serve a moltiplicare i vettori per allungarli, accorciarli o invertirne la direzione.</p>
                     </div>
 
-                    <p><b>Cos'è un Vettore?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Formalmente, un vettore è un <b>elemento di uno Spazio Vettoriale</b>.</p>
-                        <ul>
-                            <li>Non è solo una "freccia" o una lista di numeri $(x, y, z)$; quella è solo una loro rappresentazione.</li>
-                            <li><b>Proprietà:</b> I vettori sono entità che possono essere sommate tra loro o moltiplicate per uno scalare, producendo sempre un altro vettore dello stesso insieme.</li>
-                        </ul>
+                    <p><b>Cos'è un Vettore? A cosa servono le matrici qui?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Formalmente, un vettore è un <b>elemento di uno Spazio Vettoriale</b>. Può essere rappresentato come una n-upla di numeri, ma è un'entità astratta che può essere sommata e moltiplicata per uno scalare.</p>
+                        <p>Le matrici sono lo strumento per gestire queste combinazioni. Ogni colonna di una matrice può essere vista come un vettore, e il prodotto matrice-vettore non è altro che una combinazione lineare delle colonne della matrice.</p>
                     </div>
 
                     <p><b>Cosa è uno Spazio Vettoriale?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Uno spazio vettoriale su un campo K (scalari) è un insieme V dotato di due operazioni che soddisfano 8 proprietà fondamentali.</p>
-                        <ul>
-                            <li><i>Somma interna</i> ($+$): Prendi due vettori e ne ottieni un terzo. Deve essere un Gruppo Abeliano (associativa, commutativa, esiste lo zero, esiste l'opposto).</li>
-                            <li><i>Prodotto per scalare</i> ($\cdot$): Prendi uno scalare $k \in K$ e un vettore $v \in V$ e ottieni un vettore $kv$. Deve rispettare:
-                                <ul>
-                                    <li>Proprietà distributive (rispetto alla somma di vettori e alla somma di scalari).</li>
-                                    <li>Proprietà associativa del prodotto tra scalari.</li>
-                                    <li>Esistenza dell'elemento neutro dello scalare ($1 \cdot v = v$).</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div style="background: rgba(234, 179, 8, 0.15); padding: 10px; border-radius: 8px; margin-top:10px;">
-                            <b>Senza Campo non c'è Spazio Vettoriale:</b> Per definire uno spazio vettoriale, devi prima avere un <b>Campo</b> di scalari. Se avessi solo un anello (come $\mathbb{Z}$), la struttura si chiamerebbe "Modulo" e non spazio vettoriale, perché non potresti sempre dividere gli scalari.
-                        </div>
-                    </div>
-
-                    <p><b>Qual è la differenza tra vettore e scalare?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Un vettore è un elemento di uno spazio vettoriale (un'entità che si può sommare e scalare), mentre uno scalare è un elemento del campo su cui lo spazio è definito (un numero che serve a moltiplicare il vettore).</p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Uno spazio vettoriale su un campo K è un insieme V dotato di due operazioni (Somma interna e Prodotto per scalare) che soddisfano 8 proprietà fondamentali, tra cui l'essere un Gruppo Abeliano per la somma e rispettare le proprietà distributive per gli scalari.</p>
+                        <p><i>Senza Campo non c'è Spazio Vettoriale:</i> se avessimo solo un anello di base come $\mathbb{Z}$, la struttura si chiamerebbe "Modulo", perché mancherebbe la garanzia di poter dividere gli scalari.</p>
                     </div>
 
                     <p><b>Perché si dice che lo spazio delle matrici $M_{2 \times 2}(\mathbb{R})$ è uno spazio vettoriale?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Perché soddisfa tutte le proprietà richieste: la somma di due matrici $2 \times 2$ è ancora una matrice $2 \times 2$ (ed è commutativa/associativa), esiste la matrice nulla, e il prodotto di una matrice per un numero reale (scalare) è ancora una matrice $2 \times 2$.</p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Perché soddisfa tutte le proprietà: la somma di due matrici $2 \times 2$ è ancora $2 \times 2$, esiste l'elemento nullo (matrice di zeri), e la moltiplicazione di una matrice per un numero reale scala tutti gli elementi restituendo una matrice nello stesso spazio.</p>
                     </div>
 
-                    <p><b>Cos'è una base di uno spazio vettoriale?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Una base di uno spazio vettoriale V è l'insieme di vettori $\mathcal{B} = \{v_1, v_2, \dots, v_n\}$ che soddisfa due condizioni contemporaneamente:</p>
+                    <p><b>Definizione di Sottospazio Vettoriale. Come si verifica praticamente?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un sottoinsieme non vuoto $W$ di uno spazio vettoriale $V$ è un sottospazio se conserva la chiusura rispetto alle operazioni dello spazio. Praticamente si verificano 3 condizioni:</p>
                         <ol>
-                            <li><b>Indipendenza Lineare:</b> Nessun vettore della base può essere scritto come combinazione lineare degli altri. (Non ci sono "vettori inutili" o ridondanti).</li>
-                            <li><b>Sistema di generatori:</b> Ogni vettore dello spazio V può essere espresso come combinazione lineare dei vettori della base.</li>
+                            <li>Il vettore nullo $\mathbf{0}$ appartiene a $W$ (se non c'è lo zero, l'esercizio finisce subito: non è sottospazio).</li>
+                            <li>Dati due vettori $u, v \in W$, la loro somma $u+v$ è ancora dentro $W$.</li>
+                            <li>Dato un vettore $v \in W$ e uno scalare $k$, il prodotto $k \cdot v$ è ancora dentro $W$.</li>
                         </ol>
-                        <p>Una base permette di identificare ogni vettore dello spazio tramite delle <b>coordinate uniche</b>. Il numero di vettori presenti in una base è chiamato <b>Dimensione</b> dello spazio vettoriale.</p>
+                    </div>
+
+                    <p><b>Differenza tra "vettori linearmente indipendenti" e "sistema di generatori". Quando formano una Base?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>I vettori sono <b>linearmente indipendenti</b> se nessuno di essi può essere scritto come combinazione degli altri (non ci sono "doppioni"). L'unica combinazione che dà il vettore nullo è quella con tutti i coefficienti a zero.</p>
+                        <p>Sono un <b>sistema di generatori</b> se ogni vettore dell'intero spazio vettoriale può essere costruito combinandoli.</p>
+                        <p>Essi formano una <b>Base</b> quando possiedono <i>entrambe</i> queste proprietà contemporaneamente.</p>
+                    </div>
+
+                    <p><b>Cosa rappresentano i coefficienti di un vettore rispetto a una base?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Rappresentano le <i>coordinate uniche</i> del vettore in quel sistema di riferimento. Sono i "pesi" che indicano in che quantità devo moltiplicare i vettori della base per raggiungere il vettore finale.</p>
+                    </div>
+
+                    <p><b>Quale è la base di uno spazio vettoriale $\mathbb{R}^3$? Quale sarebbe il vettore nullo?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>La base <i>canonica</i> di $\mathbb{R}^3$ è formata dai tre vettori degli assi cartesiani: $e_1 = (1, 0, 0)$, $e_2 = (0, 1, 0)$, $e_3 = (0, 0, 1)$.</p>
+                        <p>Il vettore nullo di $\mathbb{R}^3$ è l'origine: $\mathbf{0} = (0, 0, 0)$.</p>
+                    </div>
+
+                    <p><b>Ma ogni spazio ha una base canonica?</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>No. Solo gli spazi "standard" numerici ($\mathbb{R}^n$, matrici, polinomi) possiedono basi che per convenzione universale chiamiamo "canoniche" perché banalmente semplici. Gli spazi vettoriali astratti possiedono infinite basi senza che ce ne sia una "privilegiata".</p>
                     </div>
 
                     <p><b>Cos'è un'applicazione lineare?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Un'applicazione lineare (o trasformazione lineare) è una funzione $f: V \to W$ tra due spazi vettoriali che "rispetta" le operazioni dello spazio. Per essere definita lineare, deve soddisfare due proprietà:</p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un'applicazione (trasformazione) $f: V \to W$ tra due spazi vettoriali è lineare se rispetta le due proprietà cardine:</p>
                         <ol>
-                            <li><b>Additività:</b> $f(v_1 + v_2) = f(v_1) + f(v_2)$ (L'immagine della somma è la somma delle immagini).</li>
-                            <li><b>Omogeneità:</b> $f(k \cdot v) = k \cdot f(v)$ (L'immagine del vettore scalato è lo scalare per l'immagine del vettore).</li>
+                            <li><b>Additività:</b> $f(v_1 + v_2) = f(v_1) + f(v_2)$.</li>
+                            <li><b>Omogeneità:</b> $f(k \cdot v) = k \cdot f(v)$.</li>
                         </ol>
                     </div>
 
                     <p><b>Qual è il legame tra applicazioni lineari e matrici?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Fissata una base, ogni applicazione lineare tra spazi vettoriali a dimensione finita può essere rappresentata in modo unico da una matrice. Moltiplicare un vettore per questa matrice equivale ad applicare la funzione lineare al vettore.</p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Fissata una base per gli spazi di partenza e di arrivo, <b>ogni</b> applicazione lineare può essere rappresentata in modo univoco da una matrice. Applicare la trasformazione a un vettore equivale a svolgere un semplice prodotto righe per colonne tra la matrice e il vettore colonna delle coordinate.</p>
                     </div>
 
-                    <p><b>Cos'è il Nucleo ($\text{Ker}$) e l'Immagine ($\text{Im}$) di un'applicazione lineare?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Il <b>Nucleo $\text{Ker}(f)$</b> è l'insieme dei vettori del dominio $v$ tali che la loro immagine è il vettore nullo: $f(v) = \mathbf{0}$. È sempre un sottospazio vettoriale del dominio.</p>
-                        <p>L'<b>Immagine $\text{Im}(f)$</b> è l'insieme di tutti i vettori del codominio che vengono "colpiti" da almeno un vettore del dominio. È un sottospazio del codominio.</p>
-                    </div>
-
-                    <p><b>Quando una matrice è diagonalizzabile?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Una matrice $A$ di ordine $n$ è diagonalizzabile se e solo se:</p>
+                    <p><b>Cos'è il Nucleo ($\text{Ker}$) e l'Immagine ($\text{Im}$) di un'applicazione lineare? Dimostrami che il Nucleo è un sottospazio.</b></p>
+                    <div style="border-left: 4px solid #0ea5e9; padding-left: 15px; margin-bottom: 35px;">
+                        <p>Il <b>Nucleo $\text{Ker}(f)$</b> è l'insieme dei vettori del dominio che vengono mandati nel vettore nullo del codominio: $f(v) = \mathbf{0}$.</p>
+                        <p>L'<b>Immagine $\text{Im}(f)$</b> è l'insieme di tutti i vettori "colpiti" nel codominio.</p>
+                        <p>Il Nucleo è sempre un sottospazio perché:</p>
                         <ol>
-                            <li>Il suo polinomio caratteristico ha $n$ radici nel campo (contate con molteplicità).</li>
-                            <li>Per ogni autovalore $\lambda$, la molteplicità algebrica $m_a(\lambda)$ è uguale alla molteplicità geometrica $m_g(\lambda)$.</li>
+                            <li>Contiene lo zero: in una funzione lineare, $f(\mathbf{0}) = \mathbf{0}$ sempre.</li>
+                            <li>È chiuso per la somma: se $f(u)=0$ e $f(v)=0$, allora $f(u+v) = f(u)+f(v) = 0+0 = 0$.</li>
+                            <li>È chiuso per prodotto: se $f(v)=0$, allora $f(kv) = k \cdot f(v) = k \cdot 0 = 0$.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #ef4444;">
+                    🟥 Sezione 6: Geometria Analitica <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Dati un piano e una retta nello spazio, come capisco se sono paralleli o incidenti?</b></p>
+                    <div style="border-left: 4px solid #ef4444; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si imposta il sistema lineare contenente l'equazione del piano e le equazioni (cartesiane) della retta, ottenendo un sistema $3 \times 3$.</p>
+                        <ul>
+                            <li>Se il determinante della matrice incompleta è $\neq 0$ (rango 3), c'è una soluzione unica: <b>sono incidenti</b> in un punto.</li>
+                            <li>Se il determinante è nullo, si calcola il rango della completa. Se è impossibile (nessuna intersezione), sono <b>paralleli esterni</b>. Se è indeterminato, la retta <b>giace sul piano</b>.</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Date due rette nello spazio, come verifico se sono parallele, incidenti o sghembe?</b></p>
+                    <div style="border-left: 4px solid #ef4444; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Prima guardiamo i loro vettori direttori $\vec{v}_r$ e $\vec{v}_s$:</p>
+                        <ol>
+                            <li>Se i vettori sono proporzionali, le rette sono <b>parallele</b> (possono essere distinte o coincidenti).</li>
+                            <li>Se i vettori non sono proporzionali, le rette possono essere <b>incidenti o sghembe</b>. Si mettono a sistema le 4 equazioni cartesiane. Se il sistema ammette una soluzione (rango completa = rango incompleta = 3), si incrociano in un punto. Se il sistema è impossibile (rango completa = 4), non hanno punti in comune e, non essendo parallele, si dicono <b>sghembe</b>.</li>
                         </ol>
                     </div>
 
-                    <p><b>Che cos'è una matrice a scala?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>È una matrice ottenuta tramite l'algoritmo di Gauss in cui il numero di zeri iniziali di ogni riga aumenta riga dopo riga. I primi elementi non nulli di ogni riga sono detti <b>pivot</b>.</p>
+                    <p><b>Che cos'è il vettore direttore di una retta e cosa sono i parametri direttori?</b></p>
+                    <div style="border-left: 4px solid #ef4444; padding-left: 15px; margin-bottom: 35px;">
+                        <p>Il vettore direttore $\vec{v} = (l, m, n)$ è un vettore non nullo che indica la "direzione" della retta nello spazio tridimensionale. Le sue tre componenti spaziali $l, m, n$ prendono il nome di <b>parametri direttori</b>. Se la retta è espressa in forma parametrica, essi corrispondono semplicemente ai coefficienti del parametro $t$.</p>
                     </div>
+                </div>
 
-                    <p><b>Quando due rette nello spazio si dicono sghembe?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Due rette si dicono sghembe se non sono parallele e non hanno punti di intersezione (ovvero non sono complanari).</p>
-                    </div>
-
-                    <p><b>Come si determina la posizione tra retta e piano?</b></p>
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
-                        <p>Si analizza il sistema tra l'equazione del piano e della retta:</p>
-                        <ol>
-                            <li><b>Incidenti:</b> Il sistema ha un'unica soluzione.</li>
-                            <li><b>Parallela esterna:</b> Il sistema non ha soluzioni.</li>
-                            <li><b>Contenuta (Giacitura):</b> Il sistema ha infinite soluzioni.</li>
-                        </ol>
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #f97316;">
+                    🟧 Sezione 7: Calcolo Combinatorio <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Quanti sono i numeri naturali positivi minori di 31 e divisibili per 2 o per 3?</b></p>
+                    <div style="border-left: 4px solid #f97316; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si utilizza il <b>Principio di Inclusione-Esclusione</b>. L'insieme è composto dai numeri da 1 a 30 (minori di 31).</p>
+                        <p>Sia $A$ l'insieme dei multipli di 2 e $B$ l'insieme dei multipli di 3.</p>
+                        <ul>
+                            <li>Numeri divisibili per 2: $|A| = \lfloor 30 / 2 \rfloor = 15$.</li>
+                            <li>Numeri divisibili per 3: $|B| = \lfloor 30 / 3 \rfloor = 10$.</li>
+                            <li>Numeri divisibili per <i>entrambi</i> (cioè multipli del m.c.m. = 6): $|A \cap B| = \lfloor 30 / 6 \rfloor = 5$.</li>
+                        </ul>
+                        <p>La formula richiede la somma dei singoli meno l'intersezione: $15 + 10 - 5 = \mathbf{20}$.</p>
                     </div>
                 </div>
             </div>
