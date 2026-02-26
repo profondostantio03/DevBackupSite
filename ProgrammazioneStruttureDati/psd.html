@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSD - Archivio di Gigi</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="../index.html" class="logo-link">Archivio di Gigi</a></div>
+        <nav>
+            <a href="../MatematicaDiscreta/md.html" class="nav-link">Matematica Discreta</a>
+            <a href="../AnalisiMatematica/analisi.html" class="nav-link">Analisi</a>
+            <a href="psd.html" class="nav-link active-link">PSD</a>
+            <a href="../reti.html" class="nav-link">Reti</a>
+            <a href="../prog-distribuita.html" class="nav-link">Prog. Distribuita</a>
+            <button id="theme-toggle" class="theme-btn" title="Cambia Tema">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="zoom-wrapper">
+            <button class="zoom-btn" onclick="toggleZoomMenu()" title="Zoom">🔍</button>
+            <div id="zoomActions">
+                <button class="zoom-btn" onclick="resizeText(-1)">➖</button>
+                <button class="zoom-btn" onclick="resizeText(1)">➕</button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterNotes()" placeholder="Cerca argomento...">
+        </div>
+
+        <div class="page-header">
+            <button id="backBtn" onclick="loadMacroCategories()">
+                ⬅ Categorie
+            </button>
+            <h2 id="pageTitle">Macro Aree</h2>
+            
+            <button id="qaBtn" class="help-btn" onclick="openQaModal()" title="Domande Ripasso Orale">❓</button>
+        </div>
+        
+        <div id="math-grid" class="flashcard-grid"></div>
+    </main>
+
+    <div id="topicModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeModal(event)">&times;</span>
+            <h2 id="modalTitle">Titolo</h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay" onclick="closeEditModal(event)" style="display:none;">
+        <div class="modal-content glass-panel" style="max-width: 400px; text-align: left;">
+            <span class="close-modal" onclick="closeEditModal(event)">&times;</span>
+            <h3 style="margin-top:0;">Modifica Categoria</h3>
+            
+            <label style="display:block; margin-bottom:5px; font-weight:bold; color:var(--text-color);">Nuovo Titolo</label>
+            <input type="text" id="editTitleInput" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--glass-border); background: var(--input-bg); color: var(--text-color);">
+            
+            <label style="display:block; margin-bottom:5px; font-weight:bold; color:var(--text-color);">Scegli Colore Sfondo</label>
+            <div class="color-picker" style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center;">
+                <div onclick="selectEditColor('style-orange')" class="color-circle style-orange-bg"></div>
+                <div onclick="selectEditColor('style-purple')" class="color-circle style-purple-bg"></div>
+                <div onclick="selectEditColor('style-blue')" class="color-circle style-blue-bg"></div>
+                <div onclick="selectEditColor('style-green')" class="color-circle style-green-bg"></div>
+                <div onclick="selectEditColor('style-dark')" class="color-circle style-dark-bg"></div>
+            </div>
+            <button onclick="saveEdit()" style="width:100%; padding:12px; background:var(--primary-color); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">SALVA MODIFICHE</button>
+        </div>
+    </div>
+
+    <div id="qaModal" class="modal-overlay" onclick="closeQaModal(event)" style="display:none;">
+        <div class="modal-content glass-panel" style="max-width: 850px; text-align: left;">
+            <span class="close-modal" onclick="closeQaModal(event)">&times;</span>
+            <h2 style="margin-top:0; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">Domande Ripasso Orale PSD</h2>
+            
+            <div id="qaBody" style="margin-top: 20px;">
+                <p style="text-align: center; opacity: 0.7;">Presto aggiungeremo le domande per l'orale di PSD!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-container">
+            <p>Contattami o seguimi su:</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/luigi-montuori-731637369/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/profondostantio/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/profondostantio03" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.youtube.com/@profondostantio/videos" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:montuorildev@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2025 Archivio di Gigi - Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script> 
+    <script src="psd.js"></script>
+</body>
+</html>
