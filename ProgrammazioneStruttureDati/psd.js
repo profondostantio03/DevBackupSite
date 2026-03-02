@@ -1,6 +1,7 @@
 // --- DATI MACRO CATEGORIE PSD ---
 const psdCategories = [
     { id: 'progettazione', title: '1. Progettazione e Moduli', desc: 'Principi, Information Hiding e Makefile', icon: '🏗️', customColor: 'style-blue' },
+    { id: 'ordinamento', title: '2. Ordinamento Base', desc: 'Proprietà, Insertion Sort e Bubble Sort', icon: '🔄', customColor: 'style-orange' }
 ];
 
 // --- APPUNTI SPECIFICI PSD ---
@@ -81,6 +82,74 @@ target: dipendenze
                 <p><b>Risposta:</b></p>
                 <p>L'<b>astrazione funzionale</b> si concentra sulle operazioni: delega un'azione a una funzione nascondendo <i>come</i> l'algoritmo la esegue (es. chiamo <code>sort()</code> senza sapere se usa QuickSort o MergeSort).<br><br>
                 L'<b>astrazione sui dati</b> si concentra sulla struttura: definisce un tipo di dato e l'insieme delle operazioni lecite su di esso, nascondendo come il dato è effettivamente salvato in memoria (es. una pila PUSH/POP senza sapere se usa array o liste).</p>
+            </div>
+        `
+    },
+
+    // --- 2. ORDINAMENTO ---
+    { 
+        id: 102, 
+        category: 'ordinamento', 
+        title: "1. Insertion e Bubble Sort", 
+        summary: "Proprietà algoritmi (Stabile, In loco) e metodi di base.", 
+        details: `
+            <p>Il problema dell'ordinamento consiste nell'elencare gli elementi di un insieme secondo una sequenza stabilita da una <b>relazione d'ordine</b> (es. ordine alfabetico o numerico). L'ordinamento avviene in base a una <b>chiave</b>.</p>
+            
+            <h4 style="color: #f59e0b;">Proprietà degli algoritmi (Domanda d'esame)</h4>
+            <ul>
+                <li><b>Stabile:</b> Due elementi con la medesima chiave mantengono lo stesso ordine relativo che avevano prima dell'ordinamento.</li>
+                <li><b>In loco (In-place):</b> Usa un numero costante di variabili ausiliarie oltre all'array da ordinare (non richiede di duplicare l'array in memoria).</li>
+                <li><b>Adattivo:</b> Il numero di operazioni effettuate dipende positivamente dall'ordine iniziale dell'input (è più veloce se l'array è già quasi ordinato).</li>
+                <li><b>Interno vs Esterno:</b> Interno se i dati stanno in RAM; Esterno se risiedono su disco perché troppo grandi.</li>
+            </ul>
+
+            <h4 style="color: #f59e0b;">Classificazione (Costo Temporale)</h4>
+            <ul>
+                <li><b>Semplici $O(n^2)$:</b> Selection, Insertion, Bubble Sort.</li>
+                <li><b>Avanzati $O(n \\log n)$:</b> Merge Sort, QuickSort (che però ha un caso pessimo $O(n^2)$).</li>
+            </ul>
+
+            <h4 style="color: #f59e0b;">Insertion Sort</h4>
+            <p>Si basa su una visita totale: ad ogni passo <i>i</i>, la sottosequenza che precede l'elemento corrente <code>a[i]</code> è già ordinata. L'algoritmo inserisce l'elemento corrente nella posizione corretta shiftando in avanti gli elementi maggiori.</p>
+
+            <h4 style="color: #f59e0b;">Bubble Sort</h4>
+            <p>Confronta coppie di elementi adiacenti e le scambia se non sono in ordine. Ad ogni passo, l'elemento più grande della parte non ordinata "risale" verso la sua posizione finale a destra come una bolla.</p>
+            <p><i>Nota:</i> La versione standard <b>non è adattiva</b> perché esegue sempre tutti i cicli anche se l'array è già ordinato.</p>
+        `,
+        examples: `
+            <div style="background: #fff7ed; padding: 15px; border-radius: 10px; border-left: 4px solid #f97316; margin-bottom: 15px;">
+                <h4 style="margin-top:0;">Insertion Sort in C</h4>
+                <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
+for(i = 1; i < n; i++) {
+   // Inserisce l'elemento i-esimo nella sottosequenza a[0..i-1]
+   Inserisci_ordinato(a, a[i], i); 
+}</pre>
+            </div>
+
+            <div style="background: #fff7ed; padding: 15px; border-radius: 10px; border-left: 4px solid #f97316;">
+                <h4 style="margin-top:0;">Bubble Sort Adattivo (Ottimizzato)</h4>
+                <p>Per renderlo adattivo si usa un flag booleano. Se in una passata non avviene alcuno scambio, l'array è ordinato e l'algoritmo si ferma.</p>
+                <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
+boolean ordinato = false;
+for(i = 1; i < n && !ordinato; i++) {
+    ordinato = true; // Assumiamo sia ordinato
+    for(j = 0; j < n - i; j++) {
+        if(a[j] > a[j+1]) {
+            scambia(&a[j], &a[j+1]);
+            ordinato = false; // Se scambiamo, non siamo certi sia ordinato
+        }
+    }
+}</pre>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                <p><b>Domanda d'Esame:</b></p>
+                <p>Perché l'Insertion Sort è considerato un algoritmo "Adattivo"?</p>
+                <hr>
+                <p><b>Risposta:</b></p>
+                <p>L'Insertion Sort è adattivo perché il numero di operazioni che esegue dipende dall'ordinamento iniziale dei dati. <br><br>
+                Quando la funzione <code>Inserisci_ordinato</code> cerca la posizione corretta in cui inserire l'elemento corrente, effettua una visita <b>a ritroso</b>. Se l'array è già perfettamente ordinato, l'elemento corrente risulterà sùbito maggiore (o uguale) al suo precedente diretto: l'algoritmo effettuerà quindi <b>un solo confronto</b> e nessuno spostamento (shift) per ogni iterazione, riducendo drasticamente i tempi di esecuzione rispetto al caso pessimo (array ordinato al contrario).</p>
             </div>
         `
     }
