@@ -1,9 +1,10 @@
-// dati macro categorie (Invariato)
+// dati macro categorie (Invariato, ma con l'aggiunta di Induzione al posto 0)
 const mdCategories = [
+    { id: 'induzione', title: '0. Induzione', desc: 'Buon ordinamento e Induzione', icon: '🪜', customColor: null },
     { id: 'insiemi', title: '1. Insiemi', desc: 'Operazioni, parti e partizioni', icon: '∅', customColor: null },
     { id: 'applicazioni', title: '2. Applicazioni', desc: 'Iniettive, suriettive, biettive', icon: 'ƒ', customColor: null },
     { id: 'relazioni', title: '3. Relazioni Eq.', desc: 'Equivalenza e quozienti', icon: '≡', customColor: null },
-    { id: 'aritmetica', title: '4. Aritmetica', desc: 'Induzione, divisibilità, congruenze', icon: '🔢', customColor: null },
+    { id: 'aritmetica', title: '4. Aritmetica', desc: 'Divisibilità, congruenze, Euclide', icon: '🔢', customColor: null },
     { id: 'matrici', title: '5. Matrici', desc: 'Operazioni, determinante, rango', icon: '▦', customColor: null },
     { id: 'strutture', title: '6. Strutture Alg.', desc: 'Gruppi, campi, operazioni', icon: '⚙️', customColor: null },
     { id: 'vettori', title: '7. Spazi Vettoriali', desc: 'Basi, dimensione, generatori', icon: '↗️', customColor: null },
@@ -16,6 +17,53 @@ const mdCategories = [
 
 // appunti specifici (AGGIORNATI CON ESERCIZI D'ESAME E SIMULAZIONI)
 const mdNotes = [
+    // --- 0. INDUZIONE E LOGICA ---
+    { 
+        id: '001', 
+        category: 'induzione', 
+        title: "1. Principio di Induzione e Buon Ordinamento", 
+        summary: "Buon ordinamento, Base, Ipotesi, Tesi e Coefficiente Binomiale.", 
+        details: `
+            <p><b>Principio del Buon Ordinamento:</b> Ogni sottoinsieme non vuoto di $\\mathbb{N}$ ammette un elemento minimo. (Proprietà fondamentale che garantisce la validità dell'induzione).</p>
+            <hr>
+            <p><b>Principio di Induzione:</b> Sia $P(n)$ una proprietà definita sui numeri naturali $\\mathbb{N}$. Per dimostrare che $P(n)$ è vera $\\forall n \\ge n_0$:</p>
+            <ol>
+                <li><b>Base dell'Induzione:</b> Dimostro che $P(n_0)$ è vera.</li>
+                <li><b>Passo Induttivo:</b> Assumo che $P(t)$ sia vera (<i>Ipotesi Induttiva</i>) $\\implies$ Dimostro che $P(t+1)$ è vera (<i>Tesi</i>).</li>
+            </ol>
+            <p><b>Induzione Forte (Seconda Forma):</b> Assumo che la proprietà sia vera per <i>tutti</i> i $k$ tali che $n_0 \\le k < n$ per dimostrare che è vera per $n$.</p>
+            <hr>
+            <p><b>Coefficiente Binomiale:</b> Dati due interi $n, k$ con $n \\ge k \\ge 0$, si definisce:</p>
+            <p>$$\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$$</p>
+        `,
+        examples: `
+             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
+                <p><b>Dimostrazione classica:</b> $\\sum_{i=1}^n (2i-1) = n^2$.</p>
+                <p>Base $n=1$: $1 = 1^2$ (OK).</p>
+                <p>Passo: Assumo $\\sum^t (..) = t^2$.</p>
+                <p>Calcolo $\\sum^{t+1} = t^2 + (2(t+1)-1) = t^2 + 2t + 1 = (t+1)^2$. (CVD).</p>
+            </div>
+        `,
+        exercises: `
+            <div style="border-left: 4px solid #e11d48; padding-left: 15px;">
+                <p><b>Esercizio (Esame 04/02/22):</b></p>
+                <p>Dimostrare che per ogni $n \\ge 8$ esistono $a,b \\in \\mathbb{N}_0$ tali che $n = 3a + 5b$.</p>
+                <hr>
+                <p><b>Svolgimento (Induzione Forte):</b></p>
+                <p><b>Base:</b> Verifichiamo i primi casi.<br>
+                $n=8: 3(1)+5(1)$ (OK)<br>
+                $n=9: 3(3)+5(0)$ (OK)<br>
+                $n=10: 3(0)+5(2)$ (OK)</p>
+                <p><b>Passo:</b> Sia $n > 10$. Supponiamo vero per tutti i $k < n$.<br>
+                Consideriamo $n-3$. Poiché $n > 10$, $n-3 \\ge 8$.<br>
+                Per ipotesi induttiva, $n-3 = 3a' + 5b'$.<br>
+                Aggiungiamo 3 ad entrambi i lati:<br>
+                $n = (n-3) + 3 = 3a' + 5b' + 3 = 3(a'+1) + 5b'$.<br>
+                Abbiamo trovato $a=a'+1$ e $b=b'$. <b>CVD</b>.</p>
+            </div>
+        `
+    },
+
     // --- 1. INSIEMI ---
     { 
         id: 101, 
@@ -513,7 +561,7 @@ const mdNotes = [
     { 
         id: 406, 
         category: 'aritmetica', 
-        title: "3b. Algoritmo di Euclide e MCD/mcm", 
+        title: "4. Algoritmo di Euclide e MCD/mcm", 
         summary: "Calcolo MCD con divisioni successive e relazione con mcm.", 
         details: `
             <p><b>Algoritmo delle Divisioni Successive (Euclide):</b></p>
@@ -550,7 +598,7 @@ const mdNotes = [
     { 
         id: 407, 
         category: 'aritmetica', 
-        title: "3c. Teorema Cinese del Resto", 
+        title: "5. Teorema Cinese del Resto", 
         summary: "Sistemi di congruenze con moduli coprimi.", 
         details: `
             <p><b>Enunciato:</b> Un sistema di congruenze:</p>
@@ -600,50 +648,9 @@ const mdNotes = [
         `
     },
     { 
-        id: 403, 
-        category: 'aritmetica', 
-        title: "4. Principio di Induzione", 
-        summary: "Base, Ipotesi e Tesi Induttiva.", 
-        details: `
-            <p>Sia $P(n)$ una proprietà definita su $\\mathbb{N}$.</p>
-            <p>Per dimostrare $P(n)$ $\\forall n \\ge n_0$:</p>
-            <ol>
-                <li><b>Base:</b> Dimostro $P(n_0)$ vera.</li>
-                <li><b>Passo:</b> Assumo $P(t)$ vera (Ipotesi) $\\implies$ Dimostro $P(t+1)$ vera (Tesi).</li>
-            </ol>
-            <p><b>Induzione Forte:</b> Assumo vera per tutti i $k < n$ per dimostrare $n$.</p>
-        `,
-        examples: `
-             <div style="background: #fff1f2; padding: 15px; border-radius: 10px; border-left: 4px solid #e11d48;">
-                <p><b>Dimostrazione classica:</b> $\\sum_{i=1}^n (2i-1) = n^2$.</p>
-                <p>Base $n=1$: $1 = 1^2$ (OK).</p>
-                <p>Passo: Assumo $\\sum^t (..) = t^2$.</p>
-                <p>Calcolo $\\sum^{t+1} = t^2 + (2(t+1)-1) = t^2 + 2t + 1 = (t+1)^2$. (CVD).</p>
-            </div>
-        `,
-        exercises: `
-            <div style="border-left: 4px solid #e11d48; padding-left: 15px;">
-                <p><b>Esercizio (Esame 04/02/22):</b></p>
-                <p>Dimostrare che per ogni $n \\ge 8$ esistono $a,b \\in \\mathbb{N}_0$ tali che $n = 3a + 5b$.</p>
-                <hr>
-                <p><b>Svolgimento (Induzione Forte):</b></p>
-                <p><b>Base:</b> Verifichiamo i primi casi.<br>
-                $n=8: 3(1)+5(1)$ (OK)<br>
-                $n=9: 3(3)+5(0)$ (OK)<br>
-                $n=10: 3(0)+5(2)$ (OK)</p>
-                <p><b>Passo:</b> Sia $n > 10$. Supponiamo vero per tutti i $k < n$.<br>
-                Consideriamo $n-3$. Poiché $n > 10$, $n-3 \\ge 8$.<br>
-                Per ipotesi induttiva, $n-3 = 3a' + 5b'$.<br>
-                Aggiungiamo 3 ad entrambi i lati:<br>
-                $n = (n-3) + 3 = 3a' + 5b' + 3 = 3(a'+1) + 5b'$.<br>
-                Abbiamo trovato $a=a'+1$ e $b=b'$. <b>CVD</b>.</p>
-            </div>
-        `
-    },
-    { 
         id: 404, 
         category: 'aritmetica', 
-        title: "5. Numeri in Base b", 
+        title: "6. Numeri in Base b", 
         summary: "Rappresentazione posizionale.", 
         details: `
             <p>Fissata una base $b \\ge 2$, ogni numero $n$ si scrive in modo unico come:</p>
@@ -675,7 +682,7 @@ const mdNotes = [
         `
     },
 
-    // --- 5. MATRICI (Ristrutturato su Slide Prof: Operazioni, Gauss, Det, Rango) ---
+    // --- 5. MATRICI ---
     { 
         id: 501, 
         category: 'matrici', 
@@ -930,7 +937,7 @@ const mdNotes = [
                 <li>Se $k < n$: <b>Infinite soluzioni</b>, dipendenti da $n-k$ parametri liberi ($\\infty^{n-k}$).</li>
             </ul>
             <p><b>Teorema di Cramer:</b> Se $A$ è quadrata ($n \\times n$) e $\\det(A) \\neq 0$, la soluzione unica è data da:</p>
-            <p>$$x_i = \\frac{\\det(A_i)}{\\det(A)}$$</p>
+            <p>$x_i = \\frac{\\det(A_i)}{\\det(A)}$</p>
             <p>Dove $A_i$ è la matrice ottenuta sostituendo la colonna $i$-esima con $b$.</p>
             <p><b>Sistemi Omogenei ($Ax=0$):</b></p>
             <p>Sono sempre compatibili (hanno almeno la soluzione nulla). Hanno soluzioni non nulle (autovettori) se e solo se $\\rho(A) < n$ (cioè $\\det(A)=0$).</p>
@@ -1080,16 +1087,16 @@ const mdNotes = [
     { 
         id: 603, 
         category: 'strutture', 
-        title: "2. Anelli", 
+        title: "3. Anelli", 
         summary: "Strutture con due operazioni: gruppo abeliano per la somma, più un prodotto associativo e distributivo.", 
         details: `
             <p>Un <b>Anello</b> $(A, +, \\cdot)$ è un insieme dotato di due operazioni interne che soddisfa rigorosamente tre condizioni:</p>
             <ol>
-                <li>$(A, +)$ è un <b>Gruppo Abeliano</b> [1].</li>
-                <li>L'operazione di prodotto $\\cdot$ è <b>associativa</b>: $\\forall x, y, z \\in A, \\quad x(yz) = (xy)z$ [1].</li>
-                <li>Valgono le <b>proprietà distributive</b> del prodotto rispetto alla somma: $\\forall x, y, z \\in A, \\quad x(y+z) = xy + xz$ e $(x+y)z = xz + yz$ [1].</li>
+                <li>$(A, +)$ è un <b>Gruppo Abeliano</b>.</li>
+                <li>L'operazione di prodotto $\\cdot$ è <b>associativa</b>: $\\forall x, y, z \\in A, \\quad x(yz) = (xy)z$.</li>
+                <li>Valgono le <b>proprietà distributive</b> del prodotto rispetto alla somma: $\\forall x, y, z \\in A, \\quad x(y+z) = xy + xz$ e $(x+y)z = xz + yz$.</li>
             </ol>
-            <p>Definizioni aggiuntive [1]:</p>
+            <p>Definizioni aggiuntive:</p>
             <ul>
                 <li><b>Anello Commutativo:</b> Se il prodotto gode della proprietà commutativa ($xy = yx$).</li>
                 <li><b>Anello Unitario:</b> Se esiste un elemento neutro per il prodotto (indicato spesso con $1$).</li>
@@ -1099,35 +1106,35 @@ const mdNotes = [
             <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
                 <p><b>Esempi Classici (Lezione 18):</b></p>
                 <ul>
-                    <li>$(\\mathbb{Z}, +, \\cdot)$ è un <b>Anello commutativo unitario</b> [1].</li>
-                    <li>L'insieme delle matrici $n \\times n$, indicato con $\\mathcal{M}_n(\\mathbb{R})$, dotato di somma e prodotto tra matrici, è un <b>Anello unitario NON commutativo</b> (il prodotto tra matrici in genere non commuta) [1].</li>
-                    <li>L'insieme delle classi di resto $\\mathbb{Z}_m$ con l'addizione e moltiplicazione modulare è un <b>Anello unitario</b> [1, 2].</li>
+                    <li>$(\\mathbb{Z}, +, \\cdot)$ è un <b>Anello commutativo unitario</b>.</li>
+                    <li>L'insieme delle matrici $n \\times n$, indicato con $\\mathcal{M}_n(\\mathbb{R})$, dotato di somma e prodotto tra matrici, è un <b>Anello unitario NON commutativo</b> (il prodotto tra matrici in genere non commuta).</li>
+                    <li>L'insieme delle classi di resto $\\mathbb{Z}_m$ con l'addizione e moltiplicazione modulare è un <b>Anello unitario</b>.</li>
                 </ul>
             </div>
         `,
         exercises: `
             <div style="border-left: 4px solid #0284c7; padding-left: 15px;">
                 <p><b>Nota di Attenzione:</b></p>
-                <p>In un anello unitario non tutti gli elementi hanno necessariamente un inverso moltiplicativo. Ad esempio in $\\mathbb{Z}_m$, un elemento $\\bar{a}$ è invertibile rispetto al prodotto <b>solo se</b> il Massimo Comune Divisore $\\text{MCD}(a, m) = 1$ [2].</p>
+                <p>In un anello unitario non tutti gli elementi hanno necessariamente un inverso moltiplicativo. Ad esempio in $\\mathbb{Z}_m$, un elemento $\\bar{a}$ è invertibile rispetto al prodotto <b>solo se</b> il Massimo Comune Divisore $\\text{MCD}(a, m) = 1$.</p>
             </div>
         `
     },
     { 
         id: 604, 
         category: 'strutture', 
-        title: "3. Campi", 
+        title: "4. Campi", 
         summary: "Anelli in cui ogni elemento non nullo possiede un inverso moltiplicativo.", 
         details: `
-            <p>Un <b>Campo</b> $(F, +, \\cdot)$ è la struttura algebrica più ricca. Si definisce come un <b>Anello commutativo unitario</b> in cui <b>ogni elemento non nullo è invertibile</b> [1].</p>
-            <p>In termini formali: $\\forall a \\in F \\setminus \\{0\\}, \\exists a^{-1} \\in F$ tale che $a \\cdot a^{-1} = 1$ [1].</p>
+            <p>Un <b>Campo</b> $(F, +, \\cdot)$ è la struttura algebrica più ricca. Si definisce come un <b>Anello commutativo unitario</b> in cui <b>ogni elemento non nullo è invertibile</b>.</p>
+            <p>In termini formali: $\\forall a \\in F \\setminus \\{0\\}, \\exists a^{-1} \\in F$ tale che $a \\cdot a^{-1} = 1$.</p>
         `,
         examples: `
             <div style="background: #e0f2fe; padding: 15px; border-radius: 10px; border-left: 4px solid #0284c7;">
                 <p><b>Esempi di Campi (Lezione 18):</b></p>
                 <ul>
-                    <li>L'insieme dei numeri Razionali $(\\mathbb{Q}, +, \\cdot)$ e Reali $(\\mathbb{R}, +, \\cdot)$ sono <b>Campi</b> [1].</li>
-                    <li>L'insieme degli interi $(\\mathbb{Z}, +, \\cdot)$ <b>NON è un campo</b>: gli unici elementi invertibili rispetto al prodotto sono $1$ e $-1$ [1].</li>
-                    <li>Le classi di resto $\\mathbb{Z}_m$ formano un Campo <b>se e solo se $m$ è un numero primo</b>. Ad esempio, $\\mathbb{Z}_5$ è un campo, ma $\\mathbb{Z}_6$ non lo è (in $\\mathbb{Z}_6$, elementi come $\\bar{2}$ o $\\bar{3}$ non sono invertibili) [2].</li>
+                    <li>L'insieme dei numeri Razionali $(\\mathbb{Q}, +, \\cdot)$ e Reali $(\\mathbb{R}, +, \\cdot)$ sono <b>Campi</b>.</li>
+                    <li>L'insieme degli interi $(\\mathbb{Z}, +, \\cdot)$ <b>NON è un campo</b>: gli unici elementi invertibili rispetto al prodotto sono $1$ e $-1$.</li>
+                    <li>Le classi di resto $\\mathbb{Z}_m$ formano un Campo <b>se e solo se $m$ è un numero primo</b>. Ad esempio, $\\mathbb{Z}_5$ è un campo, ma $\\mathbb{Z}_6$ non lo è (in $\\mathbb{Z}_6$, elementi come $\\bar{2}$ o $\\bar{3}$ non sono invertibili).</li>
                 </ul>
             </div>
         `,
@@ -1144,7 +1151,7 @@ const mdNotes = [
                 <hr>
                 <p><b>Analisi delle Opzioni:</b></p>
                 <ul>
-                    <li><b>C) ESATTA.</b> $\\mathbb{Z}_m$ è un campo se e solo se $m$ è primo [2]. $7$ è l'unico numero primo tra le opzioni. Negli altri casi ci saranno elementi non invertibili, chiamati "divisori dello zero".</li>
+                    <li><b>C) ESATTA.</b> $\\mathbb{Z}_m$ è un campo se e solo se $m$ è primo. $7$ è l'unico numero primo tra le opzioni. Negli altri casi ci saranno elementi non invertibili, chiamati "divisori dello zero".</li>
                 </ul>
             </div>
         `
@@ -1211,115 +1218,6 @@ const mdNotes = [
                 <p>No, perché $v_2 = 2v_1$. Uno è multiplo dell'altro.</p>
             </div>
         `
-    },
-
-    // --- 8. SISTEMI LINEARI ---
-    { 
-        id: 801, 
-        category: 'sistemi', 
-        title: "1. Rouchè-Capelli e Cramer", 
-        summary: "Condizioni di risolubilità.", 
-        details: `
-            <p><b>Rouchè-Capelli:</b> Un sistema ha soluzioni $\\iff rank(A) = rank(A|b)$.</p>
-            <p>Se $rank = n$ (incognite), soluzione unica.</p>
-            <p>Se $rank < n$, infinite soluzioni ($\\infty^{n-rank}$).</p>
-        `,
-        examples: `
-            <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
-                <p><b>Nota sui sistemi omogenei ($Ax=0$):</b></p>
-                <p>Hanno sempre almeno una soluzione (quella nulla).</p>
-            </div>
-        `,
-        exercises: `
-            <div style="border-left: 4px solid #0ea5e9; padding-left: 15px;">
-                <p><b>Quesito (Esercitazione 4):</b></p>
-                <p>Il sistema $Ax=b$ è compatibile se...</p>
-                <p><b>Soluzione:</b> Se la colonna dei termini noti $b$ è combinazione lineare delle colonne di A. (Che equivale a dire rango incompleta = rango completa).</p>
-            </div>
-        `
-    },
-    { 
-        id: 802, 
-        category: 'sistemi', 
-        title: "2. Numero di Soluzioni", 
-        summary: "Unica o Infinite.", 
-        details: `
-            <p>Sia $n$ il numero delle incognite e $k = rk(A) = rk(A|b)$.</p>
-            <ul>
-                <li>Se $k = n$: <b>Soluzione Unica</b>.</li>
-                <li>Se $k < n$: <b>Infinite soluzioni</b> ($\\infty^{n-k}$).</li>
-            </ul>
-        `,
-        examples: `
-            <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
-                <p><b>Sistemi Omogenei:</b></p>
-                <p>Hanno soluzioni non banali solo se $rk(A) < n$.</p>
-            </div>
-        `,
-        exercises: `
-            <div style="border-left: 4px solid #0ea5e9; padding-left: 15px;">
-                <p><b>Quesito 14 (Prova 09/01/24):</b></p>
-                <p>Sistema di 3 equazioni in 4 incognite. Matrice incompleta ha rango 3. Cosa succede?</p>
-                <ul style="list-style:none; padding-left:0;">
-                    <li>A) Impossibile</li>
-                    <li>B) Unica soluzione</li>
-                    <li>C) $\\infty^1$ soluzioni</li>
-                    <li>D) $\\infty^2$ soluzioni</li>
-                    <li>E) Nessuna delle precedenti</li>
-                </ul>
-                <hr>
-                <p><b>Analisi delle Opzioni:</b></p>
-                <ul>
-                    <li><b>A) Errata.</b> Il rango massimo della completa è 3 (ha solo 3 righe). Quindi $rk(A) = rk(A|b) = 3$. È compatibile.</li>
-                    <li><b>B) Errata.</b> $rk=3 < n=4$. Non è unica.</li>
-                    <li><b>C) ESATTA.</b> Soluzioni = $\\infty^{n-k} = \\infty^{4-3} = \\infty^1$.</li>
-                </ul>
-            </div>
-        `
-    },
-
-    // --- 9. DIAGONALIZZAZIONE ---
-    { 
-        id: 901, 
-        category: 'diagonalizzazione', 
-        title: "1. Matrici Simili e Diagonalizzazione", 
-        summary: "Definizione algebrica.", 
-        details: `
-            <p><b>Definizione:</b> $A$ è diagonalizzabile se è simile a una matrice diagonale $D$.</p>
-            <p>La matrice $P$ che diagonalizza è la matrice formata dagli <b>autovettori</b>.</p>
-        `,
-        examples: "",
-        exercises: `
-            <div style="border-left: 4px solid #9333ea; padding-left: 15px;">
-                <p><b>Esercizio:</b></p>
-                <p>Trovare gli autovalori di $A = \\begin{pmatrix} 2 & 0 \\\\ 1 & 3 \\end{pmatrix}$.</p>
-                <p><b>Svolgimento:</b></p>
-                <p>È una matrice triangolare inferiore.</p>
-                <p>Gli autovalori sono semplicemente gli elementi sulla diagonale.</p>
-                <p>$\\lambda_1 = 2, \\lambda_2 = 3$.</p>
-            </div>
-        `
-    },
-    { 
-        id: 902, 
-        category: 'diagonalizzazione', 
-        title: "2. Criterio di Diagonalizzabilità", 
-        summary: "Molteplicità Algebrica e Geometrica.", 
-        details: `
-            <p>Una matrice è diagonalizzabile se e solo se:</p>
-            <ol>
-                <li>La somma delle molteplicità algebriche è $n$.</li>
-                <li>Per ogni autovalore, $m_g(\\lambda) = m_a(\\lambda)$.</li>
-            </ol>
-            <p>$$m_g(\\lambda) = n - rk(A - \\lambda I)$$</p>
-        `,
-        examples: `
-            <div style="background: #faf5ff; padding: 15px; border-radius: 10px; border-left: 4px solid #9333ea;">
-                <p><b>Caso semplice:</b></p>
-                <p>Se una matrice $n \\times n$ ha $n$ autovalori <b>tutti distinti</b>, è sicuramente diagonalizzabile.</p>
-            </div>
-        `,
-        exercises: ""
     },
 
     // --- 10. COMBINATORIA ---
