@@ -1,162 +1,127 @@
-// --- DATI MACRO CATEGORIE PSD ---
+// --- DATI MACRO CATEGORIE PSD AGGIORNATI ---
 const psdCategories = [
     { id: 'progettazione', title: '1. Progettazione e Moduli', desc: 'Principi, Information Hiding e Makefile', icon: '🏗️', customColor: 'style-blue' },
-    { id: 'ordinamento', title: '2. Ordinamento Base', desc: 'Proprietà, Insertion Sort e Bubble Sort', icon: '🔄', customColor: 'style-orange' }
+    { id: 'ordinamento', title: '2. Algoritmi Base', desc: 'Ordinamento, Ricerca e Complessità', icon: '🔄', customColor: 'style-orange' },
+    { id: 'adt_base', title: '3. ADT e Information Hiding', desc: 'Tipi di Dati Astratti e Pseudo-Generics', icon: '📦', customColor: 'style-purple' },
+    { id: 'strutture_dinamiche', title: '4. Strutture Dati Dinamiche', desc: 'Liste, Pile (Stack) e Code (Queue)', icon: '🔗', customColor: 'style-green' }
 ];
 
-// --- APPUNTI SPECIFICI PSD ---
+// --- APPUNTI SPECIFICI PSD AGGIORNATI ---
 const psdNotes = [
     // --- 1. PROGETTAZIONE ---
     { 
-        id: 101, 
+        id: 1, 
         category: 'progettazione', 
-        title: "1. Principi di Progettazione", 
-        summary: "Astrazione, Information Hiding e Modularità in C.", 
+        title: "1. Ciclo di Vita e Testing", 
+        summary: "Dallo sviluppo alla verifica del software.", 
         details: `
-            <p>Prima di scrivere codice, è fondamentale la <b>fase di progettazione</b> (definizione dell'architettura e analisi dei dati). I 4 principi fondamentali sono:</p>
-            
-            <h4>1. Astrazione</h4>
-            <p>Evidenzia le caratteristiche essenziali ignorando i dettagli secondari.</p>
+            <p>Lo sviluppo di un programma segue fasi precise: Analisi, Progettazione, Codifica e <b>Testing</b>.</p>
+            <h4>Testing (Black Box vs White Box)</h4>
             <ul>
-                <li><b>Astrazione funzionale/procedurale:</b> delegare un compito a una funzione (usabile indipendentemente dall'algoritmo interno).</li>
-                <li><b>Astrazione sui dati:</b> definire un tipo di dato e le operazioni su di esso, nascondendone l'implementazione.</li>
+                <li><b>Black Box:</b> Si testa la funzionalità senza conoscere il codice, basandosi su input/output.</li>
+                <li><b>White Box:</b> Si analizza la logica interna del codice per testare tutti i cammini possibili.</li>
             </ul>
-
-            <h4>2. Information Hiding</h4>
-            <p>Nascondere il funzionamento interno di un modulo. Vantaggi:</p>
-            <ul>
-                <li><b>Inaccessibilità:</b> i clienti non possono modificare parti delicate.</li>
-                <li><b>Manutenibilità:</b> gli errori si isolano e si correggono in un solo modulo.</li>
-            </ul>
-            <div style="background: rgba(139, 92, 246, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-bottom: 15px;">
-                <b>Best Practice in C:</b> Evitare le variabili globali e mantenere le funzioni di "servizio" nascoste (non dichiarandole nell'header file <code>.h</code>).
-            </div>
-
-            <h4>3. Riuso del Codice</h4>
-            <p>Evitare di riscrivere codice già fatto, utilizzando funzioni e librerie dedicate (Moduli).</p>
-
-            <h4>4. Modularità</h4>
-            <p>Suddividere il progetto per gestire la complessità. Un modulo deve avere:</p>
-            <ul>
-                <li><b>Elevata coesione:</b> le funzioni interne devono essere strettamente correlate.</li>
-                <li><b>Indipendenza:</b> testabile e compilabile separatamente.</li>
-                <li><b>Interfacce definite:</b> modalità di interazione chiare.</li>
-            </ul>
-
-            <div style="background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid #10b981;">
-                <b>Il Modulo in C:</b> Non esiste nativamente. Si realizza usando:
-                <br>1. <b>Interfaccia (.h):</b> visibile ai clienti (definisce risorse e servizi).
-                <br>2. <b>Implementazione (.c):</b> occulta ai clienti (contiene il codice reale).
-            </div>
-            <p><i>Definizione extra:</i> Le <b>Procedure</b> sono funzioni che restituiscono <code>void</code>, le <b>Funzioni</b> restituiscono un valore.</p>
-        `,
-        examples: `
-            <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
-                <h4 style="margin-top:0;">Compilazione separata e Makefile</h4>
-                <p>Per non dover scrivere lunghi comandi <code>gcc</code>, si usa un file chiamato semplicemente <b>makefile</b> (senza estensione).</p>
-                
-                <p><b>Fasi della compilazione:</b></p>
-                <ol>
-                    <li><b>Compilazione:</b> <code>gcc -c vettore.c</code> (Crea il file oggetto <code>.o</code> non eseguibile).</li>
-                    <li><b>Linking:</b> <code>gcc utils.o vettore.o main.o -o programma.exe</code> (Collega gli oggetti nell'eseguibile).</li>
-                </ol>
-
-                <p><b>Struttura di una regola nel Makefile:</b></p>
-                <pre>
-target: dipendenze
-    comandi (preceduti da TAB)
-                </pre>
-
-                <p><b>Comandi utili da terminale:</b></p>
-                <ul>
-                    <li><code>make</code>: esegue la prima regola del Makefile.</li>
-                    <li><code>make clean</code>: regola solitamente usata per eliminare i file <code>.o</code> e pulire la cartella di lavoro.</li>
-                </ul>
-            </div>
-        `,
-        exercises: `
-            <div style="border-left: 4px solid #0ea5e9; padding-left: 15px;">
-                <p><b>Domanda di Teoria:</b></p>
-                <p>Qual è la differenza tra l'astrazione funzionale e l'astrazione sui dati?</p>
-                <hr>
-                <p><b>Risposta:</b></p>
-                <p>L'<b>astrazione funzionale</b> si concentra sulle operazioni: delega un'azione a una funzione nascondendo <i>come</i> l'algoritmo la esegue (es. chiamo <code>sort()</code> senza sapere se usa QuickSort o MergeSort).<br><br>
-                L'<b>astrazione sui dati</b> si concentra sulla struttura: definisce un tipo di dato e l'insieme delle operazioni lecite su di esso, nascondendo come il dato è effettivamente salvato in memoria (es. una pila PUSH/POP senza sapere se usa array o liste).</p>
-            </div>
+            <p>Per test automatizzati, si usano i <b>Driver</b> (moduli che chiamano le funzioni da testare) e gli <b>Stub</b> (moduli fittizi che simulano parti non ancora scritte).</p>
         `
     },
 
-    // --- 2. ORDINAMENTO ---
+    // --- 2. ORDINAMENTO E RICERCA ---
     { 
-        id: 102, 
+        id: 2, 
         category: 'ordinamento', 
-        title: "1. Insertion e Bubble Sort", 
-        summary: "Proprietà algoritmi (Stabile, In loco) e metodi di base.", 
+        title: "1. Ricerca in Array", 
+        summary: "Lineare, Ordinata e Binaria.", 
         details: `
-            <p>Il problema dell'ordinamento consiste nell'elencare gli elementi di un insieme secondo una sequenza stabilita da una <b>relazione d'ordine</b> (es. ordine alfabetico o numerico). L'ordinamento avviene in base a una <b>chiave</b>.</p>
-            
-            <h4 style="color: #f59e0b;">Proprietà degli algoritmi (Domanda d'esame)</h4>
+            <p>La ricerca può essere di diversi tipi a seconda dello stato dell'array:</p>
             <ul>
-                <li><b>Stabile:</b> Due elementi con la medesima chiave mantengono lo stesso ordine relativo che avevano prima dell'ordinamento.</li>
-                <li><b>In loco (In-place):</b> Usa un numero costante di variabili ausiliarie oltre all'array da ordinare (non richiede di duplicare l'array in memoria).</li>
-                <li><b>Adattivo:</b> Il numero di operazioni effettuate dipende positivamente dall'ordine iniziale dell'input (è più veloce se l'array è già quasi ordinato).</li>
-                <li><b>Interno vs Esterno:</b> Interno se i dati stanno in RAM; Esterno se risiedono su disco perché troppo grandi.</li>
+                <li><b>Ricerca Lineare:</b> Visita finalizzata su array non ordinato. Costo $O(n)$.</li>
+                <li><b>Ricerca Ordinata:</b> Si ferma appena trova un elemento maggiore del target.</li>
+                <li><b>Ricerca Binaria (Dicotomica):</b> Richiede array ordinato. Divide lo spazio di ricerca a metà ogni volta. Costo $O(\log n)$.</li>
             </ul>
-
-            <h4 style="color: #f59e0b;">Classificazione (Costo Temporale)</h4>
-            <ul>
-                <li><b>Semplici $O(n^2)$:</b> Selection, Insertion, Bubble Sort.</li>
-                <li><b>Avanzati $O(n \\log n)$:</b> Merge Sort, QuickSort (che però ha un caso pessimo $O(n^2)$).</li>
-            </ul>
-
-            <h4 style="color: #f59e0b;">Insertion Sort</h4>
-            <p>Si basa su una visita totale: ad ogni passo <i>i</i>, la sottosequenza che precede l'elemento corrente <code>a[i]</code> è già ordinata. L'algoritmo inserisce l'elemento corrente nella posizione corretta shiftando in avanti gli elementi maggiori.</p>
-
-            <h4 style="color: #f59e0b;">Bubble Sort</h4>
-            <p>Confronta coppie di elementi adiacenti e le scambia se non sono in ordine. Ad ogni passo, l'elemento più grande della parte non ordinata "risale" verso la sua posizione finale a destra come una bolla.</p>
-            <p><i>Nota:</i> La versione standard <b>non è adattiva</b> perché esegue sempre tutti i cicli anche se l'array è già ordinato.</p>
         `,
         examples: `
-            <div style="background: #fff7ed; padding: 15px; border-radius: 10px; border-left: 4px solid #f97316; margin-bottom: 15px;">
-                <h4 style="margin-top:0;">Insertion Sort in C</h4>
-                <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
-for(i = 1; i < n; i++) {
-   // Inserisce l'elemento i-esimo nella sottosequenza a[0..i-1]
-   Inserisci_ordinato(a, a[i], i); 
-}</pre>
-            </div>
+            <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
+// Ricerca Binaria (Logica)
+while (begin <= end) {
+    center = (begin + end) / 2;
+    if (val == a[center]) return center;
+    else if (val < a[center]) end = center - 1;
+    else begin = center + 1;
+}</pre>`
+    },
 
-            <div style="background: #fff7ed; padding: 15px; border-radius: 10px; border-left: 4px solid #f97316;">
-                <h4 style="margin-top:0;">Bubble Sort Adattivo (Ottimizzato)</h4>
-                <p>Per renderlo adattivo si usa un flag booleano. Se in una passata non avviene alcuno scambio, l'array è ordinato e l'algoritmo si ferma.</p>
-                <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
-boolean ordinato = false;
-for(i = 1; i < n && !ordinato; i++) {
-    ordinato = true; // Assumiamo sia ordinato
-    for(j = 0; j < n - i; j++) {
-        if(a[j] > a[j+1]) {
-            scambia(&a[j], &a[j+1]);
-            ordinato = false; // Se scambiamo, non siamo certi sia ordinato
-        }
-    }
-}</pre>
-            </div>
+    // --- 3. ADT E GENERICS ---
+    { 
+        id: 3, 
+        category: 'adt_base', 
+        title: "1. ADT e Information Hiding", 
+        summary: "Puntatori opachi e Pseudo-Generics.", 
+        details: `
+            <p>Un <b>ADT (Abstract Data Type)</b> distingue tra <b>Specifica</b> (cosa fa) e <b>Implementazione</b> (come lo fa).</p>
+            <h4>Information Hiding in C</h4>
+            <p>Per nascondere la struttura dei dati (es. ADT Punto):</p>
+            <ol>
+                <li>Si dichiara un puntatore a una struct incompleta nel file <code>.h</code>: <code>typedef struct punto *Punto;</code>.</li>
+                <li>Si definisce la struct reale solo nel file <code>.c</code>.</li>
+            </ol>
+            <h4>Pseudo-Generics</h4>
+            <p>In C si simulano i Generics definendo un tipo <code>Item</code> tramite <code>typedef</code> o usando <code>void*</code> per rendere gli algoritmi (es. Bubble Sort) indipendenti dal tipo di dato.</p>
+        `
+    },
+
+    // --- 4. STRUTTURE DINAMICHE: LISTE ---
+    { 
+        id: 4, 
+        category: 'strutture_dinamiche', 
+        title: "1. ADT Lista Concatenata", 
+        summary: "Gestione dinamica dei nodi.", 
+        details: `
+            <p>La lista è una sequenza dinamica di nodi collegati tramite puntatori.</p>
+            <ul>
+                <li><b>Vantaggio:</b> Inserimento/Cancellazione $O(1)$ in testa.</li>
+                <li><b>Svantaggio:</b> Accesso sequenziale $O(n)$.</li>
+            </ul>
+            <h4>Operazioni Avanzate</h4>
+            <p><b>Reverse:</b> Inverte i legami dei nodi usando 3 puntatori (<code>prev</code>, <code>curr</code>, <code>temp</code>).</p>
+            <p><b>Clonazione:</b> Può essere <i>Shallow</i> (superficiale) o <i>Deep</i> (copia profonda dei dati).</p>
+        `,
+        examples: `
+            <p><b>Struttura Nodo:</b></p>
+            <pre style="background: #2d2d2d; color: #fff; padding: 10px; border-radius: 5px;">
+struct node {
+    Item value;
+    struct node *next;
+};</pre>`
+    },
+
+    // --- 5. STACK E QUEUE (Sotto categoria 4) ---
+    { 
+        id: 5, 
+        category: 'strutture_dinamiche', 
+        title: "2. Pila (Stack) e Coda (Queue)", 
+        summary: "Logiche LIFO e FIFO.", 
+        details: `
+            <h4>Pila (Stack) - LIFO</h4>
+            <p>Ultimo inserito, primo a uscire. Operazioni: <b>Push</b> (inserimento) e <b>Pop</b> (estrazione). Si implementa facilmente con una lista inserendo sempre in testa.</p>
+            
+            <h4>Coda (Queue) - FIFO</h4>
+            <p>Primo inserito, primo a uscire. Operazioni: <b>Enqueue</b> e <b>Dequeue</b>.</p>
+            <ul>
+                <li><b>Implementazione con Array Circolare:</b> Usa il modulo <code>%</code> per far "girare" gli indici <code>head</code> e <code>tail</code> nell'array.</li>
+                <li><b>Implementazione con Lista:</b> Richiede due puntatori (<code>head</code> e <code>tail</code>) per garantire inserimento $O(1)$ in fondo.</li>
+            </ul>
         `,
         exercises: `
-            <div style="border-left: 4px solid #f97316; padding-left: 15px;">
-                <p><b>Domanda d'Esame:</b></p>
-                <p>Perché l'Insertion Sort è considerato un algoritmo "Adattivo"?</p>
+            <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                <p><b>Domanda:</b> Come si distingue una coda vuota da una piena nell'array circolare?</p>
                 <hr>
-                <p><b>Risposta:</b></p>
-                <p>L'Insertion Sort è adattivo perché il numero di operazioni che esegue dipende dall'ordinamento iniziale dei dati. <br><br>
-                Quando la funzione <code>Inserisci_ordinato</code> cerca la posizione corretta in cui inserire l'elemento corrente, effettua una visita <b>a ritroso</b>. Se l'array è già perfettamente ordinato, l'elemento corrente risulterà sùbito maggiore (o uguale) al suo precedente diretto: l'algoritmo effettuerà quindi <b>un solo confronto</b> e nessuno spostamento (shift) per ogni iterazione, riducendo drasticamente i tempi di esecuzione rispetto al caso pessimo (array ordinato al contrario).</p>
+                <p><b>Risposta:</b> Si lascia una cella dell'array sempre vuota. La coda è <b>vuota</b> se <code>head == tail</code>; è <b>piena</b> se <code>(tail + 1) % N == head</code>.</p>
             </div>
         `
     }
 ];
 
-// --- INIZIALIZZAZIONE DELLA PAGINA PSD ---
+// --- INIZIALIZZAZIONE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Chiama la funzione initPage che hai definito nel file script.js generale
-    initPage(psdCategories, psdNotes, "PSD - Archivio di Gigi");
+    initPage(psdCategories, psdNotes, "PSD - Archivio Completo");
 });
