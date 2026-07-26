@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Matematica - Archivio di Luigi</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="../index.html" style="text-decoration:none; color:inherit;">Archivio di Luigi</a></div>
+        <nav>
+            <a href="../MatematicaDiscreta/md.html" class="nav-link">Matematica Discreta</a>
+            <a href="analisi.html" class="nav-link active-link">Analisi</a>
+            <a href="../ProgrammazioneStruttureDati/psd.html" class="nav-link">PSD</a>
+            <a href="../Reti/reti.html" class="nav-link">Reti</a>
+            <a href="../ProgDistribuita/prog-distribuita.html" class="nav-link">Prog. Distribuita</a>
+            <button id="theme-toggle" class="theme-btn" title="Cambia Tema">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="zoom-wrapper">
+            <button class="zoom-btn" onclick="toggleZoomMenu()" title="Zoom">🔍</button>
+            <div id="zoomActions">
+                <button class="zoom-btn" onclick="resizeText(-1)">➖</button>
+                <button class="zoom-btn" onclick="resizeText(1)">➕</button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterNotes()" placeholder="Cerca argomento...">
+        </div>
+
+        <div class="page-header">
+            <button id="backBtn" onclick="loadMacroCategories()">
+                ⬅ Categorie
+            </button>
+            <h2 id="pageTitle">Macro Aree</h2>
+            <button id="qaBtn" class="help-btn" onclick="openQaModal()" title="Domande Ripasso Orale">❓</button>
+        </div>
+        
+        <div id="math-grid" class="flashcard-grid"></div>
+
+    </main>
+
+    <div id="topicModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeModal(event)">&times;</span>
+            <h2 id="modalTitle">Titolo</h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay" onclick="closeEditModal(event)" style="display:none;">
+        <div class="modal-content glass-panel" style="max-width: 400px; text-align: left;">
+            <span class="close-modal" onclick="closeEditModal(event)">&times;</span>
+            <h3 style="margin-top:0;">Modifica Categoria</h3>
+            
+            <label style="display:block; margin-bottom:5px; font-weight:bold; color:#555;">Nuovo Titolo</label>
+            <input type="text" id="editTitleInput" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;">
+            
+            <label style="display:block; margin-bottom:5px; font-weight:bold; color:#555;">Scegli Colore Sfondo</label>
+            <div class="color-picker" style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center;">
+                <div onclick="selectEditColor('style-orange')" class="color-circle style-orange-bg"></div>
+                <div onclick="selectEditColor('style-purple')" class="color-circle style-purple-bg"></div>
+                <div onclick="selectEditColor('style-blue')" class="color-circle style-blue-bg"></div>
+                <div onclick="selectEditColor('style-green')" class="color-circle style-green-bg"></div>
+                <div onclick="selectEditColor('style-dark')" class="color-circle style-dark-bg"></div>
+            </div>
+            <button onclick="saveEdit()" style="width:100%; padding:12px; background:#8b5cf6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">SALVA MODIFICHE</button>
+        </div>
+    </div>
+
+    <div id="qaModal" class="modal-overlay" onclick="closeQaModal(event)" style="display:none;">
+        <div class="modal-content glass-panel" style="max-width: 850px; text-align: left;">
+            <span class="close-modal" onclick="closeQaModal(event)">&times;</span>
+            <h2 style="margin-top:0; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">Domande Ripasso Orale - Analisi Matematica</h2>
+            
+            <div id="qaBody" style="margin-top: 20px;">
+                
+                <!-- SEZIONE 1: INSIEMI E COMPLESSI -->
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #8b5cf6;">
+                    🟪 Sezione 1: Insiemi, Equazioni e Complessi <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Come si risolve in modo rigoroso una disequazione irrazionale del tipo $\sqrt{A(x)} < B(x)$?</b></p>
+                    <div style="border-left: 4px solid #8b5cf6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Poiché l'indice della radice è pari (sottinteso 2), bisogna garantire l'esistenza della radice e la coerenza dei segni. Si imposta il seguente sistema a tre condizioni[cite: 12]:</p>
+                        <ol>
+                            <li>$A(x) \ge 0$ (condizione di esistenza del radicando)[cite: 12].</li>
+                            <li>$B(x) > 0$ (poiché una radice pari restituisce un valore non negativo, affinché sia strettamente minore di $B(x)$, $B(x)$ deve necessariamente essere positivo)[cite: 4, 12].</li>
+                            <li>$A(x) < [B(x)]^2$ (elevamento al quadrato di ambo i membri)[cite: 12].</li>
+                        </ol>
+                        <p>L'intersezione delle soluzioni di queste tre disequazioni fornisce il risultato finale[cite: 12].</p>
+                    </div>
+
+                    <p><b>Risolvi un'equazione di secondo grado semplice passo-passo, ad esempio $x^2 - 5x + 6 = 0$.</b></p>
+                    <div style="border-left: 4px solid #8b5cf6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Utilizziamo la formula risolutiva classica: $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$[cite: 11].</p>
+                        <ul>
+                            <li>Calcolo il delta ($\Delta$): $(-5)^2 - 4(1)(6) = 25 - 24 = 1$[cite: 3, 11].</li>
+                            <li>Applico la formula: $x = \frac{5 \pm \sqrt{1}}{2}$[cite: 3, 11].</li>
+                            <li>Le due soluzioni sono: $x_1 = \frac{5+1}{2} = 3$ e $x_2 = \frac{5-1}{2} = 2$[cite: 3].</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Cos'è un numero complesso e come si passa dalla forma algebrica a quella trigonometrica?</b></p>
+                    <div style="border-left: 4px solid #8b5cf6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un numero complesso in forma algebrica si esprime come $z = a + ib$, dove $a$ è la parte reale e $b$ è il coefficiente della parte immaginaria[cite: 2].</p>
+                        <p>Per passare alla forma trigonometrica $z = \rho(\cos \theta + i \sin \theta)$[cite: 1]:</p>
+                        <ul>
+                            <li>Calcoliamo il <b>modulo</b> (la "lunghezza" del vettore nel piano di Gauss) col teorema di Pitagora: $\rho = \sqrt{a^2 + b^2}$[cite: 1, 2].</li>
+                            <li>Calcoliamo l'<b>anomalia</b> (l'angolo $\theta$): se la parte reale $a > 0$, si usa $\theta = \arctan(\frac{b}{a})$[cite: 1]. Bisogna fare attenzione ai segni di $a$ e $b$ per capire in quale quadrante ci si trova e sommare $\pi$ all'arcotangente se $a < 0$[cite: 1].</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Come si calcola la potenza di un numero complesso? Esempio: calcola $z^{15}$ se $z = 1 + \sqrt{3}i$.</b></p>
+                    <div style="border-left: 4px solid #8b5cf6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si utilizza la <b>formula di De Moivre</b>. Se $z = \rho(\cos \theta + i \sin \theta)$, allora $z^n = \rho^n(\cos(n\theta) + i \sin(n\theta))$[cite: 2].</p>
+                        <p>Svolgimento dell'esercizio d'esame[cite: 15]:</p>
+                        <ul>
+                            <li>$\rho = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{4} = 2$[cite: 1].</li>
+                            <li>$\theta = \arctan(\sqrt{3}/1) = \pi/3$ (primo quadrante).</li>
+                            <li>Eleviamo alla quindicesima: $2^{15}(\cos(15\frac{\pi}{3}) + i\sin(15\frac{\pi}{3})) = 32768(\cos(5\pi) + i\sin(5\pi))$.</li>
+                            <li>Poiché $5\pi$ equivale all'angolo $\pi$ (tolti due giri completi $4\pi$), abbiamo $\cos(\pi)=-1$ e $\sin(\pi)=0$. Il risultato è $-32768$.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SEZIONE 2: FUNZIONI E LIMITI -->
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #3b82f6;">
+                    🟦 Sezione 2: Funzioni, Successioni e Limiti <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Come stabilisco il Dominio di base (Campo di Esistenza) delle funzioni elementari?</b></p>
+                    <div style="border-left: 4px solid #3b82f6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Per determinare dove una funzione "esiste", si controllano tre regole auree[cite: 1]:</p>
+                        <ol>
+                            <li><b>Frazioni:</b> Denominatore diverso da zero ($g(x) \ne 0$)[cite: 1].</li>
+                            <li><b>Radici pari:</b> Radicando maggiore o uguale a zero ($f(x) \ge 0$)[cite: 1].</li>
+                            <li><b>Logaritmi:</b> Argomento strettamente maggiore di zero ($f(x) > 0$)[cite: 1]. (Se anche la base contiene una $x$, essa deve essere $>0$ e $\ne 1$).</li>
+                        </ol>
+                    </div>
+
+                    <p><b>Cosa dice il Teorema della Permanenza del Segno?</b></p>
+                    <div style="border-left: 4px solid #3b82f6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Afferma che se una successione $a_n$ tende a un limite $L > 0$, allora esiste un indice $\nu$ a partire dal quale (cioè per ogni $n > \nu$) tutti i termini della successione sono strettamente positivi ($a_n > 0$)[cite: 10]. Lo stesso principio vale al contrario per limiti negativi e si estende alle funzioni reali[cite: 2, 10].</p>
+                    </div>
+
+                    <p><b>Citami i principali Limiti Notevoli che aiutano a sbloccare la forma indeterminata 0/0.</b></p>
+                    <div style="border-left: 4px solid #3b82f6; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sfruttando l'equivalenza degli infinitesimi quando $x \to 0$ o $f(x) \to 0$, possiamo ricordare che[cite: 1, 10]:</p>
+                        <ul>
+                            <li>$\lim_{x \to 0} \frac{\sin x}{x} = 1$ (il seno si comporta come il suo argomento)[cite: 1, 10].</li>
+                            <li>$\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$[cite: 1, 10].</li>
+                            <li>$\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$[cite: 1, 10].</li>
+                            <li>$\lim_{x \to 0} \frac{e^x - 1}{x} = 1$[cite: 1, 10].</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SEZIONE 3: DERIVATE E STUDIO DI FUNZIONE -->
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #f59e0b;">
+                    🟨 Sezione 3: Derivate e Studio di Funzione <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Cosa rappresenta geometricamente la derivata di una funzione in un punto?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Geometricamente, la derivata prima $f'(x_0)$ rappresenta il <b>coefficiente angolare della retta tangente</b> al grafico della funzione $f(x)$ esattamente nel punto di ascissa $x_0$[cite: 2]. Più il valore è alto, più la curva in quel punto è "ripida". Se la derivata è zero, la tangente è orizzontale (possibile punto di massimo, minimo o flesso)[cite: 1, 2].</p>
+                    </div>
+
+                    <p><b>Quali sono le regole di derivazione di base (Somma, Prodotto, Quoziente)?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Date due funzioni derivabili $f(x)$ e $g(x)$[cite: 1, 2]:</p>
+                        <ul>
+                            <li><b>Somma:</b> $D[f(x) \pm g(x)] = f'(x) \pm g'(x)$[cite: 1].</li>
+                            <li><b>Prodotto:</b> $D[f(x) \cdot g(x)] = f'(x)g(x) + f(x)g'(x)$ (derivo la prima, lascio intatta la seconda + lascio intatta la prima, derivo la seconda)[cite: 1, 2].</li>
+                            <li><b>Quoziente:</b> $D[\frac{f(x)}{g(x)}] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$[cite: 1, 2].</li>
+                        </ul>
+                    </div>
+
+                    <p><b>Enunciato del Teorema di Rolle. A cosa serve visivamente?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Sia $f(x)$ una funzione continua in un intervallo chiuso $[a,b]$ e derivabile nell'intervallo aperto $(a,b)$. Se la funzione assume lo stesso valore agli estremi, ovvero $f(a) = f(b)$, allora esiste almeno un punto interno $c \in (a,b)$ in cui la derivata prima si annulla ($f'(c) = 0$)[cite: 1, 2].</p>
+                        <p><i>Visivamente:</i> Se cammini su una collina (continua e senza spigoli) partendo e arrivando alla stessa altitudine, deve esserci per forza un punto più alto (o più basso) in cui il terreno è perfettamente pianeggiante[cite: 2].</p>
+                    </div>
+
+                    <p><b>Come determiniamo l'eventuale presenza di Asintoti Obliqui nel grafico di una funzione fratta?</b></p>
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Un asintoto obliquo è una retta del tipo $y = mx + q$. È presente tipicamente nelle funzioni polinomiali fratte quando il grado del numeratore supera esattamente di 1 il grado del denominatore.</p>
+                        <p>Si calcola trovando prima il coefficiente angolare $m = \lim_{x \to \pm\infty} \frac{f(x)}{x}$ e successivamente l'intercetta $q = \lim_{x \to \pm\infty} [f(x) - mx]$[cite: 1]. (Se $m=0$, la funzione ammette asintoto orizzontale, non obliquo).</p>
+                    </div>
+                </div>
+
+                <!-- SEZIONE 4: INTEGRALI -->
+                <h3 class="qa-section-header" onclick="toggleQaSection(this)" style="color: #ef4444;">
+                    🟥 Sezione 4: Calcolo Integrale <span class="toggle-icon">▼</span>
+                </h3>
+                <div class="qa-section-content" style="display: none;">
+                    <p><b>Qual è il senso pratico dell'integrazione per parti?</b></p>
+                    <div style="border-left: 4px solid #ef4444; padding-left: 15px; margin-bottom: 25px;">
+                        <p>L'integrazione per parti si usa per integrare un prodotto di funzioni non direttamente riconducibile a formule note. Si basa sulla formula: $\int f(x)g'(x)dx = f(x)g(x) - \int f'(x)g(x)dx$[cite: 1].</p>
+                        <p>Il trucco sta nello scegliere saggiamente: definiamo una delle due funzioni come $f(x)$ ("fattore finito") da cui ci aspettiamo una derivata più semplice, e l'altra come $g'(x)$ ("fattore differenziale") di cui sia immediato risalire alla primitiva[cite: 1]. Un classico esempio è $\int x \ln(x) dx$, in cui è saggio derivare il logaritmo per sbarazzarsene[cite: 1].</p>
+                    </div>
+
+                    <p><b>Come procediamo per integrare una funzione razionale fratta se il grado del numeratore è maggiore o uguale a quello del denominatore?</b></p>
+                    <div style="border-left: 4px solid #ef4444; padding-left: 15px; margin-bottom: 25px;">
+                        <p>Si esegue sempre prima una <b>divisione tra polinomi</b> (con la classica procedura in colonna o Ruffini se applicabile)[cite: 1].</p>
+                        <p>La frazione originale $\frac{N(x)}{D(x)}$ si riscrive come: $Q(x) + \frac{R(x)}{D(x)}$, dove $Q(x)$ è il quoziente (un semplice polinomio facile da integrare a parte) e $R(x)$ è il resto, che avrà un grado strettamente minore del denominatore $D(x)$, permettendo di passare ai metodi standard per i fratti semplici (decomposizione in fratti con costanti A, B, ecc.)[cite: 1].</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-container">
+            <p>Contattami o seguimi su:</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/luigi-montuori-731637369/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/profondostantio/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/profondostantio03" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.youtube.com/@profondostantio/videos" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:montuorildev@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2026 Archivio di Luigi</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script> 
+    <script src="analisi.js"></script>
+</body>
+</html>
