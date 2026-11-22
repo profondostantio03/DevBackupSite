@@ -29,6 +29,48 @@ function resolveColor(item, index) {
     return colorStyles[index % colorStyles.length];
 }
 
+
+// --- GESTIONE HEADER ---
+function renderHeader() {
+    const headerElement = document.getElementById("main-header");
+    if (!headerElement) return;
+
+    // 1. Calcola in automatico il percorso relativo verso la root ("" oppure "../")
+    const scriptTag = document.querySelector('script[src*="script.js"]');
+    const scriptSrc = scriptTag ? scriptTag.getAttribute("src") : "";
+    const rootPath = scriptSrc.replace("script.js", "");
+
+    // 2. Elenco centralizzato dei corsi 
+    const navItems = [
+        { label: "MMI", path: "MMI/mmi.html" },
+        { label: "Analisi", path: "AnalisiMatematica/analisi.html" },
+        { label: "PSD", path: "ProgrammazioneStruttureDati/psd.html" },
+        { label: "MD", path: "MatematicaDiscreta/md.html" },
+        { label: "Reti", path: "reti.html" },
+        { label: "PD", path: "ProgrammazioneDistribuita/index_pd.html" }
+    ];
+
+    // 3. Controlla quale pagina è aperta per evidenziare il link attivo
+    const currentPage = window.location.pathname.split("/").pop();
+
+    const linksHTML = navItems.map(item => {
+        const itemFile = item.path.split("/").pop();
+        const isActive = currentPage === itemFile ? "active-link" : "";
+        return `<a href="${rootPath}${item.path}" class="nav-link ${isActive}">${item.label}</a>`;
+    }).join("\n            ");
+
+    // 4. Inietta l'header completo nel DOM
+    headerElement.innerHTML = `
+        <div class="logo">
+            <a href="${rootPath}index.html" style="text-decoration:none; color:inherit;">Archivio di Gigi</a>
+        </div>
+        <nav>
+            ${linksHTML}
+            <button id="theme-toggle" class="theme-btn" title="Cambia Tema">🌙</button>
+        </nav>
+    `;
+}
+
 // --- HOME: MACRO CATEGORIE ---
 function loadMacroCategories() {
     const grid = document.getElementById('math-grid');
@@ -302,6 +344,8 @@ function loadNotesByCategory(catId, catTitle, parentColorClass) {
 
 // --- GESTIONE DARK MODE ---
 document.addEventListener('DOMContentLoaded', () => {
+    renderHeader();
+
     const themeBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
